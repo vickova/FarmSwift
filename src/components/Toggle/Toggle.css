@@ -1,0 +1,22 @@
+.toggle{
+    /* position: relative; */
+
+}
+.toggle button{
+    cursor: pointer;
+}
+.toggle-children{
+    position: absolute;
+    background-color: #fff;
+    right: 10px;
+    box-shadow:1px 1px 5px rgb(226, 225, 225);
+    padding: 1rem;
+}
+.toggle-children ul{
+    margin: 0;
+    padding: 0;
+}
+.toggle-children ul li{
+    list-style: none;
+    cursor: pointer;
+}

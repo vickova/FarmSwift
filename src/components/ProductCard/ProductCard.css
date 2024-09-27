@@ -1,0 +1,46 @@
+.product__card{
+    width: 250px;
+    background-color: transparent;
+    box-shadow:1px 1px 5px rgb(226, 225, 225);
+    border-radius: 10px;
+    padding:1.5rem 1.2rem;
+    flex-direction: column;
+}
+.product__card button p, .price, .rating p{
+    margin: 0;
+}
+.product__card button{
+    border: none;
+    padding:0 .5rem;
+    border-radius: 5px;
+    background-color: var(--secondary-transparent-color);
+}
+.productcard__image{
+    width: 40%;
+    margin: 0 auto;
+}
+.productcard__image img{
+    width: 100%;
+    border-radius: 10px;
+}
+.productcard__text h3{
+    font-size: 1.2rem;
+    color: rgb(78, 76, 76);
+}
+.productcard__category,
+.sellername{
+    color: rgba(203, 199, 199, 1);
+}
+.sellername span, .price{
+    color: var(--secondary-color);
+    font-weight: bold;
+}
+.price{
+    text-decoration: underline;
+}
+.stars i{
+    color: rgb(255, 174, 0);
+}
+.ri-heart-fill, .ri-heart-line{
+    color: rgba(255, 34, 0, 0.564);
+}

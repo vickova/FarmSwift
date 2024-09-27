@@ -1,0 +1,53 @@
+.footer__container{
+    background-color: rgba(202, 237, 250, 0.3);
+    padding: 2rem 8rem !important;
+}
+.footer{
+    position: relative;
+    z-index: -99;
+    font-weight: 400;
+}
+.logo-cover img{
+    width: 70px;
+    height: 60px;
+}
+
+.inner-footer{
+    border-top: 1px solid var(--nav-color);
+    padding: .5rem 0;
+}
+
+.farmer-cover{
+    width: 250px !important;
+    height: 250px;
+    display: flex;
+    position: absolute;
+    top: 0;
+    right: 150px;
+}
+.farmer-cover img{
+
+}
+.info-cover{
+    margin: 0 auto !important;
+    background-color: #FFF;
+    border-radius: 10px;
+    padding: 1rem .5rem;
+    position: relative;
+}
+
+.farmer-cover img{
+    width: 100%s;
+}
+.footer-first h2{
+    font-size: 4rem;
+    margin: 2rem 0;
+    color: #464444;
+}
+.footer-first h2 span{
+    color: var(--secondary-color);
+}
+.contact-information{
+    display: flex;
+    flex-wrap: wrap;
+}

@@ -1,0 +1,69 @@
+.container{
+    overflow: hidden;
+}
+.hero, .shop-hero{
+    background-color: #bddbe8;
+    border-radius: 10px;
+    margin-top: 1rem !important;
+    display: block !important;
+    align-items: baseline;
+    padding: 2rem 0;
+}
+.shop-hero{
+    padding: 2rem;
+}
+.hero__subtitle h1, .gallery__subtitle h1{
+    font-size: 4rem;
+}
+.hero__subtitle{
+    margin-bottom: 2rem;
+}
+.hero__content p{
+    color: var(--heading-color);
+    font-size: 1.2rem;
+}
+
+.hero-buttons button, .gallery-buttons button{
+    display: block;
+    background-color: var(--secondary-color);
+    border: none;
+    font-size: 1.2rem;
+}
+.gallery-buttons{
+    justify-content: end;
+}
+.hero-text__cover{
+    height: 100%;
+}
+.gallery, .hero, .shop-hero{
+    padding: .5rem 8rem;
+}
+.gallery{
+    text-align: right;
+}
+.testimonial__subtitle h2{
+    text-align: center;
+    font-size: 4rem;
+}
+.testimonial-cover{
+    width: 300px;
+}
+.categories__subtitle{
+    text-align: left !important;
+    margin: .5rem 6rem;
+}
+.categories__wrapper{
+    margin: 2rem 0 !important;
+}
+
+/* .shop-hero{
+    background-image: url('../assets/images/gallery4.jpeg');
+    background-size: contain;
+    background-repeat: no-repeat;
+} */
+ .shop-image img{
+    width: 100%;
+ }
+ .popular__jingos{
+    padding: 1rem 6rem;
+ }

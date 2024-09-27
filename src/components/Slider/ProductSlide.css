@@ -1,0 +1,18 @@
+.slide{
+    width: 100%;
+}
+.testimonial{
+    /* background: url('../../assets//images/banana.jpeg'); */
+    width: 100% !important;
+    height: 550px;
+    background-repeat: no-repeat !important;
+    background-size: contain;
+}
+.testimonial img{
+    width: 100%;
+    clip-path: circle(20, 20, 20, 20);
+}
+ul.slick-dots{
+    bottom: 50px;
+    right: 300px;
+}

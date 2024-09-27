@@ -1,0 +1,155 @@
+.logo img{
+    width: 100%;
+    height: 50px;
+}
+.container{
+    max-width: 100% !important;
+}
+.menu{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav__item a{
+    text-decoration: none;
+    color: var(--heading-color);
+    font-weight: 500;
+}
+.nav__item a.active__link{
+    color: var(--secondary-color);
+    font-weight: 700;
+}
+.nav__item a.activeshop__link{
+    color: var(--heading-color);
+    font-weight: 700;
+}
+.nav__item a.remove__activeness{
+    color: var(--nav-text-color);
+}
+select, .navigation li{
+    border: 1px solid var(--nav-color);
+    border-width: 0 0 0 1px !important;
+    padding:0 1rem;
+    color: var(--nav-color);
+}
+.nav__btns .btn{
+    border: none;
+}
+.navup__wrapper{
+    border-bottom: 1px solid var(--nav-color);
+}
+.nav__middle p, .help-contact{
+    color: var(--secondary-color);
+    font-weight: 500;
+}
+
+.nav__btn, .vendor__btn{
+    background-color: var(--secondary-color) !important;
+    padding: .5rem 2rem;
+    transition: all 1s;
+    color: #fff;
+}
+.vendor__btn{
+    background-color: #fff !important;
+    color: var(--secondary-color) !important;
+    border: none !important;
+    box-shadow: 2px 2px 8px rgb(206, 205, 205);
+    height: 50px;
+    width: fit-content;
+    width: 180px;
+}
+.vendor__btn span{
+    margin: 0;
+    font-size: 1rem;
+    width: 80%;
+}
+.btn a{
+    text-decoration: none;
+    color: #fff;   
+}
+.form-wrapper{
+    width: 50%;
+}
+.form{
+    border: 1px solid var(--nav-color);
+    padding:.2rem
+}
+.form input{
+    height: 50px;
+    width: 80%;
+    border: none;
+    outline:none;
+    padding: 0 .5rem
+}
+.form .btn{
+    width: 20%;
+    height: 50px;
+    border: none;
+}
+i{
+    color: var(--secondary-color);
+    font-size: 25px;
+}
+
+.other__btns button, .other__btns i, .sub__links a, #account{
+    background-color: transparent !important;
+    text-decoration: none;
+    color: var(--nav-text-color);
+    font-weight: 600;
+}
+#account{
+    outline: none;
+}
+.other__btns button{
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    background: none;
+    border: none;
+    position: relative;
+}
+#account option{
+    border: none;
+    outline: none;
+}
+.other__btns button .superscript{
+    background-color: rgba(255, 25, 0, 0.885);
+    color: #fff;
+    text-align: center;
+    border-radius: 50%;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: -8px;
+    left: 0;
+}
+.sub__links{
+    padding: .5rem;
+    border: 1px solid var(--nav-color);
+    border-width: 1px 0 1px 0;
+    font-weight: 600;
+}
+.category__menu{
+    background-color: var(--secondary-color);
+    border-radius: 10px;
+    border: none;
+    padding:.2rem .5rem;
+
+}
+.category__menu i, .category__menu a{
+    color: #fff;
+}
+.hot__links a span{
+    color: var(--heading-color) !important;
+}
+.mode{
+    border: 1px solid var(--nav-color);
+    border-width: 0 0 0 1px;
+    width: 5%;
+    cursor: pointer;
+}
+
+#language, #currency{
+    color: var(--nav-text-color) !important;
+}

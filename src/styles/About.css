@@ -1,0 +1,88 @@
+.about-hero{
+    height: 400px;
+    padding: 2rem;
+    background-image: url('../assets/images/Hero-image.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    color: #fff;
+    text-align: center;
+    justify-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.about-hero-inner{
+    width: 70% !important;
+}
+.about-us h2{
+    font-size: 3rem;
+    text-align: center;
+}
+
+.about__section{
+    margin: 5rem 0 !important;
+}
+.about__section h2{
+    text-align: left;
+    margin-bottom: 3rem !important;
+}
+.women img{
+ width: 100%;
+}
+.gallery{
+    flex-wrap: wrap;
+}
+.empower__women{
+    flex-wrap: wrap;
+}
+.offer{
+    margin: 3rem 0;
+}
+.offer h2{
+    margin: 2rem 0;
+}
+.offer-cover{
+    flex-wrap: wrap;
+}
+.offer-card{
+    background-color: var(--secondary-transparent-color);
+    padding: 1.2rem;
+    text-align: center;
+    border-radius: 10px;
+    height: 25rem;
+    color: rgb(72, 70, 70);
+    box-shadow:1px 1px 5px rgb(226, 225, 225);
+    cursor: pointer;
+}
+.offer-card p{
+    line-height: 2rem;
+}
+.action{
+    margin: 6rem 0 !important;
+    flex-wrap: wrap !important;
+    padding: .5rem 8rem !important;
+}
+.action button{
+    background-color: var(--secondary-color);
+    border: none;
+    width: 50%;
+}
+.action-image{
+    width: 48%;
+}
+.action-image img{
+    border-radius: 10px;
+    box-shadow:1px 1px 5px rgb(226, 225, 225);
+}
+.action-text{
+    width: 50%;
+    text-align: justify;
+}
+.action-text h2{
+    text-align: left;
+}
+.gallery-text__cover{
+    width: 50%;
+    margin: 6rem 0;
+}

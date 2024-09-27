@@ -1,0 +1,30 @@
+table{
+    width: 100%;
+    table-layout: fixed;
+    display: table;
+    box-sizing: border-box;
+    text-indent: 0;
+    margin-bottom: 3rem;
+}
+thead{
+    border-top: 1px solid var(--secondary-color) !important;
+    border-bottom: 1px solid var(--secondary-color) !important;
+}
+.vendor-item{
+    padding: .5rem 0;
+}
+.vendor-identity img{
+    width: 30px;
+    height: 30px;
+}
+.vendor-identity h3{
+    margin: 0;
+    font-size: 1rem;
+}
+.vendor-info{
+    background-color: red !important;
+    transition: all cubic-bezier(0.77, 0, 0.175, 1) 100ms;
+}
+.vendor-info:hover{
+    background-color: var(--secondary-transparent-color);
+}
