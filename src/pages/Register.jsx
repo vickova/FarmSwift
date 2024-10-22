@@ -1,54 +1,39 @@
 import React from 'react';
 import { Container, Col, Row, Button, FormGroup, Form } from 'reactstrap';
 import Google from '../assets/icons/google-logo.svg';
+import { useNavigate } from 'react-router-dom';
+import { RegisterStyle } from '../styles/PagesStyles';
+import RegisterSlide from '../components/Slider/RegisterSlide';
 
 const Register = () => {
+  const navigate = useNavigate();
   return (
-    <Container>
-      <Row>
-
-      </Row>
-      <Row>
-        <div>
-          <p>Already have an account?</p>
-          <Button>login</Button>
+    <RegisterStyle className='sign__cover d-flex align-items-center'>
+    <Container className='sign__info'>
+      <Row className='inner__info'>
+      <Col lg='4' className='register__info d-flex justify-content-center align-items-center'>
+        <div className='covers'>
+          <h2>Ready to get started?</h2>
+          <p>Here is how yousign up to FarmSwift</p>
+            <RegisterSlide/>
         </div>
-        <div>
-          <h2>Sign up</h2>
-          <div>
-            <Button>
-            <i class="ri-github-fill"></i>
-              Continue with Github
-            </Button>
-            <Button>
-              <img src={Google} alt="" />
-              Continue with Google
-            </Button>
-            <p>or</p>
-            <Form>
-              <FormGroup>
-                  <input type="text" placeholder='Firstname' required id='username'/>
-                </FormGroup>
-                <FormGroup>
-                  <input type="text" placeholder='Lastname' required id='username'/>
-                </FormGroup>
-                <FormGroup>
-                  <input type="email" placeholder='Email' required id='email'/>
-                </FormGroup>
-                <FormGroup>
-                  <input type="password" placeholder='Password' required id='password'/>
-                </FormGroup>
-                <Button className='auth__btn btn secondary__btn' type='submit'>Create Account</Button>
-                <div>
-                  <input type="checkbox" />
-                  <p>I have read and agree to FarmSwift’s Privacy Policy and Terms of Use</p>
-                </div>
-                <Button>Sign Up</Button>
-              </Form>
-          </div>
-        </div>
+      </Col>
+      <Col lg='8' className='register__action d-flex align-items-center justify-content-center'>
+      <div>
+        <h2>Register as a </h2>
+        <div className='alternative__btn d-flex align-items-center gap-3'>
+            <Button className='alternative d-flex align-items-center gap-2' onClick={()=>navigate('/register/customer')}>
+                <span>Customer</span>
+              </Button>
+              <Button className='alternative d-flex align-items-center gap-2' onClick={()=>navigate('/register/seller')}>
+                <span>Seller</span>
+              </Button>
+            </div>
+      </div>
+      </Col>
       </Row>
     </Container>
+    </RegisterStyle>
   )
 }
 

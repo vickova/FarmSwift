@@ -1,0 +1,26 @@
+.registerslide{
+    width: 300px;
+}
+.testimonial{
+    width: 100% !important;
+    height: 400px;
+    background-repeat: no-repeat !important;
+    background-size: contain;
+}
+.testimonial p{
+    margin: 3rem 0;
+    font-size: 1.2rem;
+}
+.testimonial img{
+    width: 100%;
+    clip-path: circle(20, 20, 20, 20);
+}
+ul.slick-dots{
+    bottom: 50px;
+    right: 300px;
+}
+
+
+.slick-slider{
+
+}

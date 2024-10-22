@@ -17,10 +17,7 @@ const Shop = () => {
                       <p>...let's bring it to you even at a cheaper rate</p>
                       </div>
                     </div>
-                    <div className='hero-buttons d-flex align-items-center gap-2'>
-                      <Button className='d-flex align-items-center'><span>Shop Now</span><i class="ri-arrow-drop-down-line"></i></Button>
-                      <Button className='d-flex align-items-center'><span>Learn More</span><i class="ri-arrow-drop-down-line"></i></Button>
-                    </div>
+                    
                   </div>
                 </Col>
                 <Col lg='4' className='shop-image d-flex align-items-center'>

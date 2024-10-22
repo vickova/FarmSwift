@@ -1,0 +1,24 @@
+.toggle{
+    /* position: relative; */
+
+}
+.toggle button{
+    cursor: pointer;
+}
+.toggleaccount-children{
+    position: absolute;
+    background-color: #fff;
+    right: 10px;
+    box-shadow:1px 1px 5px rgb(226, 225, 225);
+    padding: 1rem;
+}
+.toggleaccount-children .account-list{
+    margin: 0;
+    padding: 0;
+}
+.toggleaccount-children .account-list p, .account-list p a{
+    color: var(--nav-text-color);
+    text-decoration: none;
+    list-style: none;
+    cursor: pointer;
+}

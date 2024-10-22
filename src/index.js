@@ -8,12 +8,19 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { BrowserRouter } from "react-router-dom";
 import reportWebVitals from './reportWebVitals';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import rootReducer from './redux/Reducer';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+console.log(store.getState())
 root.render(
   <React.StrictMode>
     <BrowserRouter>
+    <Provider store={store}>
     <App />
+    </Provider>
     </BrowserRouter>
   </React.StrictMode>
 );

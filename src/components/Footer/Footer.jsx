@@ -1,13 +1,16 @@
 import React from 'react';
 import { Row, Col, Container } from 'reactstrap';
 import './Footer.css';
+import { useLocation } from 'react-router-dom';
 import Logo from '../../assets/icons/swift-logo.png';
 import LocalFarmer from '../../assets/images/bg-man.webp'
 
 
 const Footer = () => {
+  const {pathname} = useLocation();
+  const accountexists = pathname.includes('account')
   return (
-    <div className='footer'>
+    <div className='footer' style={{display:`${pathname==='/register'||accountexists||pathname==='/register/customer'||pathname==='/register/seller'||pathname==='/login'?'none':'block'}`}}>
       <Container className='footer__container'>
       <Row className='footer-first d-flex'>
         <div className='farmer-cover'>

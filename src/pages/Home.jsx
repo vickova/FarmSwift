@@ -5,13 +5,11 @@ import CategoriesSlide from '../components/Slider/Categoris';
 import { TypeAnimation } from 'react-type-animation';
 import SubCategory from '../components/Slider/SubCategory';
 import PopularProducts from '../components/Slider/PopularProducts';
-import '../styles/Home.css';
-
+import { HomeStyle } from '../styles/PagesStyles';
 
 const Home = () => {
   return (
-    <>
-    <section className='container'>
+    <HomeStyle>
         <Container>
             <Row className='hero d-flex align-items-center'>
                 <Col lg='6' className='hero-text__cover'>
@@ -40,8 +38,8 @@ const Home = () => {
                       </div>
                     </div>
                     <div className='hero-buttons d-flex align-items-center gap-2'>
-                      <Button className='d-flex align-items-center'><span>Shop Now</span><i class="ri-arrow-drop-down-line"></i></Button>
-                      <Button className='d-flex align-items-center'><span>Learn More</span><i class="ri-arrow-drop-down-line"></i></Button>
+                      <Button className='d-flex align-items-center'><span>Shop Now</span><i className="ri-arrow-drop-down-line"></i></Button>
+                      <Button className='d-flex align-items-center'><span>Learn More</span><i className="ri-arrow-drop-down-line"></i></Button>
                     </div>
                   </div>
                 </Col>
@@ -66,8 +64,7 @@ const Home = () => {
               <PopularProducts/>
             </Row>
         </Container>
-    </section>
-    </>
+    </HomeStyle>
   )
 }
 

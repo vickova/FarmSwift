@@ -1,3 +1,8 @@
+body.inactive{
+    pointer-events: none;
+    background-color: rgba(128, 128, 128, 0.446);
+}
+
 .toggle{
     /* position: relative; */
 
@@ -5,12 +10,31 @@
 .toggle button{
     cursor: pointer;
 }
+
+.toggle-children-overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); /* Dark semi-transparent background */
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
 .toggle-children{
-    position: absolute;
+    width: 80%;
+    height: 90%;
     background-color: #fff;
-    right: 10px;
-    box-shadow:1px 1px 5px rgb(226, 225, 225);
+    position: absolute;
+    top: 50px;
+    bottom: 50px;
+    right: 0;
+    left: 0;
+    margin: auto auto auto auto;
     padding: 1rem;
+    overflow-y: auto;
+    scrollbar-width: none;
 }
 .toggle-children ul{
     margin: 0;

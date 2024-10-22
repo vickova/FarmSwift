@@ -12,6 +12,10 @@ import About from '../pages/About';
 import Vendors from '../pages/Vendors';
 import Shop from '../pages/Shop';
 import Contact from '../pages/Contact';
+import VendorDetails from '../pages/VendorDetails';
+import RegisterCustomer from '../pages/RegisterCustomer';
+import RegisterSeller from '../pages/RegisterSeller';
+import SellerDashboard from '../pages/SellerDashboard';
 
 const Routers = () => {
   return (
@@ -25,9 +29,14 @@ const Routers = () => {
       <Route path='/about' element={<About/>}/>
       <Route path='/shop' element={<Shop/>}/>
       <Route path='/vendors' element={<Vendors/>}/>
+      <Route path='/vendors/:id' element={<VendorDetails/>}/>
       <Route path='/contact' element={<Contact/>}/>
+      <Route path='/cart' element={<Contact/>}/>
       <Route path='/login' element={<Login/>}/>
       <Route path='/register' element={<Register/>}/>
+      <Route path='/register/customer' element={<RegisterCustomer/>}/>
+      <Route path='/register/seller' element={<RegisterSeller/>}/>
+      <Route path='/account/*' element={<SellerDashboard/>}/>
       <Route path='/thank-you' element={<Thankyou/>}/>
     </Routes>
   )

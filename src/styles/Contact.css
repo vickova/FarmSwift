@@ -1,0 +1,100 @@
+.about-hero{
+    height: 400px;
+    padding: 2rem;
+    background-image: url('../assets/images/Hero-image.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    color: #fff;
+    text-align: center;
+    justify-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.about-hero-inner{
+    width: 70% !important;
+}
+.links-wrapper{
+    border-top: 1px solid var(--nav-color);
+    padding: 2rem 0;
+}
+.links-wrapper h3{
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+.links i, ul li i{
+    background-color: var(--secondary-color);
+    color: #fff !important;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    justify-self: center;
+    border-radius: 100%;
+    padding: .5rem;
+}
+.contact-form li{
+    list-style: none;
+    margin: 2rem 0;
+}
+ul h3, ul p{
+    margin: 0;
+}
+.contact-reach{
+    margin: 0;
+    padding: 0;
+}
+.contact-reach li{
+    margin: 1.5rem 0;
+}
+.contact-reach li h3{
+    font-size: 1rem;
+}
+.contact-form input, .contact-form textarea{
+    width: 100%;
+    display: block;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 1px solid var(--nav-color);
+    margin: 2rem 0 !important;
+    padding: .5rem;
+    border-radius: 5px;
+}
+.contact-form textarea{
+    height: 150px;
+}
+form p{
+    font-size: .8rem;
+}
+.contact-form button{
+    background-color: var(--secondary-color) !important;
+    border: none !important;
+    border-radius: 50px !important;
+    padding: .5rem 2rem !important;
+    margin: 2rem 0 !important;
+}
+form h2{
+    margin-bottom: 2rem;
+}
+.contact-details{
+    padding: 8rem 8rem 12rem 8rem !important;
+    background-color: var(--secondary-transparent-color);
+    flex-wrap: wrap;
+}
+.contact-form{
+    background-color: rgb(243, 243, 243);
+    box-shadow:1px 1px 5px rgb(226, 225, 225);
+    padding: 2rem;
+    border-radius: 10px;
+    height: 100%;
+}
+.map{
+    height: 60vh;
+    margin: 2rem 8rem !important;
+    position: relative;
+}
+.map-item{
+    border-radius: 10px;
+    position: absolute;
+    top: -100px;
+}

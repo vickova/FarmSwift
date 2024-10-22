@@ -2,10 +2,10 @@ import React from 'react';
 import { Container, Row, Col, Button } from 'reactstrap';
 import AboutImage from '../assets/images/mission.webp';
 import Greyman from '../assets/images/grey-man.webp';
-import '../styles/About.css';
 import {galleryImages, actionImages} from '../components/image.gallery/galleryImages';
 import MansoryImagesGallery from '../components/image.gallery/MansoryImages';
 import TestimonialSlide from '../components/Slider/TestimonialSlide';
+import { AboutPageSyle } from '../styles/PagesStyles';
 
 const About = () => {
   const offer = [
@@ -31,7 +31,7 @@ const About = () => {
     },
   ]
   return (
-    <div className='about-us'>
+    <AboutPageSyle className='about-us'>
         <Container>
           <Row className='about-hero'>
             <div className='about-hero-inner'>
@@ -110,7 +110,7 @@ const About = () => {
                 </Col>
             </Row>
         </Container>
-    </div>
+    </AboutPageSyle>
   )
 }
 
