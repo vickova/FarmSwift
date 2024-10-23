@@ -1,62 +1,63 @@
 import React from 'react';
 import { Row, Col } from 'reactstrap';
+import {DashboardChart, DoughnutCircle, LineChart} from '../Visuals/DashboardChart';
 import './Dashboard.css'
 
 const Dashboard = () => {
   return (
     <div>
         <h2>Dashboard</h2>
-        <p>Tuesday, October 22, 2024</p>
-        <Row>
-          <Col lg='8'>
-            <div className='d-flex flex-wrap gap-2'>
-              <div>
-                <div>
+        <p className='m-0'>Tuesday, October 22, 2024</p>
+        <Row className='dashboard__charts'>
+          <Col lg='7' className='firstcol'>
+            <div className='chart__cards d-flex flex-wrap gap-2 justify-content-between align-items-between'>
+              <div className='visual__chart'>
+                <div className='icon__price d-flex justify-content-between'>
                   <i class="ri-file-list-3-line"></i>
                   <p>+2.06%</p>
                 </div>
-                <p>Total Sales</p>
-                <div>
-                  <h4>$612.917</h4>
-                  <p>Products vs last month</p>
+                <p className='mt-4'>Total Sales</p>
+                <div className='d-flex gap-3 justify-content-between align-items-between'>
+                  <h4 className='m-0'>$612.917</h4>
+                  <p className='m-0'>Products vs last month</p>
                 </div>
               </div>
-              <div>
-                <div>
+              <div className='visual__chart'>
+                <div className='icon__price d-flex justify-content-between align-items-between'>
                   <i class="ri-sticky-note-line"></i>
                   <p>+12.40%</p>
                 </div>
-                <p>Total Orders</p>
-                <div>
-                  <h4>34.760</h4>
-                  <p>Orders vs last month</p>
+                <p className='mt-4'>Total Orders</p>
+                <div className='d-flex gap-3 justify-content-between align-items-between'>
+                  <h4 className='m-0'>34.760</h4>
+                  <p className='m-0'>Orders vs last month</p>
                 </div>
               </div>
-              <div>
-                <div>
+              <div className='visual__chart'>
+                <div className='icon__price d-flex justify-content-between align-items-between'>
                   <i class="ri-user-heart-line"></i>
                   <p>+2.06%</p>
                 </div>
-                <p>Visitors</p>
-                <div>
-                  <h4>14.987</h4>
-                  <p>Users vs last month</p>
+                <p className='mt-4'>Visitors</p>
+                <div className='d-flex gap-3 justify-content-between align-items-between'>
+                  <h4 className='m-0'>14.987</h4>
+                  <p className='m-0'>Users vs last month</p>
                 </div>
               </div>
-              <div>
-                <div>
+              <div className='visual__chart'>
+                <div className='icon__price d-flex justify-content-between align-items-between'>
                   <i class="ri-store-line"></i>
                   <p>+12.06%</p>
                 </div>
-                <p>Total Sold Products</p>
-                <div>
-                  <h4>12.987</h4>
-                  <p>Products vs last month</p>
+                <p className='mt-4'>Total Sold Products</p>
+                <div className='d-flex gap-3 justify-content-between align-items-between'>
+                  <h4 className='m-0'>12.987</h4>
+                  <p className='m-0'>Products vs last month</p>
                 </div>
               </div>
             </div>
-            <div>
-              <div className='d-flex justify-content-between'>
+            <div className='customer__chart'>
+              <div className='d-flex justify-content-between align-items-between'>
                 <div>
                   <h3>Customer Habbits</h3>
                   <p>Track your customer habit</p>
@@ -68,28 +69,28 @@ const Dashboard = () => {
                 </select>
               </div>
               <div>
-                <h4>tracking graph goes here</h4>
+                <DashboardChart/>
               </div>
             </div>
           </Col>
-          <Col lg='4'>
-          <div>
+          <Col lg='5' className='firstcol'>
+            <div className='customer__chart'>
               <div className='d-flex justify-content-between'>
                 <div>
                   <h3>Customer Habbits</h3>
                   <p>Track your customer habit</p>
                 </div>
-                <select name="duration" id="duration">
-                  <option value="year">This year</option>
-                  <option value="month">This month</option>
-                  <option value="day">Today</option>
-                </select>
+                  <select name="duration" id="duration">
+                    <option value="year">This year</option>
+                    <option value="month">This month</option>
+                    <option value="day">Today</option>
+                  </select>
               </div>
-              <div>
-                <h4>tracking graph goes here</h4>
+              <div className='line'>
+                <LineChart/>
               </div>
             </div>
-            <div>
+            <div className='customer__chart'>
               <div className='d-flex justify-content-between'>
                 <div>
                   <h3>Customer Habbits</h3>
@@ -101,8 +102,8 @@ const Dashboard = () => {
                   <option value="day">Today</option>
                 </select>
               </div>
-              <div>
-                <h4>tracking graph goes here</h4>
+              <div className='doughnut'>
+                <DoughnutCircle/>
               </div>
             </div>
           </Col>
