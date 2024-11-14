@@ -2,11 +2,11 @@ import React from 'react';
 import { Container, Col, Button, Row } from 'reactstrap';
 import Shoping from '../assets/images/gallery4.jpeg';
 import PopularProducts from '../components/Slider/PopularProducts';
-import '../styles/Home.css'
+import { HomeStyle } from '../styles/PagesStyles';
 
 const Shop = () => {
   return (
-    <div className='container'>
+    <HomeStyle className='container'>
         <Container>
         <Row className='shop-hero d-flex align-items-center justify-content-center'>
                 <Col lg='8' className='hero-text__cover'>
@@ -29,7 +29,7 @@ const Shop = () => {
               <PopularProducts/>
             </Row>
         </Container>
-    </div>
+    </HomeStyle>
   )
 }
 

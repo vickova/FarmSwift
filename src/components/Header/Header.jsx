@@ -140,11 +140,6 @@ const MenuTog= ()=>{
                         </Form>
                     </div>
                     {/* ========search ends======== */}
-                    {/* ======== vendor============= */}
-                    <div>
-                        <Button className='vendor__btn d-flex align-items-center gap-2'><span>Become Vendor</span> <i className="ri-arrow-right-line"></i></Button>
-                    </div>
-                    {/* ========= vendor============ */}
                     {/* ======== user access begins====== */}
                     <div className="nav__right">
                     {/* logout button and username comes here when user login */}
@@ -280,9 +275,9 @@ const MenuTog= ()=>{
                         </Link>
                     </div>
                     <div>
-                        <Link to='/shop' className='d-flex align-items-center gap-2'>
-                        <i className="ri-fire-line"></i>
-                        <span>Shop</span>
+                        <Link to='/shop' className='shop__store d-flex align-items-center gap-2'>
+                            <i class="ri-store-line"></i>
+                            <span>Shop</span>
                         </Link>
                     </div>
                     <div className='top__links__cover'>

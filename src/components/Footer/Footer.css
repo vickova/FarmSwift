@@ -68,3 +68,18 @@
         height: 150px;
     }
 }
+@media screen and (max-width: 360px){
+    .footer-first{
+        h2{
+            font-size: 2rem;
+        }
+    }
+    .farmer-cover{
+        right: 30px;
+        top: 100px;
+        width: 80px;
+        height: 80px;
+        display: flex;
+        justify-content: end;
+    }
+}

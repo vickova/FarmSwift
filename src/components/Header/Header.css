@@ -170,6 +170,7 @@ i{
 
 #language, #currency{
     color: var(--nav-text-color) !important;
+    background-color: transparent;
 }
 .cart__data{
     text-align: center;
@@ -280,5 +281,20 @@ i{
     }
     .cur-lang{
         width: 100%;
+    }
+}
+@media screen and (max-width: 360px){
+    .shop__store {
+        span{
+            display: none;
+        }
+        i{
+            color: var(--nav-text-color);
+        }
+    }
+    .top__links__cover{
+        i{
+            color: var(--nav-text-color);
+        }
     }
 }

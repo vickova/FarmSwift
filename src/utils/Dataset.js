@@ -201,7 +201,7 @@ export const popular_products = [
 export const vendors = [
     {
       name:'Olu Johnson',
-      rating: 5,
+      rating: 3,
       image: Manpicture,
       city:'Lagos',
       country:'Nigeria',
@@ -217,7 +217,7 @@ export const vendors = [
     },
     {
       name:'Aduragbemi Funsho',
-      rating: 5,
+      rating: 4,
       image: ManHarvest,
       city:'Lagos',
       country:'Nigeria',
@@ -225,7 +225,7 @@ export const vendors = [
     },
     {
       name:'Michael Smith',
-      rating: 5,
+      rating: 2,
       image: ManHarvest2,
       city:'Lagos',
       country:'Nigeria',
@@ -233,7 +233,7 @@ export const vendors = [
     },
     {
         name:'Olu Johnson',
-        rating: 5,
+        rating: 4,
         image: Manpicture,
         city:'Lagos',
         country:'Nigeria',
@@ -241,7 +241,7 @@ export const vendors = [
       },
       {
         name:'Tolu Agbaje',
-        rating: 5,
+        rating: 3,
         image: RedMan,
         city:'Lagos',
         country:'Nigeria',
@@ -265,7 +265,7 @@ export const vendors = [
       },
     {
       name:'Michael Smith',
-      rating: 5,
+      rating: 1,
       image: Manpicture,
       city:'Lagos',
       country:'Nigeria',

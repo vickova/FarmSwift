@@ -71,8 +71,14 @@ overflow: hidden;
         padding: 0;
         margin: 1rem;
     }
-    .hero{
+    .hero, .shop-hero{
         padding:1rem;
+    }
+    .categories__subtitle{
+        margin: 1rem;
+    }
+    .gallery{
+        padding:0;
     }
  }
 `
@@ -179,6 +185,35 @@ h2{
     width: 50%;
     margin: 6rem 0;
 }
+@media screen and (max-width: 990px){
+    h2{
+        font-size: 2rem;
+    }
+    .action-hero-inner p{
+        font-size: 1rem;
+    }
+    .about-hero{
+        height: fit-content;
+    }
+    .gallery-text__cover{
+        width: 100%;
+    }
+    .action{
+        padding:0 !important;
+        display: block !important;
+        margin-top:0 !important;
+    }
+    .action-text{
+        width: 100%;
+    }
+    .action-image{
+        width: 100%;
+        margin: 3rem 0;
+    }
+    .about-hero-inner{
+        width: 100% !important;
+    }
+ }
 `
 
 export const ContactStyle  = styled.div`
@@ -282,6 +317,18 @@ form h2{
     position: absolute;
     top: -100px;
 }
+@media screen and (max-width: 720px){
+    .contact-details{
+        padding:1rem !important;
+    }
+    .map{
+        margin: 1rem !important;
+    }
+    .map-item{
+        top:0;
+        margin: 1rem 0;
+    }
+}
 `
 
 export const ConsultationStyle = styled.div`
@@ -305,6 +352,9 @@ export const ConsultationStyle = styled.div`
     width: 60%;
     height: 100%;
 }
+@media screen and (max-width: 720px){
+    padding: 1rem;
+}
 `
 export const VendorStyle = styled.div`
 margin: 2rem 0 4rem 0;
@@ -313,8 +363,9 @@ margin: 2rem 0 4rem 0;
 }
 .vendor-item{
     padding: .5rem 0;
-    width: 25% !important;
+    text-align: center;
 }
+
 .vendor-identity img{
     width: 30px;
     height: 30px;
@@ -322,6 +373,9 @@ margin: 2rem 0 4rem 0;
 .vendor-identity h3{
     margin: 0;
     font-size: 1rem;
+    text-align: left !important;
+    font-size: 1rem;
+    color: var(--nav-text-color)
 }
 .vendor-info{
     margin: 0 1rem !important;
@@ -370,7 +424,57 @@ margin: 2rem 0 4rem 0;
     margin: 2rem 0;
     line-height: 2rem;
 }
-
+.vendor-button{
+    background-color: var(--secondary-transparent-color);
+    border: none;
+    border-radius: 5px;
+    padding: .5rem;
+    color: grey;
+}
+.p-datatable-table tr{
+    padding: 1rem 0;
+    height: 60px
+    /* @apply text-sm h-14 px-2 */
+  }
+  .p-datatable-table tbody tr:hover{
+    background-color: var(--secondary-transparent-color);
+    
+  }
+  .p-datatable-table tr button{
+    background-color: var(--secondary-transparent-color);
+    color: grey;
+    outline: none
+  }
+  .p-paginator-bottom{
+    margin: 1rem 0;
+  }
+  .p-paginator-page[aria-current="true"]{
+    background-color: var(--secondary-transparent-color);
+  }
+@media screen and (max-width: 720px){
+    .vendor-identity{
+        h3{
+        text-align: left;
+        }
+    }
+    .vendor-header{
+        margin: 1rem 0;
+    }
+    .vendor-cover{
+        padding: 1rem;
+        display: block !important;
+    }
+    .vendor-text{
+        width: 100%;
+        margin: 2rem 0;
+    }
+    .vendor-picture{
+        width: 100%;
+        img{
+            border-radius: 5px;
+        }
+    }
+}
 `
 
 export const RegisterStyle = styled.div`

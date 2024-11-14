@@ -20,3 +20,8 @@
     width: 60%;
     height: 100%;
 }
+@media screen and (max-width: 720px){
+    .consultation__wrapper{
+        padding: 1rem;
+    }
+}
