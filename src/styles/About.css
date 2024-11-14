@@ -16,7 +16,7 @@
     width: 70% !important;
 }
 .about-us h2{
-    font-size: 3rem;
+    font-size: 2rem;
     text-align: center;
 }
 
@@ -35,6 +35,9 @@
 }
 .empower__women{
     flex-wrap: wrap;
+}
+.empower__women p{
+    font-size: .8rem;
 }
 .offer{
     margin: 3rem 0;

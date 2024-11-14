@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Container, Row, Col, Button, Form } from 'reactstrap';
 import { AddToCart, ReduceCart, RemoveCart, RemoveFromWish } from '../../redux/actions';
-import {NavLink,Link, useLocation} from 'react-router-dom';
+import {NavLink,Link, useLocation, useNavigate} from 'react-router-dom';
 import Logo from '../../assets/icons/swift-logo.png';
 import Toggle from '../Toggle/Toggle';
 import ToggleAccount from '../Toggle/ToggleAccount';
@@ -13,8 +13,10 @@ const Header = () => {
     const cartList = useSelector((state)=> state.CartReducer.cartList)
     const wishList = useSelector((state)=> state.WishReducer.wishList)
     const headerRef = useRef();
+    const navigate = useNavigate()
     const dispatch = useDispatch();
     const {pathname} = useLocation();
+    const [menuToggle, setMenuToggle] = useState(false)
     const accountexists = pathname.includes('account')
 
     const CartIncrement = (item)=>{
@@ -96,8 +98,12 @@ const sub__links = [
         display:'Contact'
     }
 ]
+const MenuTog= ()=>{
+    setMenuToggle(!menuToggle);
+    console.log(menuToggle)
+}
   return (
-    <div ref={headerRef} style={{display:`${pathname==='/register'||pathname==='/register/customer'||accountexists||pathname==='/register/seller'||pathname==='/login'?'none':'block'}`}}>
+    <div ref={headerRef} style={{display:`${pathname==='/register'||pathname==='/checkout'||pathname==='/register/customer'||accountexists||pathname==='/register/seller'||pathname==='/login'?'none':'block'}`}}>
         <Container className='container'>
             <Row >
                 <div className="navup__wrapper d-flex align-items-center justify-content-between py-2">
@@ -120,7 +126,7 @@ const sub__links = [
                 </div>
             </Row>
             <Row>
-                <div className="navdown__wrapper d-flex gap-3 align-items-center justify-content-between py-3">
+                <div className="navdown__wrapper d-flex gap-3 align-items-center justify-content-between py-1">
                     {/* =======logo starts====== */}
                     <div className="logo">
                         <img src={Logo} alt="FarmSwift logo" />
@@ -243,12 +249,8 @@ const sub__links = [
                                             <h4>Subtotal</h4>
                                             <p>#{cartList.reduce((acc, item)=>acc+(item?.price * item?.quantity), 0)}</p>
                                         </div>
-                                        <div className='promocode'>
-                                            <h4>Do you have a promocode?</h4>
-                                            <div className='action d-flex justify-content-between gap-3'>
-                                                <input type="text" placeholder='Promocode'/>
-                                                <button className='d-flex align-items-center'><span>Apply</span><i className="ri-arrow-right-line"></i></button>
-                                            </div>
+                                        <div className='my-4'>
+                                            <button className='checkout' onClick={()=> navigate('/checkout')}>Check out</button>
                                         </div>
                                     </Col>
                                 </Row>
@@ -268,35 +270,41 @@ const sub__links = [
                 {/* ======== user access ends======= */}
                 </div>
             </Row>
-            <Row>
+            <Row className='hot__row'>
                 <div className="sub__links navdown__wrapper d-flex align-items-center justify-content-between">
-                <div className='category__menu'>
-                    <Link to='/' className='d-flex align-items-center gap-3'>
-                    <i className="ri-layout-grid-line"></i>
-                    <span>Browse All Categories</span>
-                    <i className="ri-arrow-drop-down-line"></i>
-                    </Link>
-                </div>
-                <div>
-                    <Link to='/shop'>
-                    <i className="ri-fire-line"></i>
-                    <span>Shop</span>
-                    </Link>
-                </div>
-                <div className='hot__links d-flex align-items-center gap-5'>
-                {
-                    sub__links.map((item, index)=>{
-                        return <NavLink key={index} to={item.path} className={navClass => navClass.isActive?'activeshop__link':'remove__activeness'}>
-                            <span>{item.display}</span>
-                        </NavLink>
-                    })
-                }
-                </div>
-                <div className='mode d-flex align-items-center justify-content-center'>
-                <i className="ri-settings-3-line"></i>
-                </div>
+                    <div className='category__menu'>
+                        <Link to='/' className='d-flex align-items-center gap-3'>
+                        <i className="ri-layout-grid-line"></i>
+                        <span>Browse All Categories</span>
+                        <i className="ri-arrow-drop-down-line"></i>
+                        </Link>
+                    </div>
+                    <div>
+                        <Link to='/shop' className='d-flex align-items-center gap-2'>
+                        <i className="ri-fire-line"></i>
+                        <span>Shop</span>
+                        </Link>
+                    </div>
+                    <div className='top__links__cover'>
+                        <i className="ri-menu-2-line" onClick={MenuTog}></i>
+                        <div style={{display:`${menuToggle?'block':'none'}`}}>
+                        <div className='hot__links'>
+                            {
+                                sub__links.map((item, index)=>{
+                                    return <NavLink key={index} to={item.path} className={navClass => navClass.isActive?'activeshop__link':'remove__activeness'}>
+                                        <span>{item.display}</span>
+                                    </NavLink>
+                                })
+                            }
+                        </div>
+                        </div>
+                    </div>
+                    <div className='mode d-flex align-items-center justify-content-center'>
+                        <i className="ri-settings-3-line"></i>
+                    </div>
                 </div>
             </Row>
+            
         </Container>
     </div>
   )

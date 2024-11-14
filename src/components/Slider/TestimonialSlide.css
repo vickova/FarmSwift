@@ -27,8 +27,7 @@
 }
 
 .testimonial-cover .slick-prev:before, .testimonial-cover .slick-next:before{
-    font-size: 30px !important;
-    color: var(--secondary-color) !important;
+    font-size: 1rem !important;
 }
 
 .carrot{

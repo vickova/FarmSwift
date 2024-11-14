@@ -1,3 +1,4 @@
+import { popular_products } from "../utils/Dataset";
 const CartInitialState={
   cartList:[],
   cartListLength:0
@@ -70,6 +71,7 @@ export const CartReducer = (state=CartInitialState, action) => {
 
 const WishInitialState = {
   wishList:[],
+  popular_products: popular_products
 }
 
 export const WishReducer = (state=WishInitialState, action) => {
@@ -78,12 +80,16 @@ export const WishReducer = (state=WishInitialState, action) => {
       // Check if the item already exists in the cart
       console.log('Heyyyyyyy')
       const exists = state.wishList.find(cartItem => cartItem.id === action.payload.id);
-      console.log(state)
+      console.log(state);
       if (exists) {
         console.log('Yesssss')
         return {
           ...state,
-          wishList: [...state.wishList]
+          wishList: [...state.wishList],
+          popular_products: state.popular_products.map(cartItem =>
+            cartItem.id === action.payload.id
+              ? { ...cartItem, wish:true }
+              : cartItem)
       }
       } else {
         console.log('Okayyy')
@@ -100,7 +106,12 @@ export const WishReducer = (state=WishInitialState, action) => {
           
             return {
               ...state,
-              wishList: wishexists
+              wishList: wishexists,
+              popular_products: state.popular_products.map(cartItem =>
+                cartItem.id === action.payload.id
+                  ? { ...cartItem, wish:false }
+                  : cartItem
+              )
           }
     default:
       return state;

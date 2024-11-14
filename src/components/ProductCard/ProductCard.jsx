@@ -7,6 +7,7 @@ const ProductCard = ({ item}) => {
   const [wish, setWish] = useState(false);
   const cartList = useSelector((state)=> state.CartReducer.cartList);
   const wishList = useSelector((state)=> state.WishReducer.wishList);
+  const popular_products = useSelector((state)=> state?.WishReducer.popular_products);
  
   const dispatch = useDispatch();
   // Handle adding an item to the cart
@@ -17,6 +18,8 @@ const ProductCard = ({ item}) => {
   const handleWish = ()=>{
     setWish(!wish)
     dispatch(AddToWish(item))
+    console.log(popular_products)
+
   }
   const RemoveWish = ()=>{
     setWish(!wish)

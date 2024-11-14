@@ -16,21 +16,21 @@ overflow: hidden;
     padding: 2rem;
 }
 .hero__subtitle h1, .gallery__subtitle h1{
-    font-size: 4rem;
+    font-size: 3rem;
 }
 .hero__subtitle{
     margin-bottom: 2rem;
 }
-.hero__content p{
+.hero__content p, .hero__subtitle span{
     color: var(--heading-color);
-    font-size: 1.2rem;
+    font-size: 1.2rem !important;
 }
 
 .hero-buttons button, .gallery-buttons button{
     display: block;
     background-color: var(--secondary-color);
     border: none;
-    font-size: 1.2rem;
+    font-size: .8rem;
 }
 .gallery-buttons{
     justify-content: end;
@@ -46,7 +46,7 @@ overflow: hidden;
 }
 .testimonial__subtitle h2{
     text-align: center;
-    font-size: 4rem;
+    font-size: 3rem;
 }
 .testimonial-cover{
     width: 300px;
@@ -65,6 +65,12 @@ overflow: hidden;
  }
  .popular__jingos{
     padding: 1rem 6rem;
+ }
+ @media screen and (max-width: 990px){
+    .popular__jingos{
+        padding: 0;
+        margin: 1rem;
+    }
  }
 `
 
@@ -107,6 +113,12 @@ h2{
 .empower__women{
     flex-wrap: wrap;
 }
+.empower__women p{
+    font-size: 1rem;
+    line-height: 1.8rem;
+    text-align: justify;
+    margin-top: 1rem;
+}
 .offer{
     margin: 3rem 0;
     h2{
@@ -125,8 +137,15 @@ h2{
     color: rgb(72, 70, 70);
     box-shadow:1px 1px 5px rgb(226, 225, 225);
     cursor: pointer;
+    h3{
+        height: 20%;
+        font-size: 1.5rem;
+    }
     p{
-    line-height: 2rem;
+        font-size: 1rem;
+        margin-top: 1rem;
+        line-height: 2rem;
+        text-align: justify;
 }
 }
 .action{
@@ -453,6 +472,7 @@ export const SellerDashboardStyle = styled.div`
         height: 100vh;
         background-color: rgba(121, 122, 122, 0.2);
     }
+    
     .dashboardcover{
         height:100%;
     }
@@ -476,6 +496,7 @@ export const SellerDashboardStyle = styled.div`
                 color: #545454;
             }
         }
+        
     .mainbar{
         padding: 1rem 2rem;
         height: 100vh;
@@ -491,7 +512,7 @@ export const SellerDashboardStyle = styled.div`
                 cursor:pointer;
             }
             input{
-                width:80%;
+                width:90%;
                 outline: none;
                 border: none;
                 color: var(--nav-text-color);
@@ -529,7 +550,169 @@ export const SellerDashboardStyle = styled.div`
     .seller-logo {
         padding: 1rem;
         img{
-        width: 50px;
+        width: 40px;
     }
+    }
+    @media screen and (max-width: 990px){
+        .row{
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .sidebar{
+            width: 20%;
+        }
+        .mainbar{
+            width: 80%;
+            padding: 1rem;
+        }
+    }
+    @media screen and (max-width: 550px){
+        .sidebar{
+            width: 20%;
+            a{
+                span{
+                    display:none;
+                }
+            }
+        }
+    }
+`
+export const CheckOutStyle = styled.div`
+    .cart__summary{
+        border-right: 1px solid var(--nav-text-color);
+        h3{
+            margin: 1rem 0;
+        }
+        .sub__total{
+            border-top: 1px solid var(--nav-text-color);
+            padding: 1rem 0;
+            text-align: center;
+            h4{
+                font-size: 1rem;
+            }
+        }
+        .checkout{
+            border:none;
+        }
+        .checkoutrow__cover{
+            height: 60vh;
+            overflow-y:auto;
+            overflow-x: hidden;
+        }
+        .checkoutrow__cover::-webkit-scrollbar {
+            width: 0;
+        }
+    }
+    .promocode{
+        border-bottom: 1px solid grey;
+    }
+    .promocode .action{
+        margin:1rem 0;
+    }
+    .promocode input{
+        border: none;
+        outline: none;
+    }
+    .promocode button{
+        font-size: 1rem;
+        color: #000;
+    }
+    .promocode button i{
+        font-size: 1rem;
+    }
+    .subtotal h4, .promocode h4{
+        font-size: 1rem;
+    }
+    .promocode h4{
+        color: var(--nav-text-color);
+    }
+    
+.checkout__details{
+    padding:.5rem 2rem;
+    .detail__flow{
+        height: 58vh;
+        overflow: auto;
+    }
+    .detail__flow::-webkit-scrollbar {
+        width: 5px;
+    }
+    
+    h4{
+        font-size: 1rem;
+        color: #5c5c5c;
+    }
+    h3{
+    margin: 1rem 0;
+    }
+    input{
+        border: none;
+        border-bottom:1px solid var(--nav-text-color);
+        outline: none;
+        font-size: .8rem;
+        padding: .8rem 0;
+        width: 100%;
+    }
+    .action{
+        margin: 2rem 0;
+    }
+    .payment__images{
+        img{
+            width: 40px;
+            box-shadow:1px 1px 5px rgb(226, 225, 225);
+            padding:.1rem .3rem;
+        }
+    }
+    button{
+        border:none !important;
+    }
+    .apply{
+        font-size: .8rem;
+        padding:0 .5rem;
+        i{
+            font-size:.8rem;
+        }
+    }
+    .payment__section{
+        label{
+            font-size:.8rem;
+            font-weight: 500;
+            color:var(--nav-text-color);
+        }
+        input{
+            border: 1px solid var(--nav-text-color);
+            padding: .8rem .5rem;
+        }
+        .exp-wrapper {
+            position: relative;
+            border: 1px solid #aaa;
+            display: flex;
+            width: 300px;
+            justify-content: space-around;
+            height: 36px;
+            line-height: 36px;
+            font-size: .8rem;
+            }
+
+            .exp-wrapper:after {
+            content: '/';
+            position: absolute;
+            left: 50%;
+            margin-left: -4px;
+            color: #aaa;
+            }
+
+            input.exp {
+            float: left;
+            font-family: monospace;
+            border: 0;
+            width: 30%;
+            outline: none;
+            appearance: none;
+            font-size: .8rem;
+            }
+    }
+}
+    .checkout__details::-webkit-scrollbar {
+        width: 0;
     }
 `

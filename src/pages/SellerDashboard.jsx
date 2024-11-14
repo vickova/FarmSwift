@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink, Route, Routes } from 'react-router-dom';
+import { NavLink, Route, Routes, Navigate } from 'react-router-dom';
 import { Container, Row, Col, Nav } from 'reactstrap';
 import { SellerDashboardStyle } from '../styles/PagesStyles';
 import AccountDetails from '../components/Account/AccountDetails';
@@ -7,80 +7,70 @@ import Dashboard from '../components/Account/Dashboard';
 import Logo from '../assets/icons/swift-logo-rm.png';
 import ToggleSideBar from '../components/Toggle/ToggleSideBar';
 import ProfilePicture from '../assets/images/color-man.webp';
+import Customer from './Customer';
+import Password from './Password';
+import Notification from './Notification';
+import OrderDetails from './OrderDetails';
+import Privacy from './Privacy';
 
 const SellerDashboard = () => {
     const sidebar__content = [
         {
-            text:'Dashbord',
-            icon: 'ri-dashboard-line',
-            path:'/account/dashboard'
+            text:'Analytics',
+            icon: 'ri-bar-chart-box-line',
+            path:'/account/analytics'
         },
         {
             text:'Order',
             icon: 'ri-shopping-cart-2-line',
-            path:'/account'
+            path:'/account/order-details'
         },
         {
-            text:'Products',
-            icon: 'ri-stock-line',
-            path:'/account'
-        },
-        {
-            text:'Customer',
+            text:'Customers',
             icon: 'ri-user-line',
-            path:'/account'
-        },
-        {
-            text:'Employee',
-            icon: 'ri-account-box-line',
-            path:'/account'
-        },
-        {
-            text:'Billing',
-            icon: 'ri-wallet-3-line',
-            path:'/account'
-        },
-        {
-            text:'Analytics',
-            icon: 'ri-bar-chart-box-line',
-            path:'/account'
+            path:'/account/customers'
         },
         {
             text:'Settings',
             icon: 'ri-settings-4-line',
-            path:'/account'
+            path:'/account/'
         },
         {
             text:'Help',
             icon: 'ri-questionnaire-line',
-            path:'/account'
+            path:'/account/help'
         },
         {
             text:'Logout',
             icon: 'ri-logout-box-r-line',
             path:'/account'
         },
+        {
+            text:'Back to Home',
+            icon: 'ri-home-4-line',
+            path:'/'
+        },
     ]
     const side__bar__sublinks = [
         {
             text:'Account information',
-            icon: 'ri-logout-box-r-line',
-            path:'/account'
+            icon: 'ri-account-box-line',
+            path:'/account/account-details'
         },
         {
             text:'Change Password',
-            icon: 'ri-logout-box-r-line',
-            path:'/account'
+            icon: 'ri-shield-keyhole-line',
+            path:'/account/change-password'
         },
         {
             text:'Notification',
-            icon: 'ri-logout-box-r-line',
-            path:'/account'
+            icon: 'ri-notification-2-line',
+            path:'/account/notification'
         },
         {
             text:'Security & Privacy',
-            icon: 'ri-logout-box-r-line',
-            path:'/account'
+            icon: 'ri-key-fill',
+            path:'/account/privacy'
         },
     ]
   return (
@@ -97,7 +87,7 @@ const SellerDashboard = () => {
                             return <ToggleSideBar>
                                 {
                                     side__bar__sublinks.map((item, index)=>{
-                                        return <NavLink key={index} to={item.path} className={`d-flex gap-2 align-items-center ${(ClassActive)=>ClassActive.isActive?'activeshop__link':'remove__activeness'}`}>
+                                        return <NavLink key={index} to={item.path} className={`d-flex gap-2 align-items-center ${(ClassActive)=>ClassActive.isActive?'dashboard__link':'remove__activeness'}`}>
                                             <i className={item.icon}></i>
                                             <span>{item.text}</span>
                                         </NavLink>
@@ -106,7 +96,7 @@ const SellerDashboard = () => {
                             </ToggleSideBar>
                             }
                             else{
-                                return <NavLink key={index} to={item.path} className={`d-flex gap-2 align-items-center ${(ClassActive)=>ClassActive.isActive?'activeshop__link':'remove__activeness'}`}>
+                                return <NavLink key={index} to={item.path} className={`d-flex gap-2 align-items-center ${(ClassActive)=>ClassActive.isActive?'dashboard__link':'remove__activeness'}`}>
                                 <i className={item.icon}></i>
                                 <span>{item.text}</span>
                             </NavLink>
@@ -119,13 +109,12 @@ const SellerDashboard = () => {
                         <div className='main__bar__input d-flex align-items-center justify-content-between'>
                             <div className='d-flex gap-3 align-items-center'>
                                 <i class="ri-search-line"></i>
-                                <span>Search</span>
                             </div>
                             <input type="text" />
                         </div>
                         <div className='profile__cover d-flex gap-3 align-items-center'>
-                            <i class="ri-mail-line"></i>
-                            <i class="ri-notification-2-line"></i>
+                            <i classname="ri-mail-line"></i>
+                            <i classname="ri-notification-2-line"></i>
                             <div className='profile d-flex gap-3 align-items-center'>
                                 <img src={ProfilePicture} alt="" />
                                 <div className='profile__details'>
@@ -138,7 +127,13 @@ const SellerDashboard = () => {
                     <div className='inner'>
                         <Routes>
                             <Route path='/' element={<AccountDetails/>}/>
-                            <Route path='/dashboard' element={<Dashboard/>}/>
+                            <Route path='/account-details' element={<AccountDetails/>}/>
+                            <Route path='/analytics' element={<Dashboard/>}/>
+                            <Route path='/customers' element={<Customer/>}/>
+                            <Route path='/notification' element={<Notification/>}/>
+                            <Route path='/order-details' element={<OrderDetails/>}/>
+                            <Route path='/privacy' element={<Privacy/>}/>
+                            <Route path='/change-password' element={<Password/>}/>
                         </Routes>
                     </div>
                 </Col>

@@ -18,7 +18,7 @@ const SubCategory = () => {
         },
     ]
   return (
-    <div className='sub__category d-flex gap-2'>
+    <div className='sub__category'>
         {
             subcategory_items.map((item, index)=>{
                 return <div key={index} className='subcategory__card d-flex justify-content-end align-items-center'>

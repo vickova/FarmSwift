@@ -1,12 +1,13 @@
 .sub__category{
     display: flex;
+    justify-content: space-between;
     flex-wrap: wrap;
     margin: 0 6rem;
 }
 .subcategory__card{
     background-color: rgba(222, 243, 251, 0.3);
     height: 300px;
-    min-width: 48%;
+    width: 48%;
     text-align: right;
     border-radius: 10px;
     box-sizing: border-box;
@@ -26,4 +27,13 @@
 .subcategory__text{
     padding: 1rem;
     width: 50%;
+}
+@media screen and (max-width: 990px){
+    .sub__category{
+        display: block;
+        margin: 1rem;
+    }
+    .subcategory__card{
+        width: 100%;
+    }
 }

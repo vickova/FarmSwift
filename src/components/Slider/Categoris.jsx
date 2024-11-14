@@ -43,12 +43,6 @@ const CategoriesSlide = () => {
             image:Carrot,
             color:'red'
         },
-        {
-            category:'vegetables',
-            items__left:'6',
-            image:Carrot,
-            color:'red'
-        },
         
     ]
     const settings={

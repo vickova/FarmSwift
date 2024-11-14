@@ -16,6 +16,7 @@ import VendorDetails from '../pages/VendorDetails';
 import RegisterCustomer from '../pages/RegisterCustomer';
 import RegisterSeller from '../pages/RegisterSeller';
 import SellerDashboard from '../pages/SellerDashboard';
+import Checkout from '../pages/Checkout';
 
 const Routers = () => {
   return (
@@ -38,6 +39,7 @@ const Routers = () => {
       <Route path='/register/seller' element={<RegisterSeller/>}/>
       <Route path='/account/*' element={<SellerDashboard/>}/>
       <Route path='/thank-you' element={<Thankyou/>}/>
+      <Route path='/checkout' element = {<Checkout/>}/>
     </Routes>
   )
 }

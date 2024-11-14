@@ -24,7 +24,7 @@
     border-radius: 10px;
 }
 .productcard__text h3{
-    font-size: 1.2rem;
+    font-size: 1rem;
     color: rgb(78, 76, 76);
 }
 .productcard__category,
@@ -43,4 +43,9 @@
 }
 .ri-heart-fill, .ri-heart-line{
     color: rgba(255, 34, 0, 0.564);
+}
+@media screen and (max-width: 500px){
+    .product__card{
+        width: 100%;
+    }
 }

@@ -26,6 +26,7 @@ export const popular_products = [
       sellername:'Tolu ventures',
       price:350,
       discountedprice:'#500/kg',
+      wish:false,
       picture: Potatoe,
       id: 0
   },
@@ -36,6 +37,7 @@ export const popular_products = [
       sellername:'Afolabi ventures',
       price:350,
       discountedprice:'#350/kg',
+      wish:false,
       picture: Cocoyam,
       id: 1
   },
@@ -46,6 +48,7 @@ export const popular_products = [
       sellername:'Afolabi ventures',
       price:350,
       discountedprice:'#400/kg',
+      wish:false,
       picture: Tangerine,
       id: 2
   },
@@ -56,6 +59,7 @@ export const popular_products = [
       sellername:'Afolabi ventures',
       price:350,
       discountedprice:'#300/kg',
+      wish:false,
       picture: Mango,
       id: 3
   },
@@ -66,6 +70,7 @@ export const popular_products = [
       sellername:'Afolabi ventures',
       price:350,
       discountedprice:'#600/kg',
+      wish:false,
       picture: Cashew,
       id: 4
   },
@@ -76,6 +81,7 @@ export const popular_products = [
       sellername:'Afolabi ventures',
       price:350,
       discountedprice:'#400/kg',
+      wish:false,
       picture: Rice,
       id: 5
   },
@@ -86,6 +92,7 @@ export const popular_products = [
       sellername:'Afolabi ventures',
       price:350,
       discountedprice:'#300/kg',
+      wish:false,
       picture: Watermelon,
       id: 6
   },
@@ -96,6 +103,7 @@ export const popular_products = [
       sellername:'Afolabi ventures',
       price:350,
       discountedprice:'#300/kg',
+      wish:false,
       picture: Banana,
       id: 7
   },
@@ -106,6 +114,7 @@ export const popular_products = [
       sellername:'Afolabi ventures',
       price:350,
       discountedprice:'#300/kg',
+      wish:false,
       picture: Apple,
       id: 8
   },
@@ -116,6 +125,7 @@ export const popular_products = [
       sellername:'Afolabi ventures',
       price:350,
       discountedprice:'#400/kg',
+      wish:false,
       picture: guava,
       id: 9
   },
@@ -126,6 +136,7 @@ export const popular_products = [
       sellername:'Afolabi ventures',
       price:350,
       discountedprice:'#800/kg',
+      wish:false,
       picture: Pineapple,
       id: 10
   },
@@ -136,6 +147,7 @@ export const popular_products = [
       sellername:'Afolabi ventures',
       price:350,
       discountedprice:'#300/kg',
+      wish:false,
       picture: Cocoa,
       id: 11
   },
@@ -146,6 +158,7 @@ export const popular_products = [
       sellername:'Afolabi ventures',
       price:350,
       discountedprice:'#300/kg',
+      wish:false,
       picture: Eggs,
       id: 12
   },
@@ -156,6 +169,7 @@ export const popular_products = [
       sellername:'Afolabi ventures',
       price:350,
       discountedprice:'#300/kg',
+      wish:false,
       picture: Orange,
       id: 13
   },
@@ -166,6 +180,7 @@ export const popular_products = [
       sellername:'Afolabi ventures',
       price:350,
       discountedprice:'#300/kg',
+      wish:false,
       picture: Potatoe,
       id: 14
   },
@@ -176,6 +191,7 @@ export const popular_products = [
       sellername:'Afolabi ventures',
       price:350,
       discountedprice:'#300/kg',
+      wish:false,
       picture: Cashew,
       id: 15
   },

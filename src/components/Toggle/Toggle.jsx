@@ -17,10 +17,10 @@ const Toggle = ({children, title, icon, superscript}) => {
     }, [pathname])
   return (
     <div className='toggle'>
-        <button onClick={()=>setToggle(!toggle)}>
+        <button className='cart__wish' onClick={()=>setToggle(!toggle)}>
         <i className={icon}></i>
         <p className='superscript'><span>{superscript}</span></p>
-        <span>{title}</span>
+        <span className='toggle-title'>{title}</span>
         </button>
         <div className='toggle-children-overlay' style={{display:`${toggle?'block':'none'}`}} onClick={ToggleSetter}>
           <div className='toggle-children' onClick={()=>setToggle(true)} ref={toggleRef}>

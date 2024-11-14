@@ -10,7 +10,7 @@ const Footer = () => {
   const {pathname} = useLocation();
   const accountexists = pathname.includes('account')
   return (
-    <div className='footer' style={{display:`${pathname==='/register'||accountexists||pathname==='/register/customer'||pathname==='/register/seller'||pathname==='/login'?'none':'block'}`}}>
+    <div className='footer' style={{display:`${pathname==='/register'||pathname==='/checkout'||accountexists||pathname==='/register/customer'||pathname==='/register/seller'||pathname==='/login'?'none':'block'}`}}>
       <Container className='footer__container'>
       <Row className='footer-first d-flex'>
         <div className='farmer-cover'>
