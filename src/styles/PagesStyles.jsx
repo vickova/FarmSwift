@@ -71,6 +71,9 @@ overflow: hidden;
         padding: 0;
         margin: 1rem;
     }
+    .hero{
+        padding:1rem;
+    }
  }
 `
 
