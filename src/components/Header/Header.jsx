@@ -112,7 +112,7 @@ const MenuTog= ()=>{
                     </div>
                     {/* ======== user access ends======= */}
                     {/* ========language menu starts====== */}
-                    <div className="cur-lang align-items-center d-flex gap-2">
+                    <div className="cur-lang align-items-center d-flex justify-content-between gap-2">
                         <div className='align-items-center d-flex gap-2'><p className='help m-0'>Need help? Call us</p> <span className='help-contact'>+2348021585694</span></div>
                         <select name="Language" id="language" disabled="disabled">
                             <option value="English">English</option>
@@ -287,7 +287,7 @@ const MenuTog= ()=>{
                     </div>
                     <div className='top__links__cover'>
                         <i className="ri-menu-2-line" onClick={MenuTog}></i>
-                        <div style={{display:`${menuToggle?'block':'none'}`}}>
+                        <div style={{display:`${menuToggle?'none':'block'}`}}>
                         <div className='hot__links'>
                             {
                                 sub__links.map((item, index)=>{

@@ -272,4 +272,13 @@ i{
         display: block;
         cursor: pointer;
     }
+    .nav__middle{
+        display: none;
+    }
+    .navup__wrapper{
+        justify-content: space-between;
+    }
+    .cur-lang{
+        width: 100%;
+    }
 }
