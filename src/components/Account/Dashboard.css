@@ -71,7 +71,7 @@
     box-shadow:1px 1px 5px rgb(226, 225, 225);
     padding: 1rem;
     border-radius: 10px;
-    min-height: fit-content;
+    min-height: 50%;
     padding: 1rem;
     box-sizing: border-box;
     color: var(--nav-text-color);
@@ -98,6 +98,11 @@
 }
 .chart__cards{
     height: 48%;
+    display: flex;
+    flex-wrap: wrap;
+    gap:2;
+    justify-content: space-between;
+
 }
 .firstcol{
     display: flex;
@@ -112,8 +117,8 @@
     display: flex;
     justify-content: center;
 }
-.doughnut canvas{
-    width: 300px !important;
+.doughnut canvas, canvas{
+    width: 100% !important;
     height: 300px !important;
 }
 .visual__chart p{
@@ -125,4 +130,19 @@
     color: #f1f1f1;
     font-weight: 500;
     padding:.2rem .5rem;
+}
+@media screen and (max-width: 990px){
+  .chart__cards{
+    display: block !important;
+    width: 100%;
+    margin: .5rem 0;
+  }
+  .visual__chart{
+    width: 100%;
+    margin: .5rem 0;
+  } 
+  .customer__chart{
+    margin: .5rem;
+    min-height: fit-content;
+  }
 }

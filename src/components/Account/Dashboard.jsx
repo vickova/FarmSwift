@@ -10,7 +10,7 @@ const Dashboard = () => {
         <p className='m-0'>Tuesday, October 22, 2024</p>
         <Row className='dashboard__charts'>
           <Col lg='7' className='firstcol'>
-            <div className='chart__cards d-flex flex-wrap gap-2 justify-content-between align-items-between'>
+            <div className='chart__cards'>
               <div className='visual__chart'>
                 <div className='icon__price d-flex justify-content-between'>
                   <i class="ri-file-list-3-line"></i>

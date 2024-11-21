@@ -13,7 +13,7 @@ const AccountDetails = () => {
             <i class="ri-camera-line"></i>
         </div>
         <Form className='account__form'>
-          <div className='input-section d-flex gap-4 align-items-center justify-content-between'>
+          <div className='input-section'>
             <FormGroup className='input'>
               <label htmlFor="firstname">First Name</label>
               <div className='input__cover d-flex gap-2 align-items-center'>
@@ -29,7 +29,7 @@ const AccountDetails = () => {
               </div>
             </FormGroup>
           </div>
-          <div className='input-section d-flex gap-4 align-items-center justify-content-between'>
+          <div className='input-section'>
             <FormGroup className='input'>
               <label htmlFor="firstname">Email</label>
               <div className='input__cover d-flex gap-2 align-items-center'>
@@ -45,7 +45,7 @@ const AccountDetails = () => {
               </div>
             </FormGroup>
           </div>
-          <div className='input-section d-flex gap-4 align-items-center justify-content-between'>
+          <div className='input-section'>
             <FormGroup className='input'>
               <label htmlFor="firstname">Date of Birth</label>
               <div className='input__cover d-flex gap-2 align-items-center'>

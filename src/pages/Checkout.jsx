@@ -103,7 +103,7 @@ const Checkout = () => {
                                     <label htmlFor="cardnumber">Card number</label>
                                     <input autocomplete="off" id="cardnumber" maxlength="16" pattern="[0-9]*" inputmode="numerical" type="tel" data-pattern-validate />
                                 </FormGroup>
-                                <div className='d-flex justify-content-between gap-5'>
+                                <div className='d-flex justify-content-between align-items-center gap-5'>
                                     <FormGroup className='code payment__section'>
                                         <label htmlFor="code">CVV Code</label>
                                         <input autocomplete="off" id="code" maxlength="3" pattern="[0-9]*" inputmode="numerical" type="tel" data-pattern-validate />

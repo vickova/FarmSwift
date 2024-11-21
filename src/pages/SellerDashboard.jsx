@@ -105,14 +105,14 @@ const SellerDashboard = () => {
                     }
                 </Col>
                 <Col lg='10' className='mainbar'>
-                    <div className='top__bar d-flex align-items-center justify-content-between'>
+                    <div className='top__bar'>
                         <div className='main__bar__input d-flex align-items-center justify-content-between'>
                             <div className='d-flex gap-3 align-items-center'>
                                 <i class="ri-search-line"></i>
                             </div>
                             <input type="text" />
                         </div>
-                        <div className='profile__cover d-flex gap-3 align-items-center'>
+                        <div className='profile__cover'>
                             <i classname="ri-mail-line"></i>
                             <i classname="ri-notification-2-line"></i>
                             <div className='profile d-flex gap-3 align-items-center'>

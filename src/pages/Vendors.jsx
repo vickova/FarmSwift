@@ -52,8 +52,7 @@ const Vendors = () => {
           >
               <Column field="identity" header="Identity" body={identityBodyTemplate}/>
               <Column body={redirectTemplate} />
-              <Column field="Rating" header="Rating" body={ratingBodyTemplate}/>
-              <Column field="rating" sortable header="Rating" />
+              <Column field="Rating" sortable header="Rating" body={ratingBodyTemplate}/>
               <Column field="city" sortable header="City" />
               <Column field="country" sortable header="Country" />
         </DataTable>

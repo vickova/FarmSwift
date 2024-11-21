@@ -52,11 +52,18 @@ select, .navigation li{
     box-shadow: 3px 3px 8px -3px #ddd;
     z-index: 999;
 }
-.nav__btn, .vendor__btn{
+.nav__btn, .vendor__btn, .mobile__btn{
     background-color: var(--secondary-color) !important;
     padding: .5rem 2rem;
     transition: all 1s;
     color: #fff;
+}
+.mobile__btn i{
+    color: #fff;
+}
+.mobile__btn{
+    display: none !important;
+    padding: 0 !important;
 }
 .vendor__btn{
     background-color: #fff !important;
@@ -158,7 +165,7 @@ i{
 .category__menu i, .category__menu a{
     color: #fff;
 }
-.hot__links a span{
+.mobile__hot__links a span, .desktop__hot__links a span{
     color: var(--heading-color) !important;
 }
 .mode{
@@ -241,32 +248,42 @@ i{
 .sub__links{
     position: relative;
 }
-.hot__links{
-    display: flex;
+.desktop__hot__links{
+    display: flex !important;
     align-items: center;
     gap:1rem;
 }
+.mobile__hot__links{
+    display: none;
+}
 .ri-menu-2-line{
+    display: none;
+}
+.help__icon{
     display: none;
 }
 @media screen and (max-width: 720px){
     .toggle-title{
         display: none;
     }
-    .hot__links{
+    .desktop__hot__links{
+        display: none !important;
+    }
+    .mobile__hot__links{
         display: block !important;
         position: fixed;
         right: 90px;
         top: 167px;
         background-color: #ffffffb0;
         padding: 1rem;
+        z-index: 99;
     }
-    .hot__links a{
+    .mobile__hot__links a{
         display: block;
         text-align: right;
         margin: .5rem 0;
     }
-    .hot__links a:hover{
+    .mobile__hot__links a:hover{
         background-color: var(--secondary-transparent-color);
     }
     .ri-menu-2-line{
@@ -282,7 +299,21 @@ i{
     .cur-lang{
         width: 100%;
     }
+    .nav__btn{
+        display: none !important;
+    }
+    .mobile__btn{
+        display: block !important;
+    }
+    .help__icon{
+        display: block !important;
+    }
+    .help{
+        display: none !important;
+        background-color: red;
+    }
 }
+
 @media screen and (max-width: 360px){
     .shop__store {
         span{

@@ -448,6 +448,11 @@ margin: 2rem 0 4rem 0;
   .p-paginator-bottom{
     margin: 1rem 0;
   }
+   .p-datatable-table{
+    max-width: 100%;
+    box-sizing: border-box;
+    min-width: 40rem !important;
+  }
   .p-paginator-page[aria-current="true"]{
     background-color: var(--secondary-transparent-color);
   }
@@ -627,6 +632,9 @@ export const SellerDashboardStyle = styled.div`
         }
         .top__bar{
             height: fit-content;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
         .inner{
             
@@ -648,6 +656,9 @@ export const SellerDashboardStyle = styled.div`
             }
         }
         .profile__cover{
+            display: flex;
+            gap:3;
+            align-items: center
                 i{
                     font-size: 1rem;
                     cursor: pointer;
@@ -670,7 +681,24 @@ export const SellerDashboardStyle = styled.div`
         }
         .mainbar{
             width: 80%;
-            padding: 1rem;
+            padding: 1rem .5rem;
+            .main__bar__input{
+            width: 100%;
+        }
+        }
+        .profile__cover{
+            align-items: start;
+            width: 100%;
+            margin:0 0 1rem 0;
+            .profile{
+                width:100% !important;
+            }
+        }
+        .top__bar{
+            flex-direction: column-reverse;
+        }
+        .seller-logo{
+            padding:.5rem 0;
         }
     }
     @media screen and (max-width: 550px){
@@ -779,6 +807,13 @@ export const CheckOutStyle = styled.div`
             font-size:.8rem;
         }
     }
+    .code{
+        width:20%;
+    }
+    .expiry{
+        width: 80%;
+        margin-bottom: 0 !important
+    }
     .payment__section{
         label{
             font-size:.8rem;
@@ -793,7 +828,7 @@ export const CheckOutStyle = styled.div`
             position: relative;
             border: 1px solid #aaa;
             display: flex;
-            width: 300px;
+            width: 100%;
             justify-content: space-around;
             height: 36px;
             line-height: 36px;

@@ -39,6 +39,9 @@ const Header = () => {
         stickyHeaderFunction();
         return window.removeEventListener('scroll', stickyHeaderFunction)
       }, [])
+    useEffect(()=>{
+        setMenuToggle(false)
+    }, [pathname])
     const about__links = [
         {
             path:'/my-account',
@@ -113,7 +116,7 @@ const MenuTog= ()=>{
                     {/* ======== user access ends======= */}
                     {/* ========language menu starts====== */}
                     <div className="cur-lang align-items-center d-flex justify-content-between gap-2">
-                        <div className='align-items-center d-flex gap-2'><p className='help m-0'>Need help? Call us</p> <span className='help-contact'>+2348021585694</span></div>
+                        <div className='align-items-center d-flex gap-2'><p className='help m-0'>Need help? Call us</p> <i class="help__icon ri-questionnaire-line"></i> <span className='help-contact'>+2348021585694</span></div>
                         <select name="Language" id="language" disabled="disabled">
                             <option value="English">English</option>
                         </select>
@@ -137,6 +140,7 @@ const MenuTog= ()=>{
                         <Form className='form d-flex align-items-center'>
                                 <input type="text" placeholder='Search for products...' required id='search'/>
                         <Button className='nav__btn'>Search</Button>
+                        <Button className='mobile__btn'><i class="ri-search-line"></i></Button>
                         </Form>
                     </div>
                     {/* ========search ends======== */}
@@ -256,7 +260,7 @@ const MenuTog= ()=>{
                         
                         <ToggleAccount title={'Account'} icon={'ri-user-3-line'}>
                             <div className='account-list'>
-                                <p><Link to='/account'>Dashboard</Link></p>
+                                <p><Link to='/account' onClick={()=> console.log('clicked')}>Dashboard</Link></p>
                                 <p className='d-flex align-items-center gap-2'><span>Logout</span><i className="ri-logout-circle-line"></i></p>
                             </div>
                         </ToggleAccount>
@@ -282,8 +286,8 @@ const MenuTog= ()=>{
                     </div>
                     <div className='top__links__cover'>
                         <i className="ri-menu-2-line" onClick={MenuTog}></i>
-                        <div style={{display:`${menuToggle?'none':'block'}`}}>
-                        <div className='hot__links'>
+                        <div style={{display:`${menuToggle?'block':'none'}`}}>
+                        <div className='mobile__hot__links'>
                             {
                                 sub__links.map((item, index)=>{
                                     return <NavLink key={index} to={item.path} className={navClass => navClass.isActive?'activeshop__link':'remove__activeness'}>
@@ -292,6 +296,15 @@ const MenuTog= ()=>{
                                 })
                             }
                         </div>
+                        </div>
+                        <div className='desktop__hot__links'>
+                            {
+                                sub__links.map((item, index)=>{
+                                    return <NavLink key={index} to={item.path} className={navClass => navClass.isActive?'activeshop__link':'remove__activeness'}>
+                                        <span>{item.display}</span>
+                                    </NavLink>
+                                })
+                            }
                         </div>
                     </div>
                     <div className='mode d-flex align-items-center justify-content-center'>
