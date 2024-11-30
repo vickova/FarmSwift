@@ -1,4 +1,10 @@
 .products__wrapper{
     margin: 4rem 0;
     flex-wrap: wrap;
+    justify-content: space-between;
+}
+@media screen and (max-width: 720px){
+    .products__wrapper{
+        justify-content: start;
+    }
 }

@@ -162,8 +162,16 @@ i{
     padding:.2rem .5rem;
 
 }
-.category__menu i, .category__menu a{
+.category__menu p{
+    font-size: .8rem;
+}
+.category__menu i, .category__menu button{
     color: #fff;
+}
+.category__menu button{
+    background-color: transparent;
+    border: none;
+    font-weight: 600;
 }
 .mobile__hot__links a span, .desktop__hot__links a span{
     color: var(--heading-color) !important;

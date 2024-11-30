@@ -7,6 +7,9 @@ body.inactive{
     /* position: relative; */
 
 }
+.toggle-categories{
+    position: relative;
+}
 .toggle button{
     cursor: pointer;
 }
@@ -42,5 +45,8 @@ body.inactive{
 }
 .toggle-children ul li{
     list-style: none;
+    cursor: pointer;
+}
+.ri-close-line{
     cursor: pointer;
 }

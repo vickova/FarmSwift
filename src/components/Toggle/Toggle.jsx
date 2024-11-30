@@ -23,7 +23,10 @@ const Toggle = ({children, title, icon, superscript}) => {
         <span className='toggle-title'>{title}</span>
         </button>
         <div className='toggle-children-overlay' style={{display:`${toggle?'block':'none'}`}} onClick={ToggleSetter}>
-          <div className='toggle-children' onClick={()=>setToggle(true)} ref={toggleRef}>
+          <div className='toggle-children'>
+          <div className="close-menu d-flex justify-content-end">
+            <i className="ri-close-line" onClick={()=>setToggle(false)}></i>
+          </div>
             {children}
           </div>
         </div>

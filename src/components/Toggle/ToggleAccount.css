@@ -5,7 +5,7 @@
 .toggle button{
     cursor: pointer;
 }
-.toggleaccount-children{
+.toggleaccount-children, .toggleaccount-children-categories{
     position: absolute;
     background-color: #fff;
     right: 10px;
@@ -13,13 +13,20 @@
     padding: 1rem;
     z-index: 99;
 }
+.toggleaccount-children-categories{
+    min-width: fit-content;
+    right: 0;
+    left: 8px;
+    top: 45px;
+}
 .toggleaccount-children .account-list{
     margin: 0;
     padding: 0;
 }
-.toggleaccount-children .account-list p, .account-list p a{
+.toggleaccount-children .account-list p, .account-list p a, .categories-list p{
     color: var(--nav-text-color);
     text-decoration: none;
     list-style: none;
     cursor: pointer;
+    text-wrap: nowrap;
 }

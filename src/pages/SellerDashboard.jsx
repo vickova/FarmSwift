@@ -11,7 +11,9 @@ import Customer from './Customer';
 import Password from './Password';
 import Notification from './Notification';
 import OrderDetails from './OrderDetails';
+import OrderDetailsIndividual from './OrderDetailsIndividual';
 import Privacy from './Privacy';
+import Vendors from './Vendors';
 
 const SellerDashboard = () => {
     const sidebar__content = [
@@ -75,7 +77,7 @@ const SellerDashboard = () => {
     ]
   return (
     <SellerDashboardStyle>
-        <Container>
+        <Container className='seller-container'>
             <Row className='dashboardcover'>
                 <Col lg='2' className='sidebar'>
                 <div className='seller-logo'>
@@ -84,7 +86,7 @@ const SellerDashboard = () => {
                     {
                         sidebar__content.map((item, index)=>{
                             if(item.text === 'Settings'){
-                            return <ToggleSideBar>
+                            return <ToggleSideBar key={index}>
                                 {
                                     side__bar__sublinks.map((item, index)=>{
                                         return <NavLink key={index} to={item.path} className={`d-flex gap-2 align-items-center ${(ClassActive)=>ClassActive.isActive?'dashboard__link':'remove__activeness'}`}>
@@ -113,8 +115,8 @@ const SellerDashboard = () => {
                             <input type="text" />
                         </div>
                         <div className='profile__cover'>
-                            <i classname="ri-mail-line"></i>
-                            <i classname="ri-notification-2-line"></i>
+                            <i className="ri-mail-line"></i>
+                            <i className="ri-notification-2-line"></i>
                             <div className='profile d-flex gap-3 align-items-center'>
                                 <img src={ProfilePicture} alt="" />
                                 <div className='profile__details'>
@@ -129,9 +131,10 @@ const SellerDashboard = () => {
                             <Route path='/' element={<AccountDetails/>}/>
                             <Route path='/account-details' element={<AccountDetails/>}/>
                             <Route path='/analytics' element={<Dashboard/>}/>
-                            <Route path='/customers' element={<Customer/>}/>
+                            <Route path='/customers' element={<Vendors/>}/>
                             <Route path='/notification' element={<Notification/>}/>
                             <Route path='/order-details' element={<OrderDetails/>}/>
+                            <Route path='/order-details/:id' element={<OrderDetailsIndividual/>}/>
                             <Route path='/privacy' element={<Privacy/>}/>
                             <Route path='/change-password' element={<Password/>}/>
                         </Routes>

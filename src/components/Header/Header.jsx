@@ -1,12 +1,13 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Container, Row, Col, Button, Form } from 'reactstrap';
-import { AddToCart, ReduceCart, RemoveCart, RemoveFromWish } from '../../redux/actions';
+import { AddToCart, ReduceCart, RemoveCart, RemoveFromWish, searchItemAction } from '../../redux/actions';
 import {NavLink,Link, useLocation, useNavigate} from 'react-router-dom';
 import Logo from '../../assets/icons/swift-logo.png';
 import Toggle from '../Toggle/Toggle';
 import ToggleAccount from '../Toggle/ToggleAccount';
 import './Header.css'
+import ToggleCategories from '../Toggle/ToggleCategories';
 
 
 const Header = () => {
@@ -24,6 +25,11 @@ const Header = () => {
         console.log('wished')
         dispatch(RemoveFromWish(item))
         console.log(item)
+    }
+    const SubmitSearch =(e)=>{
+        e.preventDefault();
+        console.log('search clicked')
+        navigate('/search')
     }
     const stickyHeaderFunction = ()=>{
         window.addEventListener('scroll', ()=>{
@@ -137,10 +143,10 @@ const MenuTog= ()=>{
                     {/* =======logo ends======= */}
                     {/* ========search starts====== */}
                     <div className="form-wrapper">
-                        <Form className='form d-flex align-items-center'>
-                                <input type="text" placeholder='Search for products...' required id='search'/>
-                        <Button className='nav__btn'>Search</Button>
-                        <Button className='mobile__btn'><i class="ri-search-line"></i></Button>
+                        <Form className='form d-flex align-items-center' onSubmit={SubmitSearch}>
+                                <input type="text" placeholder='Search for products...' required id='search' onChange={(e)=>dispatch(searchItemAction(e.target.value))}/>
+                                <Button className='nav__btn'>Search</Button>
+                                <Button className='mobile__btn'><i class="ri-search-line"></i></Button>
                         </Form>
                     </div>
                     {/* ========search ends======== */}
@@ -271,13 +277,7 @@ const MenuTog= ()=>{
             </Row>
             <Row className='hot__row'>
                 <div className="sub__links navdown__wrapper d-flex align-items-center justify-content-between">
-                    <div className='category__menu'>
-                        <Link to='/' className='d-flex align-items-center gap-3'>
-                        <i className="ri-layout-grid-line"></i>
-                        <span>Browse All Categories</span>
-                        <i className="ri-arrow-drop-down-line"></i>
-                        </Link>
-                    </div>
+                    <ToggleCategories title={'Browse All Categories'} icon={'ri-arrow-drop-down-line'} className='sub__links'/>
                     <div>
                         <Link to='/shop' className='shop__store d-flex align-items-center gap-2'>
                             <i class="ri-store-line"></i>

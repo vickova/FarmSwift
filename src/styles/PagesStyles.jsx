@@ -69,13 +69,13 @@ overflow: hidden;
  @media screen and (max-width: 990px){
     .popular__jingos{
         padding: 0;
-        margin: 1rem;
+        margin: 0;
     }
     .hero, .shop-hero{
         padding:1rem;
     }
     .categories__subtitle{
-        margin: 1rem;
+        margin: 1rem 0;
     }
     .gallery{
         padding:0;
@@ -92,6 +92,7 @@ h2{
     height: 400px;
     padding: 2rem;
     background-image: url(${AboutHero});
+    background-color:var(--secondary-transparent-color);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: bottom;
@@ -118,6 +119,7 @@ h2{
 }
 .gallery{
     flex-wrap: wrap;
+    padding: .5rem 8rem;
 }
 .empower__women{
     flex-wrap: wrap;
@@ -213,6 +215,9 @@ h2{
     .about-hero-inner{
         width: 100% !important;
     }
+    .gallery{
+        padding: 0;
+    }
  }
 `
 
@@ -221,6 +226,7 @@ export const ContactStyle  = styled.div`
     height: 400px;
     padding: 2rem;
     background-image: url(${ContactHero});
+    background-color:var(--secondary-transparent-color);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: bottom;
@@ -358,6 +364,7 @@ export const ConsultationStyle = styled.div`
 `
 export const VendorStyle = styled.div`
 margin: 2rem 0 4rem 0;
+
 .vendor-header{
     margin: 0 1rem 2rem 1rem;
 }
@@ -433,8 +440,12 @@ margin: 2rem 0 4rem 0;
 }
 .p-datatable-table tr{
     padding: 1rem 0;
-    height: 60px
+    height: 60px;
+    font-size: .8rem;
     /* @apply text-sm h-14 px-2 */
+  }
+  .p-datatable-table h3{
+    font-size: .8rem;
   }
   .p-datatable-table tbody tr:hover{
     background-color: var(--secondary-transparent-color);
@@ -580,7 +591,7 @@ export const RegisterStyle = styled.div`
 
 export const SellerDashboardStyle = styled.div`
         
-    .container{
+    .seller-container{
         height: 100vh;
         background-color: rgba(121, 122, 122, 0.2);
     }
@@ -657,7 +668,7 @@ export const SellerDashboardStyle = styled.div`
         }
         .profile__cover{
             display: flex;
-            gap:3;
+            gap:.5rem;
             align-items: center
                 i{
                     font-size: 1rem;
@@ -857,4 +868,117 @@ export const CheckOutStyle = styled.div`
     .checkout__details::-webkit-scrollbar {
         width: 0;
     }
+`
+
+export const OrderDetailsStyle = styled.div`
+    h3{
+        margin: 1.5rem 0;
+    }
+    .p-datatable-table tr{
+    padding: 1rem 0;
+    height: 60px
+    /* @apply text-sm h-14 px-2 */
+  }
+  .p-datatable-table tbody tr:hover{
+    background-color: var(--secondary-transparent-color);
+    
+  }
+  .p-datatable-table tr button{
+    background-color: var(--secondary-transparent-color);
+    color: grey;
+    outline: none
+  }
+  .p-datatable-table{
+    max-width: 100%;
+    box-sizing: border-box;
+    min-width: 0 !important;
+  }
+  .order-details{
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 10px;
+  }
+  .order-link{
+    color: var(--secondary-color);
+    font-weight: 500;
+  }
+  .order-link p{
+    margin: 0;
+  }
+  .p-datatable-table td{
+    font-size: .8rem;
+  }
+  .p-paginator-bottom{
+    margin: 1rem 0;
+  }
+  .p-paginator-page[aria-current="true"]{
+    background-color: var(--secondary-transparent-color);
+  }
+  .p-button{
+    padding:.5rem 1rem;
+    border-radius: 20px;
+    margin: 0;
+  }
+`
+export const IndividualOrder = styled.div`
+    background-color: #fff;
+    margin: 1rem 0;
+    padding: 1rem;
+    border-radius: 5px;
+    height: 85vh;
+    overflow-y: auto;
+    &::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 5px;
+  }
+  
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: var(--secondary-transparent-color);
+    border-radius: 5px;
+  }
+  
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+    p{
+        font-size: .8rem;
+    }
+    .order-flex{
+        display: flex;
+        gap: 4rem;
+    }
+    .order-section{
+        margin: 2rem 0;
+    }
+    .back-order{
+        text-decoration: none;
+        color: var(--secondary-color);
+        margin: 1rem 0;
+    }
+    .p-datatable-table tr{
+    padding: 1rem 0;
+    height: 60px
+    /* @apply text-sm h-14 px-2 */
+  }
+  
+  .p-datatable-table tr button{
+    background-color: var(--secondary-transparent-color);
+    color: grey;
+    outline: none
+  }
+  .p-datatable-table{
+    max-width: 100%;
+    box-sizing: border-box;
+    min-width: 0 !important;
+  }
+  .p-datatable-table td{
+    font-size: .8rem;
+  }
 `

@@ -2,6 +2,11 @@ import React from 'react';
 import Slider from 'react-slick';
 import Carrot from '../../assets/icons/carrot.svg';
 import Tomato from '../../assets/icons/tomato.svg';
+import Fruit from '../../assets/images/fruit2.jfif';
+import Vegetable from '../../assets/images/vegetable.jfif';
+import Livestcok from '../../assets/images/livestock.jfif';
+import Cereal from '../../assets/images/cereal.jfif';
+import Tuber from '../../assets/images/tuber.jfif';
 
 import './Categories.css'
 
@@ -10,39 +15,33 @@ const CategoriesSlide = () => {
         {
             category:'fruits',
             items__left:'6',
-            image:Carrot,
+            image:Fruit,
             color:'red'
         },
         {
-            category:'Veegtables',
+            category:'vegtables',
             items__left:'6',
-            image:Tomato,
+            image:Vegetable,
             color:'red'
         },
         {
             category:'tubers',
             items__left:'6',
-            image:Carrot,
+            image:Tuber,
             color:'red'
         },
         {
-            category:'fruits',
+            category:'cereal',
             items__left:'6',
-            image:Tomato,
+            image:Cereal,
             color:'red'
         },
         {
-            category:'vegetables',
+            category:'livestock',
             items__left:'6',
-            image:Carrot,
+            image:Livestcok,
             color:'red'
-        },
-        {
-            category:'vegetables',
-            items__left:'6',
-            image:Carrot,
-            color:'red'
-        },
+        }
         
     ]
     const settings={
@@ -73,7 +72,7 @@ const CategoriesSlide = () => {
         ]
     }
   return (
-        <div className='category-wrapper d-flex gap-1 justify-content-between'>
+        <div className='category-wrapper'>
             {
             category__list.map((item, index)=>{
             return <div key={index} className={`categories-card `}>

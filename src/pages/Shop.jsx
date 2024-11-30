@@ -24,7 +24,7 @@ const Shop = () => {
                 <img src={Shoping} alt="" />
                 </Col>
             </Row>
-            <Row>
+            <Row className='popular__jingos'>
               <h2>products</h2>
               <PopularProducts/>
             </Row>

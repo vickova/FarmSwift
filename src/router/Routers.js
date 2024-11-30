@@ -1,8 +1,6 @@
 import React from 'react';
 import {Routes, Route, Navigate} from 'react-router-dom';
 import Home from '../pages/Home';
-import MarketPlace from '../pages/MarketPlace';
-import MarketPlaceDetails from '../pages/MarketPlaceDetails';
 import MarketSearchResultList from '../pages/MarketSearchResultList';
 import Login from '../pages/Login';
 import Register from '../pages/Register';
@@ -23,9 +21,7 @@ const Routers = () => {
     <Routes>
       <Route path='/' element={<Navigate to='/home'/>}/>
       <Route path='/home' element={<Home/>}/>
-      <Route path='/marketplace' element={<MarketPlace/>}/>
-      <Route path='/marketplace/:id' element={<MarketPlaceDetails/>}/>
-      <Route path='/marketplace/saerch' element={<MarketSearchResultList/>}/>
+      <Route path='/search' element={<MarketSearchResultList/>}/>
       <Route path='/consultation' element={<Consultation/>}/>
       <Route path='/about' element={<About/>}/>
       <Route path='/shop' element={<Shop/>}/>

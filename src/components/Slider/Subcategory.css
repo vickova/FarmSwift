@@ -31,7 +31,7 @@
 @media screen and (max-width: 990px){
     .sub__category{
         display: block;
-        margin: 1rem;
+        margin: 0;
     }
     .subcategory__card{
         width: 100%;

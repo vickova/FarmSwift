@@ -71,7 +71,9 @@ export const CartReducer = (state=CartInitialState, action) => {
 
 const WishInitialState = {
   wishList:[],
-  popular_products: popular_products
+  popular_products: popular_products,
+  categoryItem: 'Browse All Categories',
+  searchItem: '',
 }
 
 export const WishReducer = (state=WishInitialState, action) => {
@@ -113,6 +115,16 @@ export const WishReducer = (state=WishInitialState, action) => {
                   : cartItem
               )
           }
+          case 'SETCATEGORYLIST':
+            return{
+              ...state,
+              categoryItem: action.payload
+            }
+          case 'SEARCHITEM':
+            return{
+              ...state,
+              searchItem: action.payload
+            }
     default:
       return state;
   }

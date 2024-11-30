@@ -51,6 +51,7 @@
     width: 48%;
     padding: 1rem;
     border-radius: 10px;
+    margin: .5rem 0;
 }
 .visual__chart:hover{
     background-color: var(--secondary-transparent-color);
@@ -73,6 +74,7 @@
     border-radius: 10px;
     min-height: 50%;
     padding: 1rem;
+    margin: .5rem 0;
     box-sizing: border-box;
     color: var(--nav-text-color);
 }

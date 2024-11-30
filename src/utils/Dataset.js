@@ -42,7 +42,7 @@ export const popular_products = [
       id: 1
   },
   {
-      category:'fruits',
+      category:'fruit',
       description: 'One bunch of tangerine available',
       rating: '4',
       sellername:'Afolabi ventures',
@@ -53,7 +53,7 @@ export const popular_products = [
       id: 2
   },
   {
-      category:'fruits',
+      category:'fruit',
       description: 'One bunch basket of mangoes available',
       rating: '4',
       sellername:'Afolabi ventures',
@@ -64,7 +64,7 @@ export const popular_products = [
       id: 3
   },
   {
-      category:'fruits',
+      category:'fruit',
       description: 'One bunch of cashew available',
       rating: '4',
       sellername:'Afolabi ventures',
@@ -75,7 +75,7 @@ export const popular_products = [
       id: 4
   },
   {
-      category:'Cereals',
+      category:'cereal',
       description: 'Bags of local rice',
       rating: '4',
       sellername:'Afolabi ventures',
@@ -86,7 +86,7 @@ export const popular_products = [
       id: 5
   },
   {
-      category:'fruits',
+      category:'fruit',
       description: 'Big watermelons available',
       rating: '4',
       sellername:'Afolabi ventures',
@@ -97,7 +97,7 @@ export const popular_products = [
       id: 6
   },
   {
-      category:'fruits',
+      category:'fruit',
       description: 'One bunch of big bananas available',
       rating: '4',
       sellername:'Afolabi ventures',
@@ -108,7 +108,7 @@ export const popular_products = [
       id: 7
   },
   {
-      category:'fruits',
+      category:'fruit',
       description: 'Big apples available',
       rating: '4',
       sellername:'Afolabi ventures',
@@ -119,7 +119,7 @@ export const popular_products = [
       id: 8
   },
   {
-      category:'fruits',
+      category:'fruit',
       description: 'Big guava fruit available',
       rating: '4',
       sellername:'Afolabi ventures',
@@ -130,7 +130,7 @@ export const popular_products = [
       id: 9
   },
   {
-      category:'fruits',
+      category:'fruit',
       description: 'One bunch of big pineapple available',
       rating: '4',
       sellername:'Afolabi ventures',
@@ -141,7 +141,7 @@ export const popular_products = [
       id: 10
   },
   {
-      category:'fruits',
+      category:'fruit',
       description: 'One bunch of big cocoa available',
       rating: '4',
       sellername:'Afolabi ventures',
@@ -152,7 +152,7 @@ export const popular_products = [
       id: 11
   },
   {
-      category:'Animal',
+      category:'livestock',
       description: 'Big crate of eggs available',
       rating: '4',
       sellername:'Afolabi ventures',
@@ -163,7 +163,7 @@ export const popular_products = [
       id: 12
   },
   {
-      category:'fruits',
+      category:'fruit',
       description: 'One bunch of big orange available',
       rating: '4',
       sellername:'Afolabi ventures',
@@ -174,7 +174,7 @@ export const popular_products = [
       id: 13
   },
   {
-      category:'fruits',
+      category:'fruit',
       description: 'One bunch of big potatoe available',
       rating: '4',
       sellername:'Afolabi ventures',
@@ -185,7 +185,7 @@ export const popular_products = [
       id: 14
   },
   {
-      category:'fruits',
+      category:'fruit',
       description: 'One bunch of big cashew available',
       rating: '4',
       sellername:'Afolabi ventures',
@@ -304,4 +304,34 @@ export const ChartData = [
     userGain: 4300,
     userLost: 234
   }
+];
+ export const orders = [
+  {
+    orderId: "123456",
+    customerName: "John Doe",
+    orderDate: "2024-11-20",
+    totalAmount: 100.0,
+    status: "Pending",
+  },
+  {
+    orderId: "123457",
+    customerName: "Jane Smith",
+    orderDate: "2024-11-19",
+    totalAmount: 50.0,
+    status: "Shipped",
+  },
+  {
+    orderId: "123458",
+    customerName: "Alice Jones",
+    orderDate: "2024-11-18",
+    totalAmount: 75.0,
+    status: "Delivered",
+  },
+  {
+    orderId: "123459",
+    customerName: "Bob Brown",
+    orderDate: "2024-11-17",
+    totalAmount: 120.5,
+    status: "Cancelled",
+  },
 ];

@@ -30,3 +30,16 @@ export const RemoveCart = (item)=>{
         payload:item
     }
 }
+export const setCategory = (item)=>{
+    return{
+        type:'SETCATEGORYLIST',
+        payload: item
+    }
+}
+
+export const searchItemAction = (item)=>{
+    return{
+        type: 'SEARCHITEM',
+        payload: item
+    }
+}
