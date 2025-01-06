@@ -3,7 +3,7 @@ import {Routes, Route, Navigate} from 'react-router-dom';
 import Home from '../pages/Home';
 import MarketSearchResultList from '../pages/MarketSearchResultList';
 import Login from '../pages/Login';
-import Register from '../pages/Register';
+import Role from '../pages/Role';
 import Consultation from '../pages/Consultation';
 import Thankyou from '../pages/Thankyou';
 import About from '../pages/About';
@@ -11,8 +11,7 @@ import Vendors from '../pages/Vendors';
 import Shop from '../pages/Shop';
 import Contact from '../pages/Contact';
 import VendorDetails from '../pages/VendorDetails';
-import RegisterCustomer from '../pages/RegisterCustomer';
-import RegisterSeller from '../pages/RegisterSeller';
+import Register from '../pages/Register';
 import SellerDashboard from '../pages/SellerDashboard';
 import Checkout from '../pages/Checkout';
 
@@ -30,9 +29,8 @@ const Routers = () => {
       <Route path='/contact' element={<Contact/>}/>
       <Route path='/cart' element={<Contact/>}/>
       <Route path='/login' element={<Login/>}/>
-      <Route path='/register' element={<Register/>}/>
-      <Route path='/register/customer' element={<RegisterCustomer/>}/>
-      <Route path='/register/seller' element={<RegisterSeller/>}/>
+      <Route path='/get-started' element={<Role/>}/>
+      <Route path='/get-started/register' element={<Register/>}/>
       <Route path='/account/*' element={<SellerDashboard/>}/>
       <Route path='/thank-you' element={<Thankyou/>}/>
       <Route path='/checkout' element = {<Checkout/>}/>

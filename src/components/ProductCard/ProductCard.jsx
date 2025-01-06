@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import './ProductCard.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { AddToCart, AddToWish,RemoveFromWish } from '../../redux/actions';
+import { AddToCart, AddToWish,RemoveFromWish, WishToggle } from '../../redux/actions';
 
 const ProductCard = ({ item}) => {
-  const [wish, setWish] = useState(false);
   const cartList = useSelector((state)=> state.CartReducer.cartList);
   const wishList = useSelector((state)=> state.WishReducer.wishList);
   const popular_products = useSelector((state)=> state?.WishReducer.popular_products);
@@ -16,13 +15,13 @@ const ProductCard = ({ item}) => {
     console.log('Cart after addition:', cartList);
   };
   const handleWish = ()=>{
-    setWish(!wish)
     dispatch(AddToWish(item))
+    dispatch(WishToggle(item))
     console.log(popular_products)
 
   }
   const RemoveWish = ()=>{
-    setWish(!wish)
+    dispatch(WishToggle(item))
     dispatch(RemoveFromWish(item))
   }
 // console.log(cartList)
@@ -30,7 +29,7 @@ const ProductCard = ({ item}) => {
   return (
     <div className='product__card d-flex justify-content-between'>
       <div className='d-flex justify-content-end'>
-        {wish ? (
+        {item?.wish ? (
           <i className="ri-heart-fill" onClick={RemoveWish}></i>
         ) : (
           <i className="ri-heart-line" onClick={handleWish}></i>

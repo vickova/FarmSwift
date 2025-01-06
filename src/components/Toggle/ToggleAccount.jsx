@@ -1,13 +1,20 @@
 import React, {useState} from 'react';
 import './ToggleAccount.css'
 
-const ToggleAccount = ({children, title, icon}) => {
+const ToggleAccount = ({children, title, icon, userData}) => {
     const [toggle, setToggle] = useState(false);
   return (
     <div className='toggle'>
         <button onClick={()=>setToggle(!toggle)}>
+        {userData?
+        <img
+              src={URL.createObjectURL(userData?.profilePicture)} // Convert the file object to URL
+              alt="Profile"
+              style={{ width: '30px', height: '30px', borderRadius: '50%' }}
+              />:
         <i className={icon}></i>
-        <span className='toggle-title'>{title}</span>
+        }
+        <span className='toggle-title'>{userData?userData?.firstname:title}</span>
         </button>
         <div className='toggleaccount-children' style={{display:`${toggle?'block':'none'}`}}>
             {children}

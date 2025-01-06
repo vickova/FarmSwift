@@ -1,15 +1,21 @@
 import React from 'react';
 import { CheckOutStyle } from '../styles/PagesStyles';
 import { Container, Row, Col, FormGroup } from 'reactstrap';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import MasterCard from '../assets/icons/mastercard.svg';
 import visa from '../assets/icons/visa.svg';
 import PayPal from '../assets/icons/paypal.svg';
+import { SubmitOrder } from '../redux/actions';
 
 const Checkout = () => {
     const cartList = useSelector((state)=> state.CartReducer.cartList);
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const OrderSubmit = ()=>{
+        dispatch(SubmitOrder())
+        navigate('/account')
+    }
   return (
     <CheckOutStyle>
         <Container>
@@ -127,7 +133,7 @@ const Checkout = () => {
                         </div>
                     </div>
                     <div className='my-4'>
-                        <button className='checkout' onClick={()=> navigate('/account')}>Submit Order</button>
+                        <button className='checkout' onClick={OrderSubmit}>Submit Order</button>
                     </div>
                 </Col>
             </Row>

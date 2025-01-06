@@ -10,9 +10,12 @@ import './Header.css'
 import ToggleCategories from '../Toggle/ToggleCategories';
 
 
-const Header = () => {
+const Header = ({wish, setWish}) => {
     const cartList = useSelector((state)=> state.CartReducer.cartList)
     const wishList = useSelector((state)=> state.WishReducer.wishList)
+    const userData = useSelector((state)=> state.UserReducer.UserData);
+    const [previewImage, setPreviewImage] = useState('');
+    console.log(userData)
     const headerRef = useRef();
     const navigate = useNavigate()
     const dispatch = useDispatch();
@@ -41,6 +44,7 @@ const Header = () => {
             }
         })
     }
+
     useEffect(()=>{
         stickyHeaderFunction();
         return window.removeEventListener('scroll', stickyHeaderFunction)
@@ -111,8 +115,12 @@ const MenuTog= ()=>{
     setMenuToggle(!menuToggle);
     console.log(menuToggle)
 }
+const handleWishSetting =(item)=>{
+    dispatch(RemoveFromWish(item));
+    setWish(!wish)
+}
   return (
-    <div ref={headerRef} style={{display:`${pathname==='/register'||pathname==='/checkout'||pathname==='/register/customer'||accountexists||pathname==='/register/seller'||pathname==='/login'?'none':'block'}`}}>
+    <div ref={headerRef} style={{display:`${pathname==='/get-started'||pathname==='/checkout'||pathname==='/get-started/register'||accountexists||pathname==='/login'?'none':'block'}`}}>
         <Container className='container'>
             <Row >
                 <div className="navup__wrapper d-flex align-items-center justify-content-between py-2">
@@ -190,7 +198,7 @@ const MenuTog= ()=>{
                                                 </Col>
                                                 <Col lg='2' className='cart__data'>{item.price}</Col>
                                                 <Col lg='2' className='cart__data'><button onClick={()=>CartIncrement(item)}>Add to Cart</button></Col>
-                                                <Col lg='1' className='cart__data'><i className="ri-close-fill" onClick={()=>dispatch(RemoveFromWish(item))}></i></Col>
+                                                <Col lg='1' className='cart__data'><i className="ri-close-fill" onClick={()=>handleWishSetting(item)}></i></Col>
                                             </Row>
                                         })
                                     }
@@ -263,8 +271,7 @@ const MenuTog= ()=>{
                             }
                         </ul>
                         </Toggle>
-                        
-                        <ToggleAccount title={'Account'} icon={'ri-user-3-line'}>
+                        <ToggleAccount title={'Account'} icon={'ri-user-3-line'} userData={userData}>
                             <div className='account-list'>
                                 <p><Link to='/account' onClick={()=> console.log('clicked')}>Dashboard</Link></p>
                                 <p className='d-flex align-items-center gap-2'><span>Logout</span><i className="ri-logout-circle-line"></i></p>

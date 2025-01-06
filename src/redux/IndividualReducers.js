@@ -1,7 +1,8 @@
 import { popular_products } from "../utils/Dataset";
 const CartInitialState={
   cartList:[],
-  cartListLength:0
+  cartListLength:0,
+  orderHistory: []
 }
 
 export const CartReducer = (state=CartInitialState, action) => {
@@ -61,6 +62,13 @@ export const CartReducer = (state=CartInitialState, action) => {
               cartList:[...state.cartList]
             }
           } 
+          case 'SUBMITORDER':
+            const History = state.cartList
+            return{
+              ...state,
+              cartList: [],
+              orderHistory: [...state.orderHistory, History]
+            }
        // If the item is already in the cart, don't add it again
      // If the item is already in the cart, don't add it again
        
@@ -81,24 +89,22 @@ export const WishReducer = (state=WishInitialState, action) => {
     case 'ADD_TO_WISH':
       // Check if the item already exists in the cart
       console.log('Heyyyyyyy')
-      const exists = state.wishList.find(cartItem => cartItem.id === action.payload.id);
-      console.log(state);
+      const exists = state.wishList.filter(cartItem => cartItem.id === action.payload.id);
+      console.log(state.popular_products);
       if (exists) {
         console.log('Yesssss')
         return {
           ...state,
-          wishList: [...state.wishList],
-          popular_products: state.popular_products.map(cartItem =>
-            cartItem.id === action.payload.id
-              ? { ...cartItem, wish:true }
-              : cartItem)
+          wishList:[...state.wishList, { ...action.payload}],
       }
-      } else {
-        console.log('Okayyy')
-        return {
-          ...state,
-          wishList:[...state.wishList, { ...action.payload}]
-        }
+      } 
+    case 'WISH_TOGGLE':
+      return{
+        ...state,
+        popular_products: state.popular_products.map(cartItem =>
+          cartItem.id === action.payload.id
+            ? { ...cartItem, wish:true }
+            : cartItem)
       }
         case 'REMOVE_WISH':
           // Check if the item already exists in the cart
@@ -129,3 +135,18 @@ export const WishReducer = (state=WishInitialState, action) => {
       return state;
   }
 };
+const SignUpInitialState = { 
+  UserData:{}
+}
+
+export const UserReducer = (state=SignUpInitialState, action) => {
+  switch (action.type) {
+    case 'SIGNED_USER':
+      return{
+        ...state,
+        UserData:action.payload
+      }
+    default:
+      return state;
+  }
+}

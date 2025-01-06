@@ -1,15 +1,19 @@
 import React from 'react';
 import ProfilePicture from '../../assets/images/color-man.webp';
 import { FormGroup, Form } from 'reactstrap';
+import { useSelector } from 'react-redux';
 import './AccountDetails.css';
 
 const AccountDetails = () => {
+  const orderList = useSelector((state)=> state.CartReducer.orderHistory);
+  const userData = useSelector((state)=> state.UserReducer.UserData);
+  console.log(orderList)
   return (
     <div className='account__detail__wrapper'>
       <h2>Account Information</h2>
       <div className='account__details__cover'>
         <div className='profile__info__cover d-flex align-items-center gap-3'>
-          <img src={ProfilePicture} alt="" />
+          <img src={URL.createObjectURL(userData?.profilePicture)} alt="" />
             <i class="ri-camera-line"></i>
         </div>
         <Form className='account__form'>

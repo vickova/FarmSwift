@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { NavLink, Route, Routes, Navigate } from 'react-router-dom';
 import { Container, Row, Col, Nav } from 'reactstrap';
 import { SellerDashboardStyle } from '../styles/PagesStyles';
@@ -75,6 +76,7 @@ const SellerDashboard = () => {
             path:'/account/privacy'
         },
     ]
+    const userData = useSelector((state)=> state.UserReducer.UserData);
   return (
     <SellerDashboardStyle>
         <Container className='seller-container'>
@@ -118,10 +120,10 @@ const SellerDashboard = () => {
                             <i className="ri-mail-line"></i>
                             <i className="ri-notification-2-line"></i>
                             <div className='profile d-flex gap-3 align-items-center'>
-                                <img src={ProfilePicture} alt="" />
+                                <img src={URL.createObjectURL(userData?.profilePicture)} alt="" />
                                 <div className='profile__details'>
-                                    <p>Jane Cooper</p>
-                                    <p>janecooper123@gmail.com</p>
+                                    <p>{userData?.firstname} {userData?.lastname}</p>
+                                    <p>{userData?.email}</p>
                                 </div>
                             </div>
                         </div>

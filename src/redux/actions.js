@@ -30,6 +30,12 @@ export const RemoveCart = (item)=>{
         payload:item
     }
 }
+export const WishToggle = (item)=>{
+    return {
+        type:'WISH_TOGGLE',
+        payload:item
+    }
+}
 export const setCategory = (item)=>{
     return{
         type:'SETCATEGORYLIST',
@@ -40,6 +46,18 @@ export const setCategory = (item)=>{
 export const searchItemAction = (item)=>{
     return{
         type: 'SEARCHITEM',
+        payload: item
+    }
+}
+
+export const SubmitOrder = ()=>{
+    return{
+        type: 'SUBMITORDER'
+    }
+}
+export const SignUser = (item)=>{
+    return{
+        type: 'SIGNED_USER',
         payload: item
     }
 }
