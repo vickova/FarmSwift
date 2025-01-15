@@ -33,12 +33,11 @@
     display: flex;
     justify-content: end;
 }
-.consult__control button{
 
-}
 .consultation__cover{
     position: fixed;
     right: 0;
     top: 60%;
     padding: .5rem;
+    height: fit-content;
 }
