@@ -4,10 +4,13 @@ import "./ChatInterface.css";
 const ChatInterface = () => {
   const [messages, setMessages] = useState([]); // Stores the chat messages
   const [input, setInput] = useState(""); // Stores the user input
+    const [previewImage, setPreviewImage] = useState(null); // For previewing the selected image
+  
 
   // Handle message sending
   const handleSendMessage = () => {
     console.log('sending')
+    console.log(messages)
     if (input.trim() !== "") {
       setMessages([...messages, { text: input, sender: "user" }]); // Add user's message
       setInput(""); // Clear input
@@ -20,6 +23,19 @@ const ChatInterface = () => {
       }, 1000);
     }
   };
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    console.log(file)
+    
+
+    // Generate a preview of the selected image
+    const reader = new FileReader();
+    reader.onload = () => {
+      setPreviewImage(reader.result);
+      setMessages([...messages, { text: reader.result, sender: "user" }]);
+    };
+}
+    
 
   // Handle input change
   const handleInputChange = (e) => setInput(e.target.value);
@@ -53,6 +69,8 @@ const ChatInterface = () => {
                       id="fileInput"
                       accept="image/*"
                       style={{ display: 'none' }}
+                      onChange={handleFileChange}
+
                     />
                     <label
                       htmlFor="fileInput"
