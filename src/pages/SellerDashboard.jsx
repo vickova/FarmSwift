@@ -29,11 +29,6 @@ const SellerDashboard = () => {
             path:'/account/order-details'
         },
         {
-            text:'Customers',
-            icon: 'ri-user-line',
-            path:'/account/customers'
-        },
-        {
             text:'Settings',
             icon: 'ri-settings-4-line',
             path:'/account/'

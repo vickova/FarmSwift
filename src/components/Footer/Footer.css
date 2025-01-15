@@ -4,7 +4,6 @@
 }
 .footer{
     position: relative;
-    z-index: -99;
     font-weight: 400;
 }
 .logo-cover img{

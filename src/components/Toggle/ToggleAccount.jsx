@@ -6,7 +6,7 @@ const ToggleAccount = ({children, title, icon, userData}) => {
   return (
     <div className='toggle'>
         <button onClick={()=>setToggle(!toggle)}>
-        {userData?
+        {userData?.profilePicture?
         <img
               src={URL.createObjectURL(userData?.profilePicture)} // Convert the file object to URL
               alt="Profile"
@@ -14,7 +14,7 @@ const ToggleAccount = ({children, title, icon, userData}) => {
               />:
         <i className={icon}></i>
         }
-        <span className='toggle-title'>{userData?userData?.firstname:title}</span>
+        <span className='toggle-title'>{userData?.firstname?userData?.firstname:title}</span>
         </button>
         <div className='toggleaccount-children' style={{display:`${toggle?'block':'none'}`}}>
             {children}

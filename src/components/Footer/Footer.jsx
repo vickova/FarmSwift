@@ -4,6 +4,7 @@ import './Footer.css';
 import { useLocation } from 'react-router-dom';
 import Logo from '../../assets/icons/swift-logo.png';
 import LocalFarmer from '../../assets/images/bg-man.webp'
+import ConsultationButton from '../ConsultationButton/ConsultationButton';
 
 
 const Footer = () => {
@@ -56,6 +57,7 @@ const Footer = () => {
           </p>
         </div>
       </Row>
+      <ConsultationButton/>
       </Container>
     </div>
   )

@@ -9,7 +9,7 @@ overflow: hidden;
     background-color: #bddbe8;
     border-radius: 10px;
     margin: .5rem !important;
-    align-items: baseline;
+    align-items: center;
     padding: 2rem 0;
 }
 .shop-hero{
