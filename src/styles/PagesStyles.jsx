@@ -1009,8 +1009,9 @@ export const IndividualOrder = styled.div`
 
 export const UploadProductStyle = styled.div`
   /* General container styling */
+  margin-top:30px;
   .upload-product-container {
-    max-width: 900px; /* Wider container for desktop */
+    max-width: 900px;
     margin: 0 auto;
     padding: 20px;
     background-color: #f9f9f9;
@@ -1055,12 +1056,34 @@ export const UploadProductStyle = styled.div`
   }
 
   .form-group input,
-  .form-group textarea {
+  .form-group textarea,
+  .form-group select {
     width: 100%;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
     font-size: 14px;
+    background-color: #fff;
+    transition: border-color 0.3s ease;
+  }
+
+
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus {
+    border-color: #199b73;
+    outline: none;
+  }
+
+  /* Styling specifically for the select element */
+  .form-group select {
+    appearance: none; /* Removes default browser styling for a consistent look */
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23ddd' d='M2 0L0 2h4zM2 5L0 3h4z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 10px;
+    cursor: pointer;
+    color:'#000'
   }
 
   textarea {
@@ -1128,3 +1151,4 @@ export const UploadProductStyle = styled.div`
     margin-top: 10px;
   }
 `;
+

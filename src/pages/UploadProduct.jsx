@@ -22,9 +22,11 @@ const UploadProduct = () => {
       setProduct({ ...product, [name]: value });
     }
   };
-const deleteProduct = (item)=>{
-  setUploadedProducts(uploadedProducts.filter((prod, index)=>prod.id !== item.id))
-}
+
+  const deleteProduct = (item) => {
+    setUploadedProducts(uploadedProducts.filter((prod) => prod.id !== item.id));
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -52,100 +54,124 @@ const deleteProduct = (item)=>{
     });
   };
 
+  const categories = [
+    'Fruits',
+    'Vegetables',
+    'Grains',
+    'Dairy',
+    'Livestock',
+    'Poultry',
+    'Seeds',
+    'Fertilizers',
+    'Equipment',
+  ];
+
   return (
     <UploadProductStyle>
-    <div className="upload-product-container">
-      <h2 className="form-title">Upload Product</h2>
-      <form onSubmit={handleSubmit} className="upload-product-form">
-        <div className="form-group">
-          <label>Product Name</label>
-          <input
-            type="text"
-            name="name"
-            value={product.name}
-            onChange={handleChange}
-            placeholder="Enter product name"
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label>Price ($)</label>
-          <input
-            type="number"
-            name="price"
-            value={product.price}
-            onChange={handleChange}
-            placeholder="Enter product price"
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label>Description</label>
-          <textarea
-            name="description"
-            value={product.description}
-            onChange={handleChange}
-            placeholder="Enter product description"
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label>Category</label>
-          <input
-            type="text"
-            name="category"
-            value={product.category}
-            onChange={handleChange}
-            placeholder="Enter product category"
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label>Product Image</label>
-          <input
-            type="file"
-            name="image"
-            onChange={handleChange}
-            accept="image/*"
-            required
-          />
-        </div>
-        <button type="submit" className="submit-btn">
-          Upload Product
-        </button>
-      </form>
+      <div className="upload-product-container">
+        <h2 className="form-title">Upload Product</h2>
+        <form onSubmit={handleSubmit} className="upload-product-form">
+          <div className="form-group">
+            <label>Product Name</label>
+            <input
+              type="text"
+              name="name"
+              value={product.name}
+              onChange={handleChange}
+              placeholder="Enter product name"
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label>Price ($)</label>
+            <input
+              type="number"
+              name="price"
+              value={product.price}
+              onChange={handleChange}
+              placeholder="Enter product price"
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label>Description</label>
+            <textarea
+              name="description"
+              value={product.description}
+              onChange={handleChange}
+              placeholder="Enter product description"
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label>Category</label>
+            <select
+              name="category"
+              value={product.category}
+              onChange={handleChange}
+              required
+              style={{color:'#000'}}
+            >
+              <option value="" disabled style={{color:'#000'}}>
+                Select a category
+              </option>
+              {categories.map((category, index) => (
+                <option key={index} value={category} style={{color:'#000'}}>
+                  {category}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="form-group">
+            <label>Product Image</label>
+            <input
+              type="file"
+              name="image"
+              onChange={handleChange}
+              accept="image/*"
+              required
+            />
+          </div>
+          <button type="submit" className="submit-btn">
+            Upload Product
+          </button>
+        </form>
 
-      {successMessage && <p className="success-message">{successMessage}</p>}
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
+        {successMessage && <p className="success-message">{successMessage}</p>}
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
 
-      <div className="uploaded-products">
-        <h3>Uploaded Products</h3>
-        {uploadedProducts.length === 0 ? (
-          <p>No products uploaded yet.</p>
-        ) : (
-          <ul className="product-list">
-            {uploadedProducts.map((product) => (
-              <li key={product.id} className="product-item">
-                <div className='d-flex align-items-center justify-content-between'>
-                  <h4>{product.name}</h4>
-                  <i className="ri-delete-bin-4-line" style={{cursor:'pointer'}} onClick={()=>deleteProduct(product)}></i>
-                </div>
-                <p>Price: ${product.price}</p>
-                <p>Category: {product.category}</p>
-                <p>Description: {product.description}</p>
-                {product.imageURL && (
-                  <img
-                    src={product.imageURL}
-                    alt={product.name}
-                    className="product-image"
-                  />
-                )}
-              </li>
-            ))}
-          </ul>
-        )}
+        <div className="uploaded-products">
+          <h3>Uploaded Products</h3>
+          {uploadedProducts.length === 0 ? (
+            <p>No products uploaded yet.</p>
+          ) : (
+            <ul className="product-list">
+              {uploadedProducts.map((product) => (
+                <li key={product.id} className="product-item">
+                  <div className="d-flex align-items-center justify-content-between">
+                    <h4>{product.name}</h4>
+                    <i
+                      className="ri-delete-bin-4-line"
+                      style={{ cursor: 'pointer' }}
+                      onClick={() => deleteProduct(product)}
+                    ></i>
+                  </div>
+                  <p>Price: ${product.price}</p>
+                  <p>Category: {product.category}</p>
+                  <p>Description: {product.description}</p>
+                  {product.imageURL && (
+                    <img
+                      src={product.imageURL}
+                      alt={product.name}
+                      className="product-image"
+                    />
+                  )}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
       </div>
-    </div>
     </UploadProductStyle>
   );
 };
