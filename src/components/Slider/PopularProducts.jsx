@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 import './PopularProducts.css';
 import ProductCard from '../ProductCard/ProductCard';
 import { CartReducer } from '../../redux/IndividualReducers';
-
+import { vendors } from '../../utils/Dataset';
 
 const PopularProducts = () => {
     // const [state, dispatch] = useReducer(CartReducer, InitialState);
@@ -14,7 +14,18 @@ const PopularProducts = () => {
     const searchItem = useSelector((state)=> state?.WishReducer.searchItem);
     console.log(searchItem)
     const categoryList = popular_products.filter((item)=>item.category === categoryItem.toLowerCase())
-    const searchList = popular_products.filter((item)=> item.category === searchItem.toLowerCase()||item.description.toLowerCase().includes(searchItem.toLowerCase())||item.sellername.toLowerCase().includes(searchItem.toLowerCase()))
+    const searchList = popular_products.filter((item) => {
+      const vendor = vendors.find((vendor) => vendor?.id === item.createdBy); // Find the matching vendor
+      const vendorName = vendor ? vendor.name.toLowerCase() : ''; // Get the vendor's name if it exists
+      // Convert `item.rating` and `searchItem` to strings for comparison
+        const itemRating = item.rating?.toString() || '';
+        const searchRating = searchItem?.toString() || '';
+      return (
+        item.category === searchItem.toLowerCase() ||
+        item.description.toLowerCase().includes(searchItem.toLowerCase()) ||
+        vendorName.includes(searchItem.toLowerCase()) // Check if vendor name includes the search item
+      );
+    });
     console.log(searchList)
     console.log(categoryList)
     

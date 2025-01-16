@@ -2,11 +2,16 @@ import React, { useState } from 'react';
 import './ProductCard.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { AddToCart, AddToWish,RemoveFromWish, WishToggle } from '../../redux/actions';
+import { vendors } from '../../utils/Dataset';
+import { useParams } from 'react-router-dom';
 
 const ProductCard = ({ item}) => {
   const cartList = useSelector((state)=> state.CartReducer.cartList);
   const wishList = useSelector((state)=> state.WishReducer.wishList);
-  const popular_products = useSelector((state)=> state?.WishReducer.popular_products);
+      const popular_products = useSelector((state)=> state?.WishReducer.popular_products);
+  const current_vendor = vendors?.filter((vendor)=>vendor?.id===Number(item?.createdBy))[0];
+  const total_rating = 5
+  const remaining_rating = total_rating-current_vendor?.rating
  
   const dispatch = useDispatch();
   // Handle adding an item to the cart
@@ -17,7 +22,6 @@ const ProductCard = ({ item}) => {
   const handleWish = ()=>{
     dispatch(AddToWish(item))
     dispatch(WishToggle(item))
-    console.log(popular_products)
 
   }
   const RemoveWish = ()=>{
@@ -43,14 +47,20 @@ const ProductCard = ({ item}) => {
         <h3>{item.description}</h3>
         <div className='rating gap-2 d-flex align-items-center'>
           <span className='stars d-flex gap-1'>
-            <i className="ri-star-fill"></i>
-            <i className="ri-star-fill"></i>
-            <i className="ri-star-fill"></i>
-            <i className="ri-star-half-fill"></i>
+            {
+                    [...Array(current_vendor?.rating)]?.map((item, index)=>{
+                        return <i className="ri-star-fill"></i>
+                    })
+                }
+                {
+                    [...Array(remaining_rating?remaining_rating:0)]?.map((item, index)=>{
+                        return <i className="ri-star-line"></i>
+                    })
+                }
           </span>
-          <p>{item.rating}</p>
+          <p>{current_vendor?.rating}</p>
         </div>
-        <p className='sellername'>By <span>{`${item.sellername}`}</span></p>
+        <p className='sellername'>By <span>{`${current_vendor?.name}`}</span></p>
         <div className='shop-price d-flex align-items-end justify-content-between'>
           <p className='price'>#{item.price}/kg</p>
           <button className='d-flex gap-4 align-items-center' onClick={handleAddToCart}>

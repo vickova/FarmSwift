@@ -1,9 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { useParams } from 'react-router-dom';
 import { vendors } from '../utils/Dataset';
 import { VendorStyle } from '../styles/PagesStyles';
+import RatingContent from '../components/RatingContent/RatingContent';
 
 const VendorDetails = () => {
+const [open, setOpen] = useState(false);
+console.log(open)
 const {id} = useParams();
 const vendordetail = vendors.filter((item)=> item.id === Number(id))
 console.log(vendordetail)
@@ -17,7 +20,10 @@ console.log(vendordetail)
                     </div>
                     <div className='vendor-text'>
                         <h2>{item.name}</h2>
-                        <p className='vendor-major'>Rice farmer</p>
+                        <div className='gap-4 d-flex align-items-center my-3'>
+                            <p className='vendor-major'>Rice farmer</p>
+                            <button onClick={()=>setOpen(true)} style={{backgroundColor:'#fff', borderRadius:'5px', padding:'0 .5rem', color:'#199b74', border:'1px solid #199b74'}}>Rate me</button>
+                        </div>
                         <div className='rating gap-2 d-flex align-items-center'>
                             <span className='stars d-flex gap-1'>
                                 <i className="ri-star-fill"></i>
@@ -35,6 +41,7 @@ console.log(vendordetail)
                             <div><i className="ri-linkedin-box-line"></i></div>
                         </div>
                     </div>
+                    <RatingContent open={open} setOpen={setOpen}/>
                 </div>
             })
         }

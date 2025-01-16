@@ -15,6 +15,7 @@ import OrderDetails from './OrderDetails';
 import OrderDetailsIndividual from './OrderDetailsIndividual';
 import Privacy from './Privacy';
 import Vendors from './Vendors';
+import UploadProduct from './UploadProduct';
 
 const SellerDashboard = () => {
     const sidebar__content = [
@@ -22,6 +23,11 @@ const SellerDashboard = () => {
             text:'Analytics',
             icon: 'ri-bar-chart-box-line',
             path:'/account/analytics'
+        },
+        {
+            text:'Upload Product',
+            icon: 'ri-shopping-cart-2-line',
+            path:'/account/upload'
         },
         {
             text:'Order',
@@ -123,13 +129,14 @@ const SellerDashboard = () => {
                             </div>
                         </div>
                     </div>
-                    <div className='inner'>
+                    <div className='inner' style={{height:'90%',overflowY:'auto'}}>
                         <Routes>
                             <Route path='/' element={<AccountDetails/>}/>
                             <Route path='/account-details' element={<AccountDetails/>}/>
                             <Route path='/analytics' element={<Dashboard/>}/>
                             <Route path='/customers' element={<Vendors/>}/>
                             <Route path='/notification' element={<Notification/>}/>
+                            <Route path='/upload' element={<UploadProduct/>}/>
                             <Route path='/order-details' element={<OrderDetails/>}/>
                             <Route path='/order-details/:id' element={<OrderDetailsIndividual/>}/>
                             <Route path='/privacy' element={<Privacy/>}/>
