@@ -88,7 +88,7 @@ const ChatInterface = () => {
                       <i className="ri-attachment-2" style={{width:'80px', height:'30px'}}></i>
                     </label>
                   </div>
-        <button onClick={handleSendMessage}>Send</button>
+        <i class="ri-send-plane-fill" onClick={handleSendMessage}></i>
       </div>
     </div>
   );

@@ -61,9 +61,11 @@
   
   .chat-input-container {
     display: flex;
+    align-items: center;
     border-top: 1px solid #ccc;
     background-color: #fff;
     padding: 10px;
+    width: 100%;
   }
   
   .chat-input-container input {
