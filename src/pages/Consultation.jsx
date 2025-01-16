@@ -5,7 +5,7 @@ import ChatInterface from '../components/ChatInterface/ChatInterface';
 const Consultation = () => {
 
   return (
-    <div style={{display:'flex', justifyContent:'center', margin:'2rem 0'}}>
+    <div style={{display:'flex', justifyContent:'center'}}>
     <ChatInterface/>
     </div>
   )

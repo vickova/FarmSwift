@@ -130,9 +130,6 @@ const handleWishSetting =(item)=>{
                         <select name="Language" id="language" disabled="disabled">
                             <option value="English">English</option>
                         </select>
-                        <select name="Currency" id="currency" disabled="disabled">
-                            <option value="Rupees">INR</option>
-                        </select>
                     </div>
                     {/* ========langugae menu ends======== */}
                     
@@ -280,7 +277,7 @@ const handleWishSetting =(item)=>{
             </Row>
             <Row className='hot__row'>
                 <div className="sub__links navdown__wrapper d-flex align-items-center justify-content-between">
-                    <ToggleCategories title={'Browse All Categories'} icon={'ri-arrow-drop-down-line'} className='sub__links'/>
+                    <ToggleCategories icon={'ri-arrow-drop-down-line'} className='sub__links'/>
                     <div>
                         <Link to='/shop' className='shop__store d-flex align-items-center gap-2'>
                             <i class="ri-store-line"></i>

@@ -7,6 +7,7 @@
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin:1rem
   }
   
   .chat-messages {
@@ -86,4 +87,11 @@
   .chat-input-container button:hover {
     background-color: var(--secondary-color);
   }
-  
+  @media screen and (max-width: 990px){
+    .input-section{
+        display: block;
+    }
+    .input-section .input{
+        width: 100%;
+    }
+}

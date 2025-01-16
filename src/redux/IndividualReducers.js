@@ -80,7 +80,7 @@ export const CartReducer = (state=CartInitialState, action) => {
 const WishInitialState = {
   wishList:[],
   popular_products: popular_products,
-  categoryItem: 'Browse All Categories',
+  categoryItem: 'All Categories',
   searchItem: '',
 }
 

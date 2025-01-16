@@ -50,3 +50,8 @@ body.inactive{
 .ri-close-line{
     cursor: pointer;
 }
+@media screen and (max-width: 990px){
+.toggle-categories{
+    width: 55%;
+}
+}

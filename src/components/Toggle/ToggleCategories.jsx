@@ -9,7 +9,7 @@ const ToggleCategories = ({children, title, icon}) => {
   const categoryItem = useSelector((state)=> state?.WishReducer.categoryItem);
   const categorieslist = [
     {
-      title:'Browse All Categories'
+      title:'All Categories'
     },
     {
       title:'Fruit'

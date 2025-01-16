@@ -58,12 +58,20 @@ select, .navigation li{
     transition: all 1s;
     color: #fff;
 }
+.form .btn{
+    height: 40px;
+    border: none;
+}
 .mobile__btn i{
     color: #fff;
+}
+.nav__btn{
+    width: 20%;
 }
 .mobile__btn{
     display: none !important;
     padding: 0 !important;
+    width: 30%;
 }
 .vendor__btn{
     background-color: #fff !important;
@@ -101,11 +109,7 @@ select, .navigation li{
     padding: 0 .5rem;
     border-radius: 5px;
 }
-.form .btn{
-    width: 20%;
-    height: 40px;
-    border: none;
-}
+
 i{
     color: var(--secondary-color);
     font-size: 20px;
