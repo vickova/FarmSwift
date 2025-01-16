@@ -65,7 +65,7 @@ const ChatInterface = () => {
           onChange={handleInputChange}
           style={{marginRight:0}}
         />
-        <div style={{width:'15%', display:'flex', justifyContent:'center'}}>
+        <div style={{width:'8%', display:'flex', justifyContent:'center'}}>
                     <input
                       type="file"
                       id="fileInput"
@@ -87,11 +87,11 @@ const ChatInterface = () => {
                         width:'100%'
                       }}
                     >
-                      <i className="ri-attachment-2" style={{width:'100%', height:'30px'}}></i>
+                      <i className="ri-attachment-2" style={{width:'100%', fontSize:'1.6rem', height:'30px'}}></i>
                     </label>
                   </div>
-                  <div onClick={handleSendMessage} style={{width:'15%', display:'flex', justifyContent:'center'}}>
-                    <i class="ri-send-plane-fill" style={{width:'100%'}}></i>
+                  <div onClick={handleSendMessage} style={{width:'8%', display:'flex', justifyContent:'center'}}>
+                    <i class="ri-send-plane-fill" style={{fontSize:'1.6rem'}}></i>
                   </div>
       </div>
     </div>
