@@ -13,7 +13,7 @@ const Dashboard = () => {
             <div className='chart__cards'>
               <div className='visual__chart'>
                 <div className='icon__price d-flex justify-content-between'>
-                  <i class="ri-file-list-3-line"></i>
+                  <i className="ri-file-list-3-line"></i>
                   <p>+2.06%</p>
                 </div>
                 <p className='mt-4'>Total Sales</p>
@@ -24,7 +24,7 @@ const Dashboard = () => {
               </div>
               <div className='visual__chart'>
                 <div className='icon__price d-flex justify-content-between align-items-between'>
-                  <i class="ri-sticky-note-line"></i>
+                  <i className="ri-sticky-note-line"></i>
                   <p>+12.40%</p>
                 </div>
                 <p className='mt-4'>Total Orders</p>
@@ -35,7 +35,7 @@ const Dashboard = () => {
               </div>
               <div className='visual__chart'>
                 <div className='icon__price d-flex justify-content-between align-items-between'>
-                  <i class="ri-user-heart-line"></i>
+                  <i className="ri-user-heart-line"></i>
                   <p>+2.06%</p>
                 </div>
                 <p className='mt-4'>Visitors</p>
@@ -46,7 +46,7 @@ const Dashboard = () => {
               </div>
               <div className='visual__chart'>
                 <div className='icon__price d-flex justify-content-between align-items-between'>
-                  <i class="ri-store-line"></i>
+                  <i className="ri-store-line"></i>
                   <p>+12.06%</p>
                 </div>
                 <p className='mt-4'>Total Sold Products</p>

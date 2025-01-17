@@ -17,7 +17,7 @@ const AccountDetails = () => {
           <img src={URL.createObjectURL(userData?.profilePicture)} alt="" />:
           <img src={ProfilePicture} alt="" />
             }
-            <i class="ri-camera-line"></i>
+            <i className="ri-camera-line"></i>
         </div>
         <Form className='account__form'>
           <div className='input-section'>
@@ -25,14 +25,14 @@ const AccountDetails = () => {
               <label htmlFor="firstname">First Name</label>
               <div className='input__cover d-flex gap-2 align-items-center'>
                 <input type='text' required id='password'/>
-                <i class="ri-user-3-line"></i>
+                <i className="ri-user-3-line"></i>
               </div>
             </FormGroup>
             <FormGroup className='input'>
               <label htmlFor="lastname">Last Name</label>
               <div className='input__cover d-flex gap-2 align-items-center'>
                 <input type='text' required id='password'/>
-                <i class="ri-user-3-line"></i>
+                <i className="ri-user-3-line"></i>
               </div>
             </FormGroup>
           </div>
@@ -41,14 +41,14 @@ const AccountDetails = () => {
               <label htmlFor="firstname">Email</label>
               <div className='input__cover d-flex gap-2 align-items-center'>
                 <input type='text' required id='password'/>
-                <i class="ri-mail-line"></i>
+                <i className="ri-mail-line"></i>
               </div>
             </FormGroup>
             <FormGroup className='input'>
               <label htmlFor="firstname">Phone Number</label>
               <div className='input__cover d-flex gap-2 align-items-center'>
                 <input type='text' required id='password'/>
-                <i class="ri-phone-line"></i>
+                <i className="ri-phone-line"></i>
               </div>
             </FormGroup>
           </div>
@@ -57,14 +57,14 @@ const AccountDetails = () => {
               <label htmlFor="firstname">Date of Birth</label>
               <div className='input__cover d-flex gap-2 align-items-center'>
                 <input type='text' required id='password'/>
-                <i class="ri-calendar-2-line"></i>
+                <i classname="ri-calendar-2-line"></i>
               </div>
             </FormGroup>
             <FormGroup className='input'>
               <label htmlFor="firstname">Country</label>
               <div className='input__cover d-flex gap-2 align-items-center'>
                 <input type='text' required id='password'/>
-                <i class="ri-arrow-right-s-line"></i>
+                <i classname="ri-arrow-right-s-line"></i>
               </div>
             </FormGroup>
           </div>

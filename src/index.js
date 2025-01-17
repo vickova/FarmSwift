@@ -14,7 +14,6 @@ import rootReducer from './redux/Reducer';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
-console.log(store.getState())
 root.render(
   <React.StrictMode>
     <BrowserRouter>

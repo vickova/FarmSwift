@@ -40,7 +40,7 @@ export const popular_products = [
       id: 1
   },
   {
-      category:'fruit',
+      category:'fruits',
       description: 'One bunch of tangerine available',
       price:350,
       discountedprice:'#400/kg',
@@ -50,7 +50,7 @@ export const popular_products = [
       id: 2
   },
   {
-      category:'fruit',
+      category:'fruits',
       description: 'One bunch basket of mangoes available',
       price:350,
       discountedprice:'#300/kg',
@@ -60,7 +60,7 @@ export const popular_products = [
       id: 3
   },
   {
-      category:'fruit',
+      category:'fruits',
       description: 'One bunch of cashew available',
       price:350,
       discountedprice:'#600/kg',
@@ -70,7 +70,7 @@ export const popular_products = [
       id: 4
   },
   {
-      category:'cereal',
+      category:'grains',
       description: 'Bags of local rice',
       price:350,
       discountedprice:'#400/kg',
@@ -80,7 +80,7 @@ export const popular_products = [
       id: 5
   },
   {
-      category:'fruit',
+      category:'fruits',
       description: 'Big watermelons available',
       price:350,
       discountedprice:'#300/kg',
@@ -90,7 +90,7 @@ export const popular_products = [
       id: 6
   },
   {
-      category:'fruit',
+      category:'fruits',
       description: 'One bunch of big bananas available',
       price:350,
       discountedprice:'#300/kg',
@@ -100,7 +100,7 @@ export const popular_products = [
       id: 7
   },
   {
-      category:'fruit',
+      category:'fruits',
       description: 'Big apples available',
       price:350,
       discountedprice:'#300/kg',
@@ -110,7 +110,7 @@ export const popular_products = [
       id: 8
   },
   {
-      category:'fruit',
+      category:'fruits',
       description: 'Big guava fruit available',
       price:350,
       discountedprice:'#400/kg',
@@ -120,7 +120,7 @@ export const popular_products = [
       id: 9
   },
   {
-      category:'fruit',
+      category:'fruits',
       description: 'One bunch of big pineapple available',
       price:350,
       discountedprice:'#800/kg',
@@ -130,7 +130,7 @@ export const popular_products = [
       id: 10
   },
   {
-      category:'fruit',
+      category:'fruits',
       description: 'One bunch of big cocoa available',
       price:350,
       discountedprice:'#300/kg',
@@ -150,7 +150,7 @@ export const popular_products = [
       id: 12
   },
   {
-      category:'fruit',
+      category:'fruits',
       description: 'One bunch of big orange available',
       price:350,
       discountedprice:'#300/kg',
@@ -160,7 +160,7 @@ export const popular_products = [
       id: 13
   },
   {
-      category:'fruit',
+      category:'fruits',
       description: 'One bunch of big potatoe available',
       price:350,
       discountedprice:'#300/kg',
@@ -170,7 +170,7 @@ export const popular_products = [
       id: 14
   },
   {
-      category:'fruit',
+      category:'fruits',
       description: 'One bunch of big cashew available',
       price:350,
       discountedprice:'#300/kg',

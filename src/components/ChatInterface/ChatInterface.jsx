@@ -91,7 +91,7 @@ const ChatInterface = () => {
                     </label>
                   </div>
                   <div onClick={handleSendMessage} style={{width:'8%', display:'flex', justifyContent:'center'}}>
-                    <i class="ri-send-plane-fill" style={{fontSize:'1.6rem'}}></i>
+                    <i className="ri-send-plane-fill" style={{fontSize:'1.6rem'}}></i>
                   </div>
       </div>
     </div>

@@ -3,10 +3,6 @@ body.inactive{
     background-color: rgba(128, 128, 128, 0.446);
 }
 
-.toggle{
-    /* position: relative; */
-
-}
 .toggle-categories{
     position: relative;
 }
@@ -21,6 +17,17 @@ body.inactive{
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.7); /* Dark semi-transparent background */
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+.toggle-children-overlay-account{
+    position: fixed;
+    top: 100px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2); /* Dark semi-transparent background */
     justify-content: center;
     align-items: center;
     z-index: 999;

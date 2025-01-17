@@ -12,21 +12,31 @@ const ToggleCategories = ({children, title, icon}) => {
       title:'All Categories'
     },
     {
-      title:'Fruit'
+      title:'Fruits'
     },
     {
-      title:'Cereal'
+      title:'Grains'
     },
     {
       title:'Tuber'
     },
     {
-      title:'Vegetable'
+      title:'Vegetables'
     },
     {
       title:'Livestock'
     },
+    {
+      title:'Diary'
+    },
+    {
+      title:'Poultry'
+    },
   ]
+  const handleCategorySet = (item)=>{
+    dispatch(setCategory(item))
+    setToggle(false)
+  }
 return (
   <div className='toggle-categories category__menu '>
       <button onClick={()=>setToggle(!toggle)} className='d-flex align-items-center gap-3'>
@@ -38,7 +48,7 @@ return (
       <div className='categories-list'>
         {
           categorieslist?.map((item, index)=>{
-            return <p key={index} onClick={(e)=>dispatch(setCategory(item.title))}>{item?.title}</p>
+            return <p key={index} onClick={()=>handleCategorySet(item?.title)}>{item?.title}</p>
           })
         }
       </div>

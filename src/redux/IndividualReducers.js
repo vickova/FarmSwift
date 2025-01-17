@@ -9,11 +9,8 @@ export const CartReducer = (state=CartInitialState, action) => {
   switch (action.type) {
     case 'ADD_TO_CART':
       // Check if the item already exists in the cart
-      console.log('Heyyyyyyy')
       const exists = state.cartList.find(cartItem => cartItem.id === action.payload.id);
-      console.log(state)
       if (exists) {
-        console.log('Yesssss')
         return {
           ...state,
           cartList: state.cartList.map(cartItem =>
@@ -23,7 +20,6 @@ export const CartReducer = (state=CartInitialState, action) => {
         )
       }
       } else {
-        console.log('Okayyy')
         return {
           ...state,
           cartList:[...state.cartList, { ...action.payload, quantity: 1 }]
@@ -31,9 +27,7 @@ export const CartReducer = (state=CartInitialState, action) => {
       } // If the item is already in the cart, don't add it again
       case 'REMOVE_CART':
         // Check if the item already exists in the cart
-        console.log('Heyyyyyyy')
         const cartexists = state.cartList.filter(cartItem => cartItem.id !== action.payload.id);
-        console.log(state)
         
           return {
             ...state,
@@ -42,11 +36,8 @@ export const CartReducer = (state=CartInitialState, action) => {
         
         case 'REDUCE_CART':
           // Check if the item already exists in the cart
-          console.log('Heyyyyyyy')
           const reducexists = state.cartList.find(cartItem => cartItem.id === action.payload.id);
-          console.log(state)
           if (reducexists) {
-            console.log('Yesssss')
             return {
               ...state,
               cartList: state.cartList.map(cartItem =>
@@ -56,7 +47,6 @@ export const CartReducer = (state=CartInitialState, action) => {
             )
           }
           } else {
-            console.log('Okayyy')
             return {
               ...state,
               cartList:[...state.cartList]
@@ -88,11 +78,8 @@ export const WishReducer = (state=WishInitialState, action) => {
   switch (action.type) {
     case 'ADD_TO_WISH':
       // Check if the item already exists in the cart
-      console.log('Heyyyyyyy')
       const exists = state.wishList.filter(cartItem => cartItem.id === action.payload.id);
-      console.log(state.popular_products);
       if (exists) {
-        console.log('Yesssss')
         return {
           ...state,
           wishList:[...state.wishList, { ...action.payload}],
@@ -108,9 +95,7 @@ export const WishReducer = (state=WishInitialState, action) => {
       }
         case 'REMOVE_WISH':
           // Check if the item already exists in the cart
-          console.log('Removeeeeeeeeee')
           const wishexists = state.wishList.filter(cartItem => cartItem.id !== action.payload.id);
-          console.log(wishexists)
           
             return {
               ...state,

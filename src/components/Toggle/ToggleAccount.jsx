@@ -3,6 +3,12 @@ import './ToggleAccount.css'
 
 const ToggleAccount = ({children, title, icon, userData}) => {
     const [toggle, setToggle] = useState(false);
+    const ToggleSetter = (e)=>{
+      if(e.target.classList.value === 'toggle-children-overlay-account'){
+        setToggle(!toggle);
+      }
+
+    }
   return (
     <div className='toggle'>
         <button onClick={()=>setToggle(!toggle)}>
@@ -16,8 +22,10 @@ const ToggleAccount = ({children, title, icon, userData}) => {
         }
         <span className='toggle-title'>{userData?.firstname?userData?.firstname:title}</span>
         </button>
+        <div className='toggle-children-overlay-account' style={{display:`${toggle?'block':'none'}`}} onClick={ToggleSetter}>
         <div className='toggleaccount-children' style={{display:`${toggle?'block':'none'}`}}>
             {children}
+        </div>
         </div>
     </div>
   )

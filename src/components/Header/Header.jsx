@@ -15,7 +15,6 @@ const Header = ({wish, setWish}) => {
     const wishList = useSelector((state)=> state.WishReducer.wishList)
     const userData = useSelector((state)=> state.UserReducer.UserData);
     const [previewImage, setPreviewImage] = useState('');
-    console.log(userData)
     const headerRef = useRef();
     const navigate = useNavigate()
     const dispatch = useDispatch();
@@ -25,13 +24,10 @@ const Header = ({wish, setWish}) => {
 
     const CartIncrement = (item)=>{
         dispatch(AddToCart(item));
-        console.log('wished')
         dispatch(RemoveFromWish(item))
-        console.log(item)
     }
     const SubmitSearch =(e)=>{
         e.preventDefault();
-        console.log('search clicked')
         navigate('/search')
     }
     const stickyHeaderFunction = ()=>{
@@ -109,7 +105,6 @@ const sub__links = [
 ]
 const MenuTog= ()=>{
     setMenuToggle(!menuToggle);
-    console.log(menuToggle)
 }
 const handleWishSetting =(item)=>{
     dispatch(RemoveFromWish(item));
@@ -126,7 +121,7 @@ const handleWishSetting =(item)=>{
                     {/* ======== user access ends======= */}
                     {/* ========language menu starts====== */}
                     <div className="cur-lang align-items-center d-flex justify-content-between gap-2">
-                        <div className='align-items-center d-flex gap-2'><p className='help m-0'>Need help? Call us</p> <i class="help__icon ri-questionnaire-line"></i> <span className='help-contact'>+2348021585694</span></div>
+                        <div className='align-items-center d-flex gap-2'><p className='help m-0'>Need help? Call us</p> <i className="help__icon ri-questionnaire-line"></i> <span className='help-contact'>+2348021585694</span></div>
                         <select name="Language" id="language" disabled="disabled">
                             <option value="English">English</option>
                         </select>
@@ -147,7 +142,7 @@ const handleWishSetting =(item)=>{
                         <Form className='form d-flex align-items-center' onSubmit={SubmitSearch}>
                                 <input type="text" placeholder='Search for products...' required id='search' onChange={(e)=>dispatch(searchItemAction(e.target.value))}/>
                                 <Button className='nav__btn'>Search</Button>
-                                <Button className='mobile__btn'><i class="ri-search-line"></i></Button>
+                                <Button className='mobile__btn'><i className="ri-search-line"></i></Button>
                         </Form>
                     </div>
                     {/* ========search ends======== */}
@@ -176,8 +171,8 @@ const handleWishSetting =(item)=>{
                                 </div>
                                 <div className='cartrow__cover'>
                                     {
-                                        wishList?.map((item)=>{
-                                            return <Row className='cart__row d-flex align-items-center'>
+                                        wishList?.map((item, index)=>{
+                                            return <Row key={index} className='cart__row d-flex align-items-center'>
                                                 <Col lg='6' className='cart__data'>
                                                     <div className='cartproduct d-flex gap-3 align-items-center'>
                                                         <div className='cartimage d-flex justify-content-center'>
@@ -222,10 +217,10 @@ const handleWishSetting =(item)=>{
                                 </div>
                                 <div className='cartrow__cover'>
                                     {
-                                        cartList.map((item)=>{
+                                        cartList.map((item, index)=>{
                                             let totalPrice =item?.price * item?.quantity;
 
-                                            return <Row className='cart__row d-flex align-items-center'>
+                                            return <Row key={index} className='cart__row d-flex align-items-center'>
                                                 <Col lg='4' className='cart__data'>
                                                     <div className='cartproduct d-flex gap-3 align-items-center'>
                                                         <div className='cartimage d-flex justify-content-center'>
@@ -266,8 +261,8 @@ const handleWishSetting =(item)=>{
                         </Toggle>
                         <ToggleAccount title={'Account'} icon={'ri-user-3-line'} userData={userData}>
                             <div className='account-list'>
-                                <p><Link to='/account' onClick={()=> console.log('clicked')}>Dashboard</Link></p>
-                                <p className='d-flex align-items-center gap-2'><span>Logout</span><i className="ri-logout-circle-line"></i></p>
+                                <p><Link to='/account'>Dashboard</Link></p>
+                                <p className='d-flex align-items-center gap-2' onClick={()=>navigate('/login')}><span>Login</span><i className="ri-logout-circle-line"></i></p>
                             </div>
                         </ToggleAccount>
                     </div>
@@ -280,7 +275,7 @@ const handleWishSetting =(item)=>{
                     <ToggleCategories icon={'ri-arrow-drop-down-line'} className='sub__links'/>
                     <div>
                         <Link to='/shop' className='shop__store d-flex align-items-center gap-2'>
-                            <i class="ri-store-line"></i>
+                            <i className="ri-store-line"></i>
                             <span>Shop</span>
                         </Link>
                     </div>

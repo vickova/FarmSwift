@@ -23,7 +23,7 @@ const Login = () => {
       <div className='covers'>
         <div className='login d-flex align-items-center gap-3'>
           <p>Don't have an account?</p>
-          <Button onClick={()=>navigate('/register')}>Sign Up</Button>
+          <Button onClick={()=>navigate('/get-started')}>Sign Up</Button>
         </div>
         <div>
           <h2>Log in</h2>
@@ -45,8 +45,8 @@ const Login = () => {
                 </FormGroup>
                 <FormGroup className='password'>
                   <input type={`${eye?'password':'text'}`} placeholder='Password' required id='password'/>
-                  {eye? <i class="ri-eye-line" onClick={()=>setEye(!eye)}></i>:
-                  <i class="ri-eye-close-line" onClick={()=>setEye(!eye)}></i>
+                  {eye? <i className="ri-eye-line" onClick={()=>setEye(!eye)}></i>:
+                  <i className="ri-eye-close-line" onClick={()=>setEye(!eye)}></i>
                   }
                 </FormGroup>
                 <div className='terms d-flex align-item-center gap-2'>

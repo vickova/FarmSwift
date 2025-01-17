@@ -17,7 +17,6 @@ const ProductCard = ({ item}) => {
   // Handle adding an item to the cart
   const handleAddToCart = () => {
     dispatch(AddToCart(item));
-    console.log('Cart after addition:', cartList);
   };
   const handleWish = ()=>{
     dispatch(AddToWish(item))
@@ -49,12 +48,12 @@ const ProductCard = ({ item}) => {
           <span className='stars d-flex gap-1'>
             {
                     [...Array(current_vendor?.rating)]?.map((item, index)=>{
-                        return <i className="ri-star-fill"></i>
+                        return <i key={index} className="ri-star-fill"></i>
                     })
                 }
                 {
                     [...Array(remaining_rating?remaining_rating:0)]?.map((item, index)=>{
-                        return <i className="ri-star-line"></i>
+                        return <i key={index} className="ri-star-line"></i>
                     })
                 }
           </span>

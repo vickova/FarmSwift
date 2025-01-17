@@ -12,8 +12,7 @@ const PopularProducts = () => {
     const popular_products = useSelector((state)=> state?.WishReducer.popular_products);
     const categoryItem = useSelector((state)=> state?.WishReducer.categoryItem);
     const searchItem = useSelector((state)=> state?.WishReducer.searchItem);
-    console.log(searchItem)
-    const categoryList = popular_products.filter((item)=>item.category === categoryItem.toLowerCase())
+    const categoryList = popular_products.filter((item)=>item?.category === categoryItem.toLowerCase())
     const searchList = popular_products.filter((item) => {
       const vendor = vendors.find((vendor) => vendor?.id === item.createdBy); // Find the matching vendor
       const vendorName = vendor ? vendor.name.toLowerCase() : ''; // Get the vendor's name if it exists
@@ -26,15 +25,14 @@ const PopularProducts = () => {
         vendorName.includes(searchItem.toLowerCase()) // Check if vendor name includes the search item
       );
     });
-    console.log(searchList)
-    console.log(categoryList)
+
     
     // console.log('Cart updated:', state.cartList);
     const wishList = useSelector((state)=> state.WishReducer.wishList)
   return (
     <div className='products__wrapper d-flex gap-4'>
       {pathname !== '/search'?
-        (categoryItem === 'Browse All Categories'?
+        (categoryItem === 'All Categories'?
         popular_products?.map((item, index)=>{
             return <ProductCard key={item.id} 
             item={item}/>
