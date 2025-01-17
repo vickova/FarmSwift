@@ -9,7 +9,7 @@
   --text-color: #6e7074;
   --nav-color: rgba(152, 152, 152, 0.2);
   --nav-text-color: rgba(152, 152, 152);
-  --font-name: "Montserrat", sans-serif;
+  --font-name: "Lato", serif;
   --subtitle-font-name: "Island Moments", cursive;
 }
 
@@ -20,5 +20,5 @@
 }
 
 body {
-  font-family: var(--font-name);
+  font-family: var(--font-name) !important;
 }/* #cc6633 #e78169 b9b26c #94dea5 9cc66 ece2b1 003333 009933 996633*/

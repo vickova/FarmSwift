@@ -271,6 +271,10 @@ i{
 .ri-menu-2-line{
     display: none;
 }
+.toggle-title{
+    color: var(--nav-text-color);
+    font-weight: 600;
+}
 .help__icon{
     display: none;
 }

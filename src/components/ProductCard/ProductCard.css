@@ -35,6 +35,9 @@
     color: var(--secondary-color);
     font-weight: bold;
 }
+.sellername span{
+    cursor: pointer;
+}
 .price{
     text-decoration: underline;
 }

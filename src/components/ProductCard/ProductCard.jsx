@@ -3,9 +3,10 @@ import './ProductCard.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { AddToCart, AddToWish,RemoveFromWish, WishToggle } from '../../redux/actions';
 import { vendors } from '../../utils/Dataset';
-import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const ProductCard = ({ item}) => {
+  const navigate = useNavigate()
   const cartList = useSelector((state)=> state.CartReducer.cartList);
   const wishList = useSelector((state)=> state.WishReducer.wishList);
       const popular_products = useSelector((state)=> state?.WishReducer.popular_products);
@@ -59,7 +60,7 @@ const ProductCard = ({ item}) => {
           </span>
           <p>{current_vendor?.rating}</p>
         </div>
-        <p className='sellername'>By <span>{`${current_vendor?.name}`}</span></p>
+        <p className='sellername'>By <span onClick={()=>navigate(`/vendors/${current_vendor?.id}`)}>{`${current_vendor?.name}`}</span></p>
         <div className='shop-price d-flex align-items-end justify-content-between'>
           <p className='price'>#{item.price}/kg</p>
           <button className='d-flex gap-4 align-items-center' onClick={handleAddToCart}>
