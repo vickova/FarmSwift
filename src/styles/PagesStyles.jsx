@@ -258,6 +258,9 @@ export const ContactStyle  = styled.div`
     border-radius: 100%;
     padding: .5rem;
 }
+.links i{
+    cursor: pointer;
+}
 .contact-form li{
     list-style: none;
     margin: 2rem 0;

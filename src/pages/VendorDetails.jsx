@@ -8,8 +8,9 @@ const VendorDetails = () => {
 const [open, setOpen] = useState(false);
 console.log(open)
 const {id} = useParams();
-const vendordetail = vendors.filter((item)=> item.id === Number(id))
-console.log(vendordetail)
+const vendordetail = vendors.filter((item)=> item.id === Number(id));
+const total_rating = 5
+  const remaining_rating = total_rating-vendordetail[0]?.rating
   return (
     <VendorStyle>
         {
@@ -26,19 +27,25 @@ console.log(vendordetail)
                         </div>
                         <div className='rating gap-2 d-flex align-items-center'>
                             <span className='stars d-flex gap-1'>
-                                <i className="ri-star-fill"></i>
-                                <i className="ri-star-fill"></i>
-                                <i className="ri-star-fill"></i>
-                                <i className="ri-star-half-fill"></i>
+                            {
+                                [...Array(vendordetail[0]?.rating)]?.map((item, index)=>{
+                                    return <i key={index} className="ri-star-fill"></i>
+                                })
+                            }
+                            {
+                                [...Array(remaining_rating?remaining_rating:0)]?.map((item, index)=>{
+                                    return <i key={index} className="ri-star-line"></i>
+                                })
+                            }
                             </span>
                             <p>{item.rating}</p>
                         </div>
                         <p className='vendor-description'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquid qui voluptates officia porro quod a cumque aperiam ab vero optio. Qui dolorum laudantium quibusdam cum pariatur corporis possimus, aut repudiandae?</p>
                         <div className='links d-flex gap-4'>
-                            <div><i className="ri-facebook-box-line"></i></div>
-                            <div><i className="ri-twitter-line"></i></div>
-                            <div><i className="ri-youtube-line"></i></div>
-                            <div><i className="ri-linkedin-box-line"></i></div>
+                            <div className='vednors-details-link'><i className="ri-facebook-box-line"></i></div>
+                            <div className='vednors-details-link'><i className="ri-twitter-line"></i></div>
+                            <div className='vednors-details-link'><i className="ri-youtube-line"></i></div>
+                            <div className='vednors-details-link'><i className="ri-linkedin-box-line"></i></div>
                         </div>
                     </div>
                     <RatingContent open={open} setOpen={setOpen}/>
