@@ -140,7 +140,7 @@ export const popular_products = [
       id: 11
   },
   {
-      category:'livestock',
+      category:'poultry',
       description: 'Big crate of eggs available',
       price:350,
       discountedprice:'#300/kg',

@@ -27,9 +27,6 @@ const ToggleCategories = ({children, title, icon}) => {
       title:'Livestock'
     },
     {
-      title:'Diary'
-    },
-    {
       title:'Poultry'
     },
   ]

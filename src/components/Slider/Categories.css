@@ -4,14 +4,19 @@
     border-radius: 5px;
     padding: 1rem;
     width: 150px;
-    height: 200px;
+    height: 160px;
+    transition: all 500ms cubic-bezier(0.075, 0.82, 0.165, 1);
 }
-
+.categories-card:hover{
+    background-color: rgba(25, 155, 116, 0.2);
+    padding: .5rem;
+}
 .categories-card img{
-    width: 40px;
-    height: 120px;
+    width: 60% !important;
+    height: 80px;
     border-radius: 5px;
     width: 100%;
+    margin: 5px;
 }
 .category-wrapper{
     margin: 1rem 6rem;
@@ -19,7 +24,7 @@
     display: flex;
     justify-content: space-between;
     gap: .5rem;
-    overflow-x: auto;
+    overflow-x: auto !important;
 }
 .category-wrapper::-webkit-scrollbar {
     height: 5px;

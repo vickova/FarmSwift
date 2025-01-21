@@ -7,6 +7,7 @@ import Vegetable from '../../assets/images/vegetable.jfif';
 import Livestcok from '../../assets/images/livestock.jfif';
 import Cereal from '../../assets/images/cereal.jfif';
 import Tuber from '../../assets/images/tuber.jfif';
+import Poultry from '../../assets/images/hen2.jpg'
 
 import './Categories.css'
 
@@ -25,13 +26,13 @@ const CategoriesSlide = () => {
             color:'red'
         },
         {
-            category:'tubers',
+            category:'tuber',
             items__left:'6',
             image:Tuber,
             color:'red'
         },
         {
-            category:'cereal',
+            category:'grains',
             items__left:'6',
             image:Cereal,
             color:'red'
@@ -41,9 +42,16 @@ const CategoriesSlide = () => {
             items__left:'6',
             image:Livestcok,
             color:'red'
+        },
+        {
+            category:'Poultry',
+            items__left:'6',
+            image:Poultry,
+            color:'red'
         }
         
     ]
+
     const settings={
         dots:false,
         infinite:true,
@@ -77,12 +85,12 @@ const CategoriesSlide = () => {
             category__list.map((item, index)=>{
             return <div key={index} className={`categories-card `}>
                 <div className='d-flex justify-content-center'>
-                <img src={item.image} alt="" />
-                </div>
-                <div>
-                    <h6>{item.category}</h6>
-                    <p>{`${item.items__left} left`}</p>
-                </div>
+                    <img src={item.image} alt="" />
+                    </div>
+                    <div>
+                        <h6>{item.category}</h6>
+                        <p>{`${item.items__left} left`}</p>
+                    </div>
                 </div>
                 })
             }

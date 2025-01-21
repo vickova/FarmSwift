@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { vendors } from '../utils/Dataset';
 import { VendorStyle } from '../styles/PagesStyles';
 import RatingContent from '../components/RatingContent/RatingContent';
+import Reviews from '../components/Reviews/Reviews';
 
 const VendorDetails = () => {
 const [open, setOpen] = useState(false);
@@ -52,6 +53,17 @@ const total_rating = 5
                 </div>
             })
         }
+        <div className='reviews_container text-center'>
+        <h4>Reviews</h4>
+
+        <div className='reviews_cover d-flex gap-4'>
+        {
+         [...Array(4)]?.map((item, index)=>{
+            return <Reviews key={index}/>
+            })
+        }
+        </div>
+        </div>
     </VendorStyle>
   )
 }

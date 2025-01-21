@@ -367,7 +367,32 @@ export const ConsultationStyle = styled.div`
 `
 export const VendorStyle = styled.div`
 margin: 2rem 0 4rem 0;
-
+.reviews_cover{
+    margin: 3rem 8rem;
+    overflow-x:auto;
+    padding:1.5rem;
+    background-color:var(--secondary-transparent-color);
+}
+.reviews_cover::-webkit-scrollbar {
+    height: 5px;
+  }
+  
+  /* Track */
+  .reviews_cover::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 5px;
+  }
+  
+  /* Handle */
+  .reviews_cover::-webkit-scrollbar-thumb {
+    background: var(--secondary-transparent-color);
+    border-radius: 5px;
+  }
+  
+  /* Handle on hover */
+  .reviews_cover::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
 .vendor-header{
     margin: 0 1rem 2rem 1rem;
 }
@@ -473,6 +498,11 @@ margin: 2rem 0 4rem 0;
   }
   .p-paginator-page[aria-current="true"]{
     background-color: var(--secondary-transparent-color);
+  }
+  @media screen and (max-width: 960px){
+    .reviews_cover{
+        margin:1rem;
+    }
   }
 @media screen and (max-width: 720px){
     .vendor-identity{

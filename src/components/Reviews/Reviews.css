@@ -1,0 +1,26 @@
+.reviews{
+    background-color:#fff;
+    box-shadow: 3px 3px 3px 3px #ddd;
+    border-radius: 10px;
+    padding: .5rem;
+    cursor: pointer;
+    min-width: 40%;
+    transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+.reviews:hover{
+    box-shadow: 3px 3px 3px -2px #ddd;
+}
+
+.reviews img{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    position: relative;
+    top: -20px;
+    left: 0;
+}
+@media screen and (max-width: 520px){
+    .reviews{
+        min-width: 80%;
+    }
+}

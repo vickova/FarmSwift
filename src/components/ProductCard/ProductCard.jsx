@@ -9,7 +9,7 @@ const ProductCard = ({ item}) => {
   const navigate = useNavigate()
   const cartList = useSelector((state)=> state.CartReducer.cartList);
   const wishList = useSelector((state)=> state.WishReducer.wishList);
-      const popular_products = useSelector((state)=> state?.WishReducer.popular_products);
+  const popular_products = useSelector((state)=> state?.WishReducer.popular_products);
   const current_vendor = vendors?.filter((vendor)=>vendor?.id===Number(item?.createdBy))[0];
   const total_rating = 5
   const remaining_rating = total_rating-current_vendor?.rating
