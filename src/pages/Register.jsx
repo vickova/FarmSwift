@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Col, Row, Button, FormGroup, Form } from 'reactstrap';
 import Google from '../assets/icons/google-logo.svg';
 import { useNavigate, useLocation } from 'react-router-dom';
@@ -6,6 +6,11 @@ import { RegisterStyle } from '../styles/PagesStyles';
 import RegisterSlide from '../components/Slider/RegisterSlide';
 import { SignUser } from '../redux/actions';
 import { useDispatch } from 'react-redux';
+import { GoogleLogin, useGoogleLogin } from '@react-oauth/google';
+import { useGoogleOneTapLogin } from '@react-oauth/google';
+import { jwtDecode } from "jwt-decode";
+
+
 
 const Register = () => {
   const dispatch = useDispatch();
@@ -16,14 +21,18 @@ const Register = () => {
   const [FileUploadError, setFileUploadError] = useState('')
   const [passwordError, setPasswordError] = useState({ statement: '', color: false });
   const navigate = useNavigate();
-  const queryParams = new URLSearchParams(location.search);
-  const role = queryParams.get('role')
-    .split(' ')
-    .map((word, index) =>
-      index === 0 ? word[0].toUpperCase() + word.slice(1) : word
-    )
-    .join('');
+  const [selectedRole, setSelectedRole] = useState('');
 
+  useEffect(() => {
+    // Get the role from local storage
+    const role = localStorage.getItem('selectedRole');
+    if (!role) {
+      alert('Role not selected. Please go back and select your role.');
+      window.location.href = '/get-started'; // Redirect to role selection page
+    } else {
+      setSelectedRole(role);
+    }
+  }, []);
   const [formData, setFormData] = useState({
     firstname: '',
     lastname: '',
@@ -32,6 +41,8 @@ const Register = () => {
     confirmpassword: '',
     profilePicture: null, // Holds the uploaded file
   });
+
+  
   const [previewImage, setPreviewImage] = useState(null); // For previewing the selected image
 
   const handleFileChange = (event) => {
@@ -115,8 +126,18 @@ const Register = () => {
                 <p>Already have an account?</p>
                 <Button onClick={() => navigate('/login')}>login</Button>
               </div>
+              <GoogleLogin
+              style={{margin:'2rem 0'}}
+                onSuccess={credentialResponse => {
+                  var CredentialResponseDecoded = jwtDecode(credentialResponse?.credential)
+                  console.log(CredentialResponseDecoded);
+                }}
+                onError={() => {
+                  console.log('Login Failed');
+                }}
+              />
               <div>
-                <h2>{role} Sign up</h2>
+                <h2>{selectedRole} Sign up</h2>
                 <Form onSubmit={(e) => handleRegisterSubmit(e)}>
                   <FormGroup>
                     <input
