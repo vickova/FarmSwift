@@ -550,6 +550,20 @@ export const RegisterStyle = styled.div`
         scrollbar-width:none;
         }
     }
+    .google-sign{
+        display:flex;
+        gap:1rem;
+        border:1px solid var(--secondary-color);
+        border-radius:5px;
+        padding:.3rem 1rem;
+        margin:1rem 0;
+        color:var(--nav-text-color);
+        transition:all 500ms cubic-bezier(0.075, 0.82, 0.165, 1);
+    }
+    .google-sign:hover{
+        background-color: #fff;
+        padding: .3rem 1.2rem;
+    }
     .login{
         p{
             margin:0;

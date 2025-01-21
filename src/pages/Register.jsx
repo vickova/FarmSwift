@@ -9,6 +9,7 @@ import { useDispatch } from 'react-redux';
 import { GoogleLogin, useGoogleLogin } from '@react-oauth/google';
 import { useGoogleOneTapLogin } from '@react-oauth/google';
 import { jwtDecode } from "jwt-decode";
+import GoogleIcon from '../assets/icons/google-logo.svg'
 
 
 
@@ -42,7 +43,12 @@ const Register = () => {
     profilePicture: null, // Holds the uploaded file
   });
 
-  
+  const login = useGoogleLogin({
+    onSuccess:(tokenResponse)=>{
+      var CredentialResponseDecoded = jwtDecode(tokenResponse?.credential)
+    console.log(CredentialResponseDecoded);
+    }
+  })
   const [previewImage, setPreviewImage] = useState(null); // For previewing the selected image
 
   const handleFileChange = (event) => {
@@ -126,16 +132,7 @@ const Register = () => {
                 <p>Already have an account?</p>
                 <Button onClick={() => navigate('/login')}>login</Button>
               </div>
-              <GoogleLogin
-              style={{margin:'2rem 0'}}
-                onSuccess={credentialResponse => {
-                  var CredentialResponseDecoded = jwtDecode(credentialResponse?.credential)
-                  console.log(CredentialResponseDecoded);
-                }}
-                onError={() => {
-                  console.log('Login Failed');
-                }}
-              />
+              <button className='google-sign' onClick={login}><span>Sign in with Google</span><img width={20} height={20} src={GoogleIcon} alt="google icon" /></button>
               <div>
                 <h2>{selectedRole} Sign up</h2>
                 <Form onSubmit={(e) => handleRegisterSubmit(e)}>
