@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink, Route, Routes, Navigate } from 'react-router-dom';
 import { Container, Row, Col, Nav } from 'reactstrap';
@@ -77,12 +77,13 @@ const SellerDashboard = () => {
             path:'/account/privacy'
         },
     ]
+    const [menuTog, setMenuTog] = useState(false)
     const userData = useSelector((state)=> state.UserReducer.UserData);
   return (
     <SellerDashboardStyle>
         <Container className='seller-container'>
             <Row className='dashboardcover'>
-                <Col lg='2' className='sidebar'>
+                <Col lg='2' className='sidebar' style={{display:menuTog?'block':'none', position:'fixed', left:0}}>
                 <div className='seller-logo'>
                     <img src={Logo} alt="" />
                 </div>
@@ -118,10 +119,11 @@ const SellerDashboard = () => {
                             <input type="text" />
                         </div>
                         <div className='profile__cover'>
+                        <i className="ri-menu-2-line" onClick={()=>setMenuTog(!menuTog)}></i>
                             <i className="ri-mail-line"></i>
                             <i className="ri-notification-2-line"></i>
-                            <div className='profile d-flex gap-3 align-items-center'>
-                                <img src={URL.createObjectURL(userData?.profilePicture)} alt="" />
+                            <div className='profile'>
+                                <img src={ProfilePicture} alt="" />
                                 <div className='profile__details'>
                                     <p>{userData?.firstname} {userData?.lastname}</p>
                                     <p>{userData?.email}</p>

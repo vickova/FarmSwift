@@ -13,10 +13,7 @@ const AccountDetails = () => {
       <h2>Account Information</h2>
       <div className='account__details__cover'>
         <div className='profile__info__cover d-flex align-items-center gap-3'>
-          {userData?
-          <img src={URL.createObjectURL(userData?.profilePicture)} alt="" />:
           <img src={ProfilePicture} alt="" />
-            }
             <i className="ri-camera-line"></i>
         </div>
         <Form className='account__form'>

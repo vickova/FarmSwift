@@ -722,6 +722,9 @@ export const SellerDashboardStyle = styled.div`
             background: #555;
         }
         .profile{
+            display:flex;
+            gap:1rem;
+            align-items:center;
             img{
                 width: 30px;
                 height: 30px;
@@ -740,7 +743,7 @@ export const SellerDashboardStyle = styled.div`
         .profile__cover{
             display: flex;
             gap:.5rem;
-            align-items: center
+            align-items: center;
                 i{
                     font-size: 1rem;
                     cursor: pointer;
@@ -762,7 +765,7 @@ export const SellerDashboardStyle = styled.div`
             width: 20%;
         }
         .mainbar{
-            width: 80%;
+            width: 100%;
             padding: 1rem .5rem;
             .main__bar__input{
             width: 100%;
@@ -770,10 +773,12 @@ export const SellerDashboardStyle = styled.div`
         }
         .profile__cover{
             align-items: start;
+            justify-content:flex-end;
             width: 100%;
             margin:0 0 1rem 0;
             .profile{
-                width:100% !important;
+                width:10% !important;
+                justify-content:flex-end
             }
         }
         .top__bar{
@@ -781,6 +786,9 @@ export const SellerDashboardStyle = styled.div`
         }
         .seller-logo{
             padding:.5rem 0;
+        }
+        .dashboardcover{
+            justify-content:center
         }
     }
     @media screen and (max-width: 550px){
@@ -791,6 +799,9 @@ export const SellerDashboardStyle = styled.div`
                     display:none;
                 }
             }
+        }
+        .profile__details{
+            display:none
         }
     }
 `
