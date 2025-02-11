@@ -763,6 +763,7 @@ export const SellerDashboardStyle = styled.div`
         }
         .sidebar{
             width: 20%;
+            position:fixed
         }
         .mainbar{
             width: 100%;

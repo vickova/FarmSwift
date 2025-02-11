@@ -67,9 +67,9 @@ const SellerDashboard = () => {
             path:'/account/change-password'
         },
         {
-            text:'Notification',
+            text:'Account Details',
             icon: 'ri-notification-2-line',
-            path:'/account/notification'
+            path:'/account/bank-details'
         },
         {
             text:'Security & Privacy',
@@ -83,7 +83,7 @@ const SellerDashboard = () => {
     <SellerDashboardStyle>
         <Container className='seller-container'>
             <Row className='dashboardcover'>
-                <Col lg='2' className='sidebar' style={{display:menuTog?'block':'none', position:'fixed', left:0}}>
+                <Col lg='2' className='sidebar' style={{display:menuTog?'none':'block', left:0}}>
                 <div className='seller-logo'>
                     <img src={Logo} alt="" />
                 </div>
@@ -137,7 +137,7 @@ const SellerDashboard = () => {
                             <Route path='/account-details' element={<AccountDetails/>}/>
                             <Route path='/analytics' element={<Dashboard/>}/>
                             <Route path='/customers' element={<Vendors/>}/>
-                            <Route path='/notification' element={<Notification/>}/>
+                            <Route path='/bank-details' element={<Notification/>}/>
                             <Route path='/upload' element={<UploadProduct/>}/>
                             <Route path='/order-details' element={<OrderDetails/>}/>
                             <Route path='/order-details/:id' element={<OrderDetailsIndividual/>}/>
