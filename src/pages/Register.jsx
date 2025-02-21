@@ -4,12 +4,14 @@ import Google from '../assets/icons/google-logo.svg';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { RegisterStyle } from '../styles/PagesStyles';
 import RegisterSlide from '../components/Slider/RegisterSlide';
-import { SignUser } from '../redux/actions';
+import { RegisterUser, SignUser } from '../redux/actions';
 import { useDispatch } from 'react-redux';
 import { GoogleLogin, useGoogleLogin } from '@react-oauth/google';
 import { useGoogleOneTapLogin } from '@react-oauth/google';
-import { jwtDecode } from "jwt-decode";
+import { BASE_URL } from '../utils/config';
+import { usePost } from '../hooks/useFetch';
 import GoogleIcon from '../assets/icons/google-logo.svg'
+import Loader from '../components/Loader/Loader';
 
 
 
@@ -23,7 +25,7 @@ const Register = () => {
   const [passwordError, setPasswordError] = useState({ statement: '', color: false });
   const navigate = useNavigate();
   const [selectedRole, setSelectedRole] = useState('');
-
+  const role = localStorage.getItem('selectedRole');
   useEffect(() => {
     // Get the role from local storage
     const role = localStorage.getItem('selectedRole');
@@ -41,34 +43,60 @@ const Register = () => {
     password: '',
     confirmpassword: '',
     profilePicture: null, // Holds the uploaded file
+    description:''
   });
 
-  const login = useGoogleLogin({
-    onSuccess:(tokenResponse)=>{
-      var CredentialResponseDecoded = jwtDecode(tokenResponse?.credential)
-    console.log(CredentialResponseDecoded);
+
+  const { data: registrationResponse, loading, error, postData } = usePost(`${BASE_URL}/auth/register`);
+  console.log("API URL:", `${BASE_URL}/auth/register`);
+
+console.log(loading)
+console.log(error)
+console.log(registrationResponse)
+const login = useGoogleLogin({
+  onSuccess: async (response) => {
+    try {
+      console.log("Google Login Response:", response);
+
+      const userInfo = await fetch("https://www.googleapis.com/oauth2/v3/userinfo", {
+        headers: { Authorization: `Bearer ${response.access_token}` },
+      }).then((res) => res.json());
+
+      console.log("Decoded User Info:", userInfo);
+
+      // Call postData function instead of directly using usePost inside a callback
+      postData({
+        firstname: userInfo?.family_name,
+        lastname: userInfo?.given_name,
+        email: userInfo?.email,
+        profilePicture: userInfo?.picture
+      });
+
+    } catch (error) {
+      console.error("Error fetching Google user info:", error);
     }
-  })
+  },
+  onError: (error) => console.error("Google Sign-in Error:", error),
+});
+  
   const [previewImage, setPreviewImage] = useState(null); // For previewing the selected image
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
-    setFormData((prevData) => ({
-      ...prevData,
-      profilePicture: file,
-    }));
-
-    // Generate a preview of the selected image
-    const reader = new FileReader();
-    reader.onload = () => {
-      setPreviewImage(reader.result);
-    };
+  
     if (file) {
-      reader.readAsDataURL(file); // Read the file to generate a preview
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setFormData((prevData) => ({
+          ...prevData,
+          profilePicture: reader.result, // Store Base64 string
+          previewPhoto:file
+        }));
+        setPreviewImage(reader.result);
+      };
+      reader.readAsDataURL(file); // Convert image to Base64
     }
-    
   };
-
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormData((prevData) => ({
@@ -107,11 +135,19 @@ const Register = () => {
     }
 
     console.log({
-      status: 'successful',
-      data: formData,
-    });
+      username:"Aderonke Olaleye",
+      email:"olumideronke@gmail.com",
+  });
+  postData({
+    username:formData.firstname + " " + formData.lastname,
+    email:formData.email,
+    password:formData.password,
+    photo:formData.profilePicture,
+    role:role,
+    user_role:'',
+    description:formData.description
+}, RegisterUser, '/login')
   dispatch(SignUser(formData))
-  navigate('/home')
   };
   
 
@@ -166,6 +202,17 @@ const Register = () => {
                       required
                       id="email"
                       value={formData.email}
+                      onChange={handleChange}
+                    />
+                  </FormGroup>
+                  <FormGroup>
+                    <textarea
+                      type="text"
+                      placeholder="Describe yourself"
+                      name="description"
+                      required
+                      id="description"
+                      value={formData.description}
                       onChange={handleChange}
                     />
                   </FormGroup>
@@ -263,9 +310,7 @@ const Register = () => {
                     />
                     <p>I have read and agree to FarmSwift’s Privacy Policy and Terms of Use</p>
                   </div>
-                  <Button className="auth__btn btn secondary__btn" type="submit">
-                    Create Account
-                  </Button>
+                  <Button className='auth__btn btn secondary__btn' type='submit'>{!loading ? 'Create Account' : <Loader/>}</Button>
                 </Form>
               </div>
             </div>

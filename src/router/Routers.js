@@ -14,6 +14,7 @@ import VendorDetails from '../pages/VendorDetails';
 import Register from '../pages/Register';
 import SellerDashboard from '../pages/SellerDashboard';
 import Checkout from '../pages/Checkout';
+import VerifyAccount from '../pages/VerifyAccount';
 
 const Routers = () => {
   return (
@@ -34,6 +35,7 @@ const Routers = () => {
       <Route path='/account/*' element={<SellerDashboard/>}/>
       <Route path='/thank-you' element={<Thankyou/>}/>
       <Route path='/checkout' element = {<Checkout/>}/>
+      <Route path='/verify' element = {<VerifyAccount/>}/>
     </Routes>
   )
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Container, Row, Col, Button} from 'reactstrap';
 import ProductSlide from '../components/Slider/ProductSlide';
 import CategoriesSlide from '../components/Slider/Categoris';
@@ -6,8 +6,14 @@ import { TypeAnimation } from 'react-type-animation';
 import SubCategory from '../components/Slider/SubCategory';
 import PopularProducts from '../components/Slider/PopularProducts';
 import { HomeStyle } from '../styles/PagesStyles';
+import { useSelector } from 'react-redux';
 
 const Home = () => {
+  const userData = useSelector((state)=> state.AuthReducer?.user?.data);
+  useEffect(()=>{
+    localStorage.setItem('selectedRole', userData?.role);
+
+}, [userData])
   return (
     <HomeStyle>
         <Container>

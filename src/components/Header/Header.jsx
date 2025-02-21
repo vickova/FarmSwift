@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Container, Row, Col, Button, Form } from 'reactstrap';
-import { AddToCart, ReduceCart, RemoveCart, RemoveFromWish, searchItemAction } from '../../redux/actions';
+import { AddToCart, Logout, ReduceCart, RemoveCart, RemoveFromWish, searchItemAction } from '../../redux/actions';
 import {NavLink,Link, useLocation, useNavigate} from 'react-router-dom';
 import Logo from '../../assets/icons/swift-logo.png';
 import Toggle from '../Toggle/Toggle';
@@ -13,7 +13,7 @@ import ToggleCategories from '../Toggle/ToggleCategories';
 const Header = ({wish, setWish}) => {
     const cartList = useSelector((state)=> state.CartReducer.cartList)
     const wishList = useSelector((state)=> state.WishReducer.wishList)
-    const userData = useSelector((state)=> state.UserReducer.UserData);
+    const userData = useSelector((state)=> state.AuthReducer?.user?.data);
     const [previewImage, setPreviewImage] = useState('');
     const headerRef = useRef();
     const navigate = useNavigate()
@@ -21,7 +21,7 @@ const Header = ({wish, setWish}) => {
     const {pathname} = useLocation();
     const [menuToggle, setMenuToggle] = useState(false)
     const accountexists = pathname.includes('account')
-
+console.log(userData)
     const CartIncrement = (item)=>{
         dispatch(AddToCart(item));
         dispatch(RemoveFromWish(item))
@@ -262,7 +262,10 @@ const handleWishSetting =(item)=>{
                         <ToggleAccount title={'Account'} icon={'ri-user-3-line'} userData={userData}>
                             <div className='account-list'>
                                 <p><Link to='/account'>Dashboard</Link></p>
+                                {userData?
+                                <p className='d-flex align-items-center gap-2' onClick={()=>dispatch(Logout())}><span>LogOut</span><i className="ri-logout-circle-line"></i></p>:
                                 <p className='d-flex align-items-center gap-2' onClick={()=>navigate('/login')}><span>Login</span><i className="ri-logout-circle-line"></i></p>
+                                }
                             </div>
                         </ToggleAccount>
                     </div>

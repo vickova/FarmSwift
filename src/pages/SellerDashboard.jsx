@@ -7,7 +7,6 @@ import AccountDetails from '../components/Account/AccountDetails';
 import Dashboard from '../components/Account/Dashboard';
 import Logo from '../assets/icons/swift-logo-rm.png';
 import ToggleSideBar from '../components/Toggle/ToggleSideBar';
-import ProfilePicture from '../assets/images/color-man.webp';
 import Customer from './Customer';
 import Password from './Password';
 import Notification from './Notification';
@@ -17,7 +16,9 @@ import Privacy from './Privacy';
 import Vendors from './Vendors';
 import UploadProduct from './UploadProduct';
 
+
 const SellerDashboard = () => {
+    
     const sidebar__content = [
         {
             text:'Analytics',
@@ -28,6 +29,33 @@ const SellerDashboard = () => {
             text:'Upload Product',
             icon: 'ri-shopping-cart-2-line',
             path:'/account/upload'
+        },
+        {
+            text:'Settings',
+            icon: 'ri-settings-4-line',
+            path:'/account/'
+        },
+        {
+            text:'Help',
+            icon: 'ri-questionnaire-line',
+            path:'/account/help'
+        },
+        {
+            text:'Logout',
+            icon: 'ri-logout-box-r-line',
+            path:'/account'
+        },
+        {
+            text:'Back to Home',
+            icon: 'ri-home-4-line',
+            path:'/'
+        },
+    ]
+    const customer__sidebar__content = [
+        {
+            text:'Analytics',
+            icon: 'ri-bar-chart-box-line',
+            path:'/account/analytics'
         },
         {
             text:'Order',
@@ -78,7 +106,7 @@ const SellerDashboard = () => {
         },
     ]
     const [menuTog, setMenuTog] = useState(false)
-    const userData = useSelector((state)=> state.UserReducer.UserData);
+    const userData = useSelector((state)=> state.AuthReducer?.user?.data);
   return (
     <SellerDashboardStyle>
         <Container className='seller-container'>
@@ -87,8 +115,8 @@ const SellerDashboard = () => {
                 <div className='seller-logo'>
                     <img src={Logo} alt="" />
                 </div>
-                    {
-                        sidebar__content.map((item, index)=>{
+                    {userData?.role==='seller'?
+                        sidebar__content:customer__sidebar__content.map((item, index)=>{
                             if(item.text === 'Settings'){
                             return <ToggleSideBar key={index}>
                                 {
@@ -123,9 +151,12 @@ const SellerDashboard = () => {
                             <i className="ri-mail-line"></i>
                             <i className="ri-notification-2-line"></i>
                             <div className='profile'>
-                                <img src={ProfilePicture} alt="" />
+                                <img
+                                    src={userData?.photo} // Convert the file object to URL
+                                    alt="Profile"
+                                />
                                 <div className='profile__details'>
-                                    <p>{userData?.firstname} {userData?.lastname}</p>
+                                    <p>{userData?.username}</p>
                                     <p>{userData?.email}</p>
                                 </div>
                             </div>

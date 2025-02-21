@@ -8,47 +8,35 @@ import { vendors } from '../utils/Dataset';
 import { useGet } from '../hooks/useFetch';
 import { BASE_URL } from '../utils/config';
 
-
 const Vendors = () => {
   const { data: AllUsers, loading: LoadingUsers, error: UsersError } = useGet(`${BASE_URL}/users`);
-    const AllSellers = AllUsers?.data.filter((user)=>user.role === 'seller')
-    console.log(AllSellers)
-    console.log(vendors)
+  const AllSellers = AllUsers?.data.filter((user)=>user.role === 'seller')
+  console.log(AllSellers)
   const navigate = useNavigate();
   const identityBodyTemplate = (rowData) => {
+    console.log(rowData)
     return (
       <div className='vendor-identity vendor-item d-flex align-items-center gap-4'>
-      <img src={rowData.photo} alt="" />
-      <h3>{rowData.username}</h3>
+      <img src={rowData} alt="" />
     </div>
     );
   };
-  const ratingBodyTemplate = (rowData) => {
-    if (!rowData.createdAt) return "N/A"; // Handle cases where the date is missing
-  
-    const date = new Date(rowData.createdAt); // Extract the correct date field
-  
-    const formattedDate = date.toLocaleString("en-US", {
-      weekday: "long",  // "Tuesday"
-      year: "numeric",  // "2025"
-      month: "long",    // "February"
-      day: "numeric",   // "18"
-      hour: "numeric",  // "12 PM"
-      minute: "numeric",
-      second: "numeric",
-      hour12: true // Use 12-hour format
-    });
-  
-    return (
-      <div className="rating gap-2 d-flex align-items-center">
-        {formattedDate}
-      </div>
-    );
-  };
-  
+  const ratingBodyTemplate = (rowData) =>{
+    return(
+    <div className='rating gap-2 d-flex align-items-center'>
+      <span className='stars d-flex gap-1'>
+        {[...Array(Number(rowData.rating))].map((x, i) =>
+          <i key={i} className="ri-star-fill"></i>
+        )}
+
+      </span>
+      <p>{rowData.rating}</p>
+    </div>
+    )
+  }
   const redirectTemplate = (rowData)=>{
     return (
-      <button className="vendor-button p-component" onClick={()=> navigate(`/vendors/${rowData._id}`)}>
+      <button className="vendor-button p-component" onClick={()=> navigate(`/vendors/${rowData.id}`)}>
           View More Details
       </button>
   );
@@ -58,7 +46,7 @@ const Vendors = () => {
     <Container className='vendor-wrapper'>
       <h2 className='vendor-header'>Our Vendors</h2>
       <DataTable 
-              value={AllSellers} 
+              value={AllUsers} 
               responsiveLayout="scroll" 
               paginator 
               emptyMessage="No data found" 
@@ -67,10 +55,11 @@ const Vendors = () => {
               tableStyle={{ minWidth: '50rem' }}
               stripedRows={true}
           >
-              <Column field="identity" header="Identity" body={identityBodyTemplate} />
-              <Column field="createdAt" header="Joined Date" body={ratingBodyTemplate} sortable />
-              <Column field="email" sortable header="Email" />
+              {/* <Column field="photo" header="photo" body={identityBodyTemplate}/> */}
+              <Column field="username" sortable header="username" />
               <Column body={redirectTemplate} />
+              {/* <Column field="city" sortable header="City" />
+              <Column field="country" sortable header="Country" /> */}
         </DataTable>
     </Container>
     </VendorStyle>

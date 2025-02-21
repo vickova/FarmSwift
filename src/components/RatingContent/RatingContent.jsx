@@ -4,12 +4,22 @@ import Write from '../../assets/icons/Write.svg';
 import './RatingContent.css';
 import { useParams } from 'react-router-dom';
 import { vendors } from '../../utils/Dataset';
+import { usePost, useGet } from '../../hooks/useFetch';
+import { BASE_URL } from '../../utils/config';
+import { SignUser } from '../../redux/actions';
+import { useSelector } from 'react-redux';
 
 
 const RatingContent = ({open, setOpen}) => {
+    const [reviewDetails, setReviewDetails] = useState(null)
     const {id} = useParams()
     console.log(id)
-    const current_vendor = vendors?.filter((item)=>item?.id===Number(id))[0];
+    const { data: AllUsers, loading: LoadingUsers, error: UsersError } = useGet(`${BASE_URL}/users`);
+    console.log(AllUsers)
+    const current_vendor = AllUsers?.data.filter((user)=>user._id === id)[0]
+    const userData = useSelector((state)=> state.AuthReducer?.user?.data);
+    const { data: reviewResponse, loading, error, postData } = usePost(`${BASE_URL}/reviews/${userData._id}`);
+    // const current_vendor = vendors?.filter((item)=>item?.id===Number(id))[0];
     console.log(current_vendor)
     const [rating, setRating] = useState(0)
     const [description, setDecription] = useState('')
@@ -27,11 +37,19 @@ const RatingContent = ({open, setOpen}) => {
 
     // other logic
   }
-  const handleReviewSubmit = (e)=>{
-    e.preventDefault()
-    console.log(formData)
 
-}
+const handleReviewSubmit = (event) => {
+        event.preventDefault();
+    console.log('clicked')
+    
+      postData({
+        sellerId:id,
+        rating:formData.rateValue,
+        review:formData.description
+    }, SignUser, `/vendors/${id}`)
+    setReviewDetails(reviewResponse?.data)
+      // dispatch(SignUser(formData))
+      };
 const handleClose = (e)=>{
     e.preventDefault()
     setOpen(false)

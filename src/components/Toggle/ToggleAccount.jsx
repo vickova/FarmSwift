@@ -9,12 +9,13 @@ const ToggleAccount = ({children, title, icon, userData}) => {
       }
 
     }
+    console.log(userData)
   return (
     <div className='toggle'>
         <button onClick={()=>setToggle(!toggle)}>
-        {userData?.profilePicture?
+        {userData?.photo?
         <img
-              src={URL.createObjectURL(userData?.profilePicture)} // Convert the file object to URL
+              src={userData?.photo} // Convert the file object to URL
               alt="Profile"
               style={{ width: '30px', height: '30px', borderRadius: '50%' }}
               />:

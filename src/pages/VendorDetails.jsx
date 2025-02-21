@@ -4,32 +4,40 @@ import { vendors } from '../utils/Dataset';
 import { VendorStyle } from '../styles/PagesStyles';
 import RatingContent from '../components/RatingContent/RatingContent';
 import Reviews from '../components/Reviews/Reviews';
+import { useGet } from '../hooks/useFetch';
+import { BASE_URL } from '../utils/config';
+import calculateAvgRating from '../components/RatingContent/AvgRating';
 
 const VendorDetails = () => {
 const [open, setOpen] = useState(false);
 console.log(open)
 const {id} = useParams();
-const vendordetail = vendors.filter((item)=> item.id === Number(id));
+ const { data: AllUsers, loading: LoadingUsers, error: UsersError } = useGet(`${BASE_URL}/users`);
+const vendordetail = AllUsers?.data.filter((user)=>user._id === id)[0]
+const {avgRating, totalRating} = calculateAvgRating(vendordetail?.reviews||[]);console.log(avgRating)
+const validAvgRating = isNaN(avgRating) ? 0 : Math.round(avgRating); 
+  console.log(vendordetail)
 const total_rating = 5
-  const remaining_rating = total_rating-vendordetail[0]?.rating
+  const remaining_rating = total_rating-validAvgRating
+if (!vendordetail){
+    return <h4>Loading ...</h4>
+}
   return (
     <VendorStyle>
-        {
-            vendordetail.map((item, index)=>{
-                return <div key={index} className='vendor-cover d-flex align-items-center justify-content-center gap-5'>
+                <div className='vendor-cover d-flex align-items-center justify-content-center gap-5'>
                     <div className='vendor-picture'>
-                        <img src={item.image} alt="" />
+                        <img src={vendordetail.photo} alt="" />
                     </div>
                     <div className='vendor-text'>
-                        <h2>{item.name}</h2>
+                        <h2>{vendordetail.username}</h2>
                         <div className='gap-4 d-flex align-items-center my-3'>
-                            <p className='vendor-major'>Rice farmer</p>
+                            <p className='vendor-major'>{vendordetail.email}</p>
                             <button onClick={()=>setOpen(true)} style={{backgroundColor:'#fff', borderRadius:'5px', padding:'0 .5rem', color:'#199b74', border:'1px solid #199b74'}}>Rate me</button>
                         </div>
                         <div className='rating gap-2 d-flex align-items-center'>
                             <span className='stars d-flex gap-1'>
                             {
-                                [...Array(vendordetail[0]?.rating)]?.map((item, index)=>{
+                                [...Array(validAvgRating)]?.map((item, index)=>{
                                     return <i key={index} className="ri-star-fill"></i>
                                 })
                             }
@@ -39,7 +47,7 @@ const total_rating = 5
                                 })
                             }
                             </span>
-                            <p>{item.rating}</p>
+                            <p>{vendordetail.rating}</p>
                         </div>
                         <p className='vendor-description'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquid qui voluptates officia porro quod a cumque aperiam ab vero optio. Qui dolorum laudantium quibusdam cum pariatur corporis possimus, aut repudiandae?</p>
                         <div className='links d-flex gap-4'>
@@ -51,15 +59,13 @@ const total_rating = 5
                     </div>
                     <RatingContent open={open} setOpen={setOpen}/>
                 </div>
-            })
-        }
         <div className='reviews_container text-center'>
         <h4>Reviews</h4>
 
         <div className='reviews_cover d-flex gap-4'>
         {
-         [...Array(4)]?.map((item, index)=>{
-            return <Reviews key={index}/>
+         vendordetail.reviews.map((item, index)=>{
+            return <Reviews key={index} review={item}/>
             })
         }
         </div>

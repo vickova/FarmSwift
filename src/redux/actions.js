@@ -61,3 +61,38 @@ export const SignUser = (item)=>{
         payload: item
     }
 }
+export const RegisterUser = (item)=>{
+    return{
+        type: 'REGISTER_SUCCESS',
+        payload: item
+    }
+}
+export const LoginUser = (item)=>{
+    return{
+        type: 'SIGNED_USER',
+        payload: item
+    }
+}
+export const LoginStart = (item)=>{
+    return{
+        type: 'LOGIN_START',
+        payload: item
+    }
+}
+export const LoginSuccess = (item)=>{
+    return{
+        type: 'LOGIN_SUCCESS',
+        payload: item
+    }
+}
+export const LoginFailure = (item)=>{
+    return{
+        type: 'LOGIN_FAILURE',
+        payload: item
+    }
+}
+export const Logout = ()=>{
+    return{
+        type: 'LOGOUT',
+    }
+}

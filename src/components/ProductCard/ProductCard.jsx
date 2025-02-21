@@ -1,23 +1,42 @@
 import React, { useState } from 'react';
 import './ProductCard.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { AddToCart, AddToWish,RemoveFromWish, WishToggle } from '../../redux/actions';
+import { AddToCart, AddToWish,RegisterUser,RemoveFromWish, WishToggle } from '../../redux/actions';
 import { vendors } from '../../utils/Dataset';
 import { useNavigate } from 'react-router-dom';
+import calculateAvgRating from '../../components/RatingContent/AvgRating';
+import { usePost } from '../../hooks/useFetch';
+import { BASE_URL } from '../../utils/config';
 
-const ProductCard = ({ item}) => {
+
+const ProductCard = ({ item, AllUsers}) => {
   const navigate = useNavigate()
-  const cartList = useSelector((state)=> state.CartReducer.cartList);
-  const wishList = useSelector((state)=> state.WishReducer.wishList);
-  const popular_products = useSelector((state)=> state?.WishReducer.popular_products);
+  const userData = useSelector((state)=> state.AuthReducer?.user?.data);
   const current_vendor = vendors?.filter((vendor)=>vendor?.id===Number(item?.createdBy))[0];
+  const productId = item._id
+  const { data: AddtoCartResponse, loading, error, postData } = usePost(`${BASE_URL}/carts/${productId}`);
+  console.log(item.createdBy)
+  const SellerData = AllUsers?.filter((user)=>user._id === item.createdBy)[0]
+  console.log(SellerData)
+  const {avgRating, totalRating} = calculateAvgRating(SellerData?.reviews);console.log(avgRating)
+  const validAvgRating = isNaN(avgRating) ? 0 : Math.round(avgRating); 
+
   const total_rating = 5
-  const remaining_rating = total_rating-current_vendor?.rating
- 
+  const remaining_rating = total_rating-validAvgRating
+//  console.log(item)
   const dispatch = useDispatch();
   // Handle adding an item to the cart
   const handleAddToCart = () => {
-    dispatch(AddToCart(item));
+    if(userData?.isVerified){
+      postData({
+      }, RegisterUser, '/home');
+      console.log(AddtoCartResponse)
+    }
+    else{
+    console.log('Please login')
+    console.log(userData?.isVerified)
+    return navigate('/login')
+    }
   };
   const handleWish = ()=>{
     dispatch(AddToWish(item))
@@ -40,27 +59,27 @@ const ProductCard = ({ item}) => {
         )}
       </div>
       <div className='productcard__image'>
-        <img src={item.picture} alt="" />
+        <img src={item.photo} alt="" />
       </div>
       <div className='productcard__text'>
         <p className='productcard__category'>{item.category}</p>
         <h3>{item.description}</h3>
         <div className='rating gap-2 d-flex align-items-center'>
-          <span className='stars d-flex gap-1'>
-            {
-                    [...Array(current_vendor?.rating)]?.map((item, index)=>{
-                        return <i key={index} className="ri-star-fill"></i>
-                    })
-                }
-                {
-                    [...Array(remaining_rating?remaining_rating:0)]?.map((item, index)=>{
-                        return <i key={index} className="ri-star-line"></i>
-                    })
-                }
-          </span>
+        <span className='stars d-flex gap-1'>
+        {
+            [...Array(validAvgRating)]?.map((item, index)=>{
+                return <i key={index} className="ri-star-fill"></i>
+            })
+        }
+        {
+            [...Array(remaining_rating?remaining_rating:0)]?.map((item, index)=>{
+                return <i key={index} className="ri-star-line"></i>
+            })
+        }
+        </span>
           <p>{current_vendor?.rating}</p>
         </div>
-        <p className='sellername'>By <span onClick={()=>navigate(`/vendors/${current_vendor?.id}`)}>{`${current_vendor?.name}`}</span></p>
+        <p className='sellername'>By <span onClick={()=>navigate(`/vendors/${SellerData?._id}`)}>{`${SellerData?.username}`}</span></p>
         <div className='shop-price d-flex align-items-end justify-content-between'>
           <p className='price'>#{item.price}/kg</p>
           <button className='d-flex gap-4 align-items-center' onClick={handleAddToCart}>

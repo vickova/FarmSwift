@@ -610,10 +610,10 @@ export const RegisterStyle = styled.div`
         }
     }
     form{
-        input{
+        input, textarea{
             outline:none;
         }
-        input[type=text], input[type=password], input[type=email]{
+        input[type=text], input[type=password], input[type=email], textarea{
             width:100%;
             padding: .5rem 1rem;
             box-sizing: border-box;
@@ -627,6 +627,8 @@ export const RegisterStyle = styled.div`
             margin:1rem 0;
             background-color:var(--secondary-color);
             border:none;
+            display:flex;
+            justify-content:center
         }
         .password{
             position: relative;
@@ -639,7 +641,99 @@ export const RegisterStyle = styled.div`
     }
 
 `
-
+export const PasswordStyle  = styled.div`
+    .account__details__cover{
+    background-color: #fff;
+    border-radius: 10px;
+    height:80vh;
+    overflow-y: auto;
+    padding: 1.2rem;
+}
+  
+.account__details__cover {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    img{
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+    }
+}
+.account__details__wrapper h2{
+    position: fixed;
+}
+.change__profile__pic{
+    background-color: rgba(128, 128, 128, 0.4);
+    bottom: 0;
+    width: 100%;
+    height: 50%;
+    border-radius: 50%;
+    text-align: center;
+}
+.change__profile__pic i{
+    color: #fff;
+}
+.input-section{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+.passwords, .pass-btn{
+    width: 100%;
+}
+.input-section input, .passwords input{
+    display: block;
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: .8rem;
+}
+.input__cover{
+    background-color: #fff;
+    width: 100%;
+    padding: .4rem 1rem;
+    box-shadow: 1px 1px 5px rgb(226, 225, 225);
+    border-radius: 5px;
+}
+.input__cover i{
+    font-size: 1rem;
+}
+.account__form{
+    width: 50%;
+    height:fit-content;
+}
+.account__form label{
+    font-size: .8rem;
+}
+.account__form button{
+    width: 100%;
+    border: none;
+    background-color: var(--secondary-color);
+    border-radius: 5px;
+    padding:.4rem 1rem;
+    font-size: .8rem;
+    color: #fff;
+    margin-top:1rem;
+}
+button{
+    display:flex;
+    justify-content: center;
+}
+.mb-3{
+    margin-bottom: 0 !important;
+}
+@media screen and (max-width: 990px){
+    .input-section{
+        display: block;
+    }
+    .input-section .input{
+        width: 100%;
+    }
+}
+`
 export const SellerDashboardStyle = styled.div`
         
     .seller-container{
@@ -1150,22 +1244,31 @@ export const UploadProductStyle = styled.div`
   }
 
   /* Button styling */
-  .submit-btn {
+  .submit-btn, .cancel-btn {
     width: 100%;
     padding: 12px 20px;
     font-size: 16px;
     font-weight: bold;
-    background-color: #199b73;
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
   }
+  .submit-btn{
+    background-color: #199b73;
+  }
+  .cancel-btn{
+    background-color:transparent;
+    border:1px solid #157f62;
+    color: #157f62
+  }
 
   .submit-btn:hover {
     background-color: #157f62;
   }
-
+  .cancel-btn:hover {
+    background-color: rgba(21, 127, 98, 0.2);
+  }
   /* Success and error messages */
   .success-message {
     color: var(--secondary-color);

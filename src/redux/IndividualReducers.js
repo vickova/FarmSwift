@@ -135,3 +135,49 @@ export const UserReducer = (state=SignUpInitialState, action) => {
       return state;
   }
 }
+
+const Authinitial_state = {
+  user: localStorage.getItem('user') && localStorage.getItem('user') !== "undefined"
+  ? JSON.parse(localStorage.getItem('user'))
+  : null,
+  loading:false,
+  error:null
+}
+
+export const AuthReducer = (state=Authinitial_state, action)=>{
+  switch(action.type){
+      case 'LOGIN_START':
+          return{
+              user:null,
+              loading:true,
+              error:null
+          };
+      case 'LOGIN_SUCCESS':
+        console.log(action.payload)
+          return {
+              user:action.payload,
+              loading:false,
+              error:null
+          }
+      case 'LOGIN_FAILURE':
+          return {
+              user:null,
+              loading:false,
+              error:action.payload
+          }
+      case 'REGISTER_SUCCESS':
+          return {
+              user:null,
+              loading:false,
+              error:null
+          }
+      case 'LOGOUT':
+          return {
+              user:null,
+              loading:false,
+              error:null
+          }
+      default:
+          return state
+  }
+}
