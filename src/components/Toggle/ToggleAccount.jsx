@@ -9,7 +9,6 @@ const ToggleAccount = ({children, title, icon, userData}) => {
       }
 
     }
-    console.log(userData)
   return (
     <div className='toggle'>
         <button onClick={()=>setToggle(!toggle)}>

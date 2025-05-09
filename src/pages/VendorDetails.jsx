@@ -7,16 +7,19 @@ import Reviews from '../components/Reviews/Reviews';
 import { useGet } from '../hooks/useFetch';
 import { BASE_URL } from '../utils/config';
 import calculateAvgRating from '../components/RatingContent/AvgRating';
+import { useGetP } from '../hooks/useApi';
 
 const VendorDetails = () => {
 const [open, setOpen] = useState(false);
 console.log(open)
 const {id} = useParams();
- const { data: AllUsers, loading: LoadingUsers, error: UsersError } = useGet(`${BASE_URL}/users`);
+//  const { data: AllUsers, loading: LoadingUsers, error: UsersError } = useGet(`${BASE_URL}/users`);
+ const { data: AllUsers, isLoading: LoadingUsers, error: UsersError } = useGetP(`/users`, ['users']);
+
 const vendordetail = AllUsers?.data.filter((user)=>user._id === id)[0]
 const {avgRating, totalRating} = calculateAvgRating(vendordetail?.reviews||[]);console.log(avgRating)
 const validAvgRating = isNaN(avgRating) ? 0 : Math.round(avgRating); 
-  console.log(vendordetail)
+  console.log({vendordetail})
 const total_rating = 5
   const remaining_rating = total_rating-validAvgRating
 if (!vendordetail){
@@ -49,7 +52,7 @@ if (!vendordetail){
                             </span>
                             <p>{vendordetail.rating}</p>
                         </div>
-                        <p className='vendor-description'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquid qui voluptates officia porro quod a cumque aperiam ab vero optio. Qui dolorum laudantium quibusdam cum pariatur corporis possimus, aut repudiandae?</p>
+                        <p className='vendor-description'>{vendordetail.description}</p>
                         <div className='links d-flex gap-4'>
                             <div className='vednors-details-link'><i className="ri-facebook-box-line"></i></div>
                             <div className='vednors-details-link'><i className="ri-twitter-line"></i></div>

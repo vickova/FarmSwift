@@ -12,19 +12,23 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import rootReducer from './redux/Reducer';
 import { GoogleOAuthProvider } from '@react-oauth/google';
-
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
-   
+   const queryClient = new QueryClient()
 root.render(
   <React.StrictMode>
     <BrowserRouter>
+    <QueryClientProvider client={queryClient}>
     <Provider store={store}>
     <GoogleOAuthProvider clientId="608617138792-npifcsuab4f0r783iiurtblt9rjodvdu.apps.googleusercontent.com">
     <App />
+    <ReactQueryDevtools/>
     </GoogleOAuthProvider>
     </Provider>
+    </QueryClientProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

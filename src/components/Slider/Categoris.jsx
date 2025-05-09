@@ -15,37 +15,31 @@ const CategoriesSlide = () => {
     const category__list = [
         {
             category:'fruits',
-            items__left:'6',
             image:Fruit,
             color:'red'
         },
         {
             category:'vegtables',
-            items__left:'6',
             image:Vegetable,
             color:'red'
         },
         {
             category:'tuber',
-            items__left:'6',
             image:Tuber,
             color:'red'
         },
         {
             category:'grains',
-            items__left:'6',
             image:Cereal,
             color:'red'
         },
         {
             category:'livestock',
-            items__left:'6',
             image:Livestcok,
             color:'red'
         },
         {
             category:'Poultry',
-            items__left:'6',
             image:Poultry,
             color:'red'
         }
@@ -87,10 +81,7 @@ const CategoriesSlide = () => {
                 <div className='d-flex justify-content-center'>
                     <img src={item.image} alt="" />
                     </div>
-                    <div>
-                        <h6>{item.category}</h6>
-                        <p>{`${item.items__left} left`}</p>
-                    </div>
+                    
                 </div>
                 })
             }

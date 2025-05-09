@@ -438,10 +438,12 @@ margin: 2rem 0 4rem 0;
     padding: 3rem 8rem;
 }
 .vendor-picture{
-    width: 45%;
+    width: 35%;
+    max-height: 400px;
 }
 .vendor-picture img{
     width: 100%;
+    height: 100%;
     background-color: var(--secondary-transparent-color);
     border-radius: 50%;
 }
@@ -734,6 +736,70 @@ button{
     }
 }
 `
+
+// styles/PagesStyles.js or styles/HelpPageStyle.js
+
+export const HelpPageStyle = styled.div`
+  padding: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+  background-color: #f5f5f5;
+
+  h2 {
+    font-size: 2rem;
+    color: #199b74;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    font-size: 1rem;
+    color: #444;
+    margin-bottom: 1rem;
+  }
+
+  ul {
+    margin-left: 1rem;
+    padding-left: 1rem;
+    list-style-type: disc;
+  }
+
+  ul li {
+    margin-bottom: 0.5rem;
+    color: #333;
+  }
+
+  a {
+    color: #199b74;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  .p-accordion-tab {
+    margin-bottom: 1.5rem;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  }
+
+  .p-accordion-header {
+    background-color: #e9f8f3;
+    padding: 1rem;
+    font-weight: 600;
+    color: #199b74;
+    cursor: pointer;
+  }
+
+  .p-accordion-content {
+    background-color: #ffffff;
+    padding: 1rem;
+    border-top: 1px solid #ddd;
+  }
+`;
+
+
 export const SellerDashboardStyle = styled.div`
         
     .seller-container{
@@ -749,7 +815,7 @@ export const SellerDashboardStyle = styled.div`
         box-shadow:1px 1px 5px rgb(226, 225, 225);
         background-color: #fff;
         overflow-y: auto;
-            a{
+            a, button{
             display: block;
             text-decoration: none;
             color: var(--nav-text-color);
@@ -1044,6 +1110,11 @@ export const CheckOutStyle = styled.div`
 }
     .checkout__details::-webkit-scrollbar {
         width: 0;
+    }
+    .checout__country{
+        color: #199b74; /* Text color */
+        border-bottom:1px solid var(--nav-text-color);
+
     }
 `
 

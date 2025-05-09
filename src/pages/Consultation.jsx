@@ -1,12 +1,14 @@
 import React from 'react';
 import { Session } from '@talkjs/react';
 import ChatInterface from '../components/ChatInterface/ChatInterface';
+import PlantHistorySidebar from '../components/ChatInterface/PlantHistorySidebar';
 
 const Consultation = () => {
 
   return (
     <div style={{display:'flex', justifyContent:'center'}}>
-    <ChatInterface/>
+      <PlantHistorySidebar/>
+      <ChatInterface/>
     </div>
   )
 }

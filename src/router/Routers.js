@@ -15,8 +15,11 @@ import Register from '../pages/Register';
 import SellerDashboard from '../pages/SellerDashboard';
 import Checkout from '../pages/Checkout';
 import VerifyAccount from '../pages/VerifyAccount';
+import CusromerDashboard from '../components/Account/CustomerDashboard';
+import PaymentStatus from '../pages/PaymentStatus';
 
 const Routers = () => {
+
   return (
     <Routes>
       <Route path='/' element={<Navigate to='/home'/>}/>
@@ -35,6 +38,7 @@ const Routers = () => {
       <Route path='/account/*' element={<SellerDashboard/>}/>
       <Route path='/thank-you' element={<Thankyou/>}/>
       <Route path='/checkout' element = {<Checkout/>}/>
+      <Route path='/payment-status' element = {<PaymentStatus/>}/>
       <Route path='/verify' element = {<VerifyAccount/>}/>
     </Routes>
   )

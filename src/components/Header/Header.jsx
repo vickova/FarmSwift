@@ -1,31 +1,80 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Container, Row, Col, Button, Form } from 'reactstrap';
-import { AddToCart, Logout, ReduceCart, RemoveCart, RemoveFromWish, searchItemAction } from '../../redux/actions';
+import { AddToCart, Logout, ReduceCart, RemoveCart, RemoveFromWish, searchItemAction, SignUser } from '../../redux/actions';
 import {NavLink,Link, useLocation, useNavigate} from 'react-router-dom';
 import Logo from '../../assets/icons/swift-logo.png';
 import Toggle from '../Toggle/Toggle';
 import ToggleAccount from '../Toggle/ToggleAccount';
 import './Header.css'
 import ToggleCategories from '../Toggle/ToggleCategories';
+// import { useDelete, useGet, usePost } from '../../hooks/useFetch';
+import { useGetP, useDelete, usePost } from '../../hooks/useApi';
+import { BASE_URL } from '../../utils/config';
+import Loader from '../Loader/Loader';
 
 
-const Header = ({wish, setWish}) => {
-    const cartList = useSelector((state)=> state.CartReducer.cartList)
-    const wishList = useSelector((state)=> state.WishReducer.wishList)
-    const userData = useSelector((state)=> state.AuthReducer?.user?.data);
-    const [previewImage, setPreviewImage] = useState('');
-    const headerRef = useRef();
+const Header = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch();
+    const [wishItem, setWishItem] = useState(null);
+    const [cartItem, setCartItem] = useState(null);
+    const [productId, setProductId] = useState('');
+    const userData = useSelector((state)=> state.AuthReducer?.user?.data);
+    console.log({"HeaderDataaaaaaaaaa":userData})
+    // if(!userData){
+    //     navigate('login')
+    //   }
+    const deleteCartData = useDelete(`/carts/${cartItem}`, ['carts', 'wish', cartItem]);
+    const deleteWishData = useDelete(`/wishes/${wishItem}`, ['wishes', wishItem]);
+    const addtoCartData = usePost(`/carts/${wishItem}`, ['carts', productId]);
+
+  const { data: AddtoCartResponse, postData } = usePost(`/carts/${productId}`, ['carts', productId]);
+
+    const userId = userData?._id;
+    const { data: AllCartItems, loading: LoadingCartItems, error: CartItemsError } = useGetP(userId ? `/carts/${userId}` : null, ['carts'], !!userId);
+
+    const { data: AllWishesItems, loading: LoadingWishesItems, error: WishesItemsError } = useGetP(userId ? `/wishes/${userId}` : null, ['wishes'], !!userId);
+
+
+    const wishList = AllWishesItems?.data
+
+    console.log(wishList)
+    const [previewImage, setPreviewImage] = useState('');
+    const headerRef = useRef();
     const {pathname} = useLocation();
     const [menuToggle, setMenuToggle] = useState(false)
     const accountexists = pathname.includes('account')
-console.log(userData)
-    const CartIncrement = (item)=>{
-        dispatch(AddToCart(item));
-        dispatch(RemoveFromWish(item))
-    }
+
+    const { data: AllUsers, loading: LoadingUsers, error: UsersError } = useGetP(`/users`, ['users']);
+
+    const deleteWish = (productId) => {
+        if (!userData?.isVerified) {
+          console.log('Please login');
+          return navigate('/login');
+        }
+        setWishItem(productId); // Store the ID in state
+        deleteWishData.mutate(productId,{})
+      };
+      const deleteCart = (productId) => {
+        if (!userData?.isVerified) {
+          console.log('Please login');
+          return navigate('/login');
+        }
+        setCartItem(productId); // Store the ID in state
+        deleteCartData.mutate(productId,{})
+      };
+      const handleAddToCart = (productId) => {
+        if (userData?.isVerified) {
+            setWishItem(productId); // Store the ID in state
+          addtoCartData.mutate(productId,{})
+    
+        } else {
+          console.log('Please login');
+          return navigate('/login');
+        }
+      };
+
     const SubmitSearch =(e)=>{
         e.preventDefault();
         navigate('/search')
@@ -106,10 +155,10 @@ const sub__links = [
 const MenuTog= ()=>{
     setMenuToggle(!menuToggle);
 }
-const handleWishSetting =(item)=>{
-    dispatch(RemoveFromWish(item));
-    setWish(!wish)
-}
+const handleLogout = ()=>{
+        dispatch(Logout())
+        localStorage.removeItem('user');
+    }
   return (
     <div ref={headerRef} style={{display:`${pathname==='/get-started'||pathname==='/checkout'||pathname==='/get-started/register'||accountexists||pathname==='/login'?'none':'block'}`}}>
         <Container className='container'>
@@ -140,7 +189,7 @@ const handleWishSetting =(item)=>{
                     {/* ========search starts====== */}
                     <div className="form-wrapper">
                         <Form className='form d-flex align-items-center' onSubmit={SubmitSearch}>
-                                <input type="text" placeholder='Search for products...' required id='search' onChange={(e)=>dispatch(searchItemAction(e.target.value))}/>
+                                <input type="text" placeholder='Search for products...' required id='search' onChange={(e)=>dispatch(searchItemAction(e.target.value))} style={{margin:0}}/>
                                 <Button className='nav__btn'>Search</Button>
                                 <Button className='mobile__btn'><i className="ri-search-line"></i></Button>
                         </Form>
@@ -150,10 +199,15 @@ const handleWishSetting =(item)=>{
                     <div className="nav__right">
                     {/* logout button and username comes here when user login */}
                     <div className="other__btns d-flex gap-4 align-items-center">
-                    <Toggle title={'Wishlist'} icon={'ri-heart-line'} superscript={wishList.length}>
+                    {userData?.role === 'seller' && 
+                        <button className='cart__wish' onClick={()=>navigate('/account/upload')} style={{backgroundColor:'transparent'}}>
+                        <i className="ri-upload-2-line"></i>
+                        <span className='toggle-title'>Upload Product</span>
+                        </button>}
+                    <Toggle title={'Wishlist'} icon={'ri-heart-line'} superscript={wishList?.length}>
                         <ul>
-                            <h3>{`Wish List (${wishList.length})`}</h3>
-                            {wishList.length === 0? 
+                            <h3>{`Wish List (${wishList?.length})`}</h3>
+                            {wishList?.length === 0? 
                             <div className='no__wish d-flex justify-content-center align-items-center'>
                                 <div>
                                     <h3 className='d-flex gap-3 align-items-center'><span>No wish item</span><i className="ri-emotion-sad-line"></i></h3>
@@ -172,21 +226,23 @@ const handleWishSetting =(item)=>{
                                 <div className='cartrow__cover'>
                                     {
                                         wishList?.map((item, index)=>{
+                                            const SellerData = AllUsers?.data.find((user) => user._id === item.product?.createdBy);
+                                            console.log(item?.product)
                                             return <Row key={index} className='cart__row d-flex align-items-center'>
                                                 <Col lg='6' className='cart__data'>
                                                     <div className='cartproduct d-flex gap-3 align-items-center'>
                                                         <div className='cartimage d-flex justify-content-center'>
-                                                            <img src={item.picture} alt="" />
+                                                            <img src={item.product?.photo} alt="" />
                                                         </div>
                                                         <div className='cartproduct__text'>
-                                                            <h3>{item.description}</h3>
-                                                            <p>{item.sellername}</p>
+                                                            <h3>{item.product?.description}</h3>
+                                                            <p>{SellerData?.username}</p>
                                                         </div>
                                                     </div>
                                                 </Col>
                                                 <Col lg='2' className='cart__data'>{item.price}</Col>
-                                                <Col lg='2' className='cart__data'><button onClick={()=>CartIncrement(item)}>Add to Cart</button></Col>
-                                                <Col lg='1' className='cart__data'><i className="ri-close-fill" onClick={()=>handleWishSetting(item)}></i></Col>
+                                                <Col lg='2' className='cart__data'><button onClick={()=>{handleAddToCart(item?.product._id); deleteWish(item?.product._id)}}>Add to Cart</button></Col>
+                                                <Col lg='1' className='cart__data'>{!deleteWishData.isPending ? <i className="ri-close-fill" onClick={()=>deleteWish(item?.product._id)}></i> : <Loader/>}</Col>
                                             </Row>
                                         })
                                     }
@@ -195,10 +251,10 @@ const handleWishSetting =(item)=>{
                         }
                         </ul>
                         </Toggle>
-                        <Toggle title={'Cart'} icon={'ri-shopping-cart-2-line'} superscript={cartList.length}>
+                        <Toggle title={'Cart'} icon={'ri-shopping-cart-2-line'} superscript={AllCartItems?.data?.length}>
                         <ul>
-                            <h3>{`shopping Cart (${cartList.length})`}</h3>
-                            {cartList.length === 0? 
+                            <h3>{`shopping Cart (${AllCartItems?.data.length})`}</h3>
+                            {AllCartItems?.data.length === 0? 
                             <div className='no__wish d-flex justify-content-center align-items-center'>
                                 <div>
                                     <h3 className='d-flex gap-3 align-items-center'><span>No item in cart</span><i className="ri-emotion-sad-line"></i></h3>
@@ -217,25 +273,26 @@ const handleWishSetting =(item)=>{
                                 </div>
                                 <div className='cartrow__cover'>
                                     {
-                                        cartList.map((item, index)=>{
+                                        AllCartItems?.data.map((item, index)=>{
                                             let totalPrice =item?.price * item?.quantity;
-
+                                            const SellerData = AllUsers?.data.find((user) => user._id === item.product?.createdBy);
+                                            console.log(totalPrice)
                                             return <Row key={index} className='cart__row d-flex align-items-center'>
                                                 <Col lg='4' className='cart__data'>
                                                     <div className='cartproduct d-flex gap-3 align-items-center'>
                                                         <div className='cartimage d-flex justify-content-center'>
-                                                            <img src={item.picture} alt="" />
+                                                            <img src={item?.product?.photo} alt="" />
                                                         </div>
                                                         <div className='cartproduct__text'>
-                                                            <h3>{item.description}</h3>
-                                                            <p>{item.sellername}</p>
+                                                            <h3>{item.product?.description}</h3>
+                                                            <p>{SellerData?.username}</p>
                                                         </div>
                                                     </div>
                                                 </Col>
                                                 <Col lg='2' className='cart__data'>{item.price}</Col>
-                                                <Col lg='3' className='cart__data d-flex justify-content-center gap-3 align-items-center'><button onClick={()=>dispatch(ReduceCart(item))}>-</button><span>{item.quantity}</span><button value={item} onClick={()=>CartIncrement(item)}>+</button></Col>
+                                                <Col lg='3' className='cart__data d-flex justify-content-center gap-3 align-items-center'><button onClick={()=>dispatch(ReduceCart(item))}>-</button><span>{item.quantity}</span><button value={item} onClick={()=>setProductId(item?.product._id)}>+</button></Col>
                                                 <Col lg='2' className='cart__data'>#{totalPrice}</Col>
-                                                <Col lg='1' className='cart__data'><i className="ri-close-fill" onClick={()=>dispatch(RemoveCart(item))}></i></Col>
+                                                <Col lg='1' className='cart__data'>{!deleteCartData.isPending ? <i className="ri-close-fill" onClick={()=>deleteCart(item?.product._id)}></i> : <Loader/>}</Col>
                                             </Row>
                                         })
                                     }
@@ -248,7 +305,7 @@ const handleWishSetting =(item)=>{
                                     <Col lg='6'>
                                         <div className='subtotal d-flex align-items-center justify-content-between'>
                                             <h4>Subtotal</h4>
-                                            <p>#{cartList.reduce((acc, item)=>acc+(item?.price * item?.quantity), 0)}</p>
+                                            <p>#{AllCartItems?.data.reduce((acc, item)=>acc+(item?.price * item?.quantity), 0)}</p>
                                         </div>
                                         <div className='my-4'>
                                             <button className='checkout' onClick={()=> navigate('/checkout')}>Check out</button>
@@ -263,7 +320,7 @@ const handleWishSetting =(item)=>{
                             <div className='account-list'>
                                 <p><Link to='/account'>Dashboard</Link></p>
                                 {userData?
-                                <p className='d-flex align-items-center gap-2' onClick={()=>dispatch(Logout())}><span>LogOut</span><i className="ri-logout-circle-line"></i></p>:
+                                <p className='d-flex align-items-center gap-2' onClick={handleLogout}><span>LogOut</span><i className="ri-logout-circle-line"></i></p>:
                                 <p className='d-flex align-items-center gap-2' onClick={()=>navigate('/login')}><span>Login</span><i className="ri-logout-circle-line"></i></p>
                                 }
                             </div>
@@ -305,9 +362,9 @@ const handleWishSetting =(item)=>{
                             }
                         </div>
                     </div>
-                    <div className='mode d-flex align-items-center justify-content-center'>
+                    <button onClick={()=>navigate('/account')} className='mode d-flex align-items-center justify-content-center' style={{backgroundColor:'transparent'}}>
                         <i className="ri-settings-3-line"></i>
-                    </div>
+                    </button>
                 </div>
             </Row>
             

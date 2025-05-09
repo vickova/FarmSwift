@@ -1,15 +1,14 @@
 import React from 'react';
 import './Reviews.css';
 import Customer from '../../assets/images/corn-man.jfif';
-import { vendors } from '../../utils/Dataset';
 import { useParams } from 'react-router-dom';
 import { useGet } from '../../hooks/useFetch';
 import { BASE_URL } from '../../utils/config';
+import { useGetP } from '../../hooks/useApi';
 
 const Reviews = ({review}) => {
     const {id} = useParams();
-    const vendordetail = vendors.filter((item)=> item.id === Number(id));
-     const { data: AllUsers, loading: LoadingUsers, error: UsersError } = useGet(`${BASE_URL}/users`);
+     const { data: AllUsers, loading: LoadingUsers, isError: UsersError } = useGetP(`${BASE_URL}/users`, ['users']);
     const userDetails = AllUsers?.data.filter((user)=>user._id === review?.reviewer)[0]
       console.log(userDetails)
     const total_rating = 5

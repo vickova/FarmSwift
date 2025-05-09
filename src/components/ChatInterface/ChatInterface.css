@@ -1,104 +1,116 @@
-.chat-container {
-    display: flex;
-    flex-direction: column;
-    width: 600px;
-    height: 600px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin:1rem
-  }
-  
-  .chat-messages {
-    flex: 1;
-    padding: 10px;
-    overflow-y: auto;
-    background-color: #f9f9f9;
-  }
-  .chat-messages::-webkit-scrollbar {
-    width: 5px;
-  }
-  
-  /* Track */
-  .chat-messages::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 5px;
-  }
-  
-  /* Handle */
-  .chat-messages::-webkit-scrollbar-thumb {
-    background: var(--secondary-transparent-color);
-    border-radius: 5px;
-  }
-  
-  /* Handle on hover */
-  .chat-messages::-webkit-scrollbar-thumb:hover {
-    background: #555;
-  }
-  .chat-message {
-    max-width: 70%;
-    margin: 5px 0;
-    padding: 10px;
-    border-radius: 8px;
-    font-size: 14px;
-    word-wrap: break-word;
-  }
-  
-  .user-message {
-    align-self: flex-end;
-    background-color: rgba(25, 155, 116, 0.3);
-    color: #000;
-    position: relative;
-    right: 0;
-  }
-  
-  .ai-message {
-    align-self: flex-start;
-    background-color: #e0e0e0;
-    color: #333;
-  }
-  
-  .chat-input-container {
-    display: flex;
-    align-items: center;
-    gap:.5rem;
-    flex-wrap: wrap;
-    border-top: 1px solid #ccc;
-    background-color: #fff;
-    padding: 10px;
-    width: 100%;
-    box-sizing: border-box;
-  }
-  
-  .chat-input-container input {
-    flex: 1;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-right: 10px;
-    font-size: 14px;
-  }
-  .chat-input-container .chat-type{
-    width: 80%;
-    padding: 10px;
-  }
-  .chat-input-container button {
-    padding: 10px 20px;
-    background-color: var(--secondary-color);
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .chat-input-container button:hover {
-    background-color: var(--secondary-color);
-  }
-  @media screen and (max-width: 990px){
-    .input-section{
-        display: block;
-    }
-    .input-section .input{
-        width: 100%;
-    }
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f3fdf9;
+  font-family: "Segoe UI", sans-serif;
+  color: #333;
+}
+
+.plant-upload-container {
+  max-width: 500px;
+  margin: 60px auto;
+  background-color: #fff;
+  padding: 40px 30px;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  text-align: center;
+}
+
+h2 {
+  color: #199b74;
+  margin-bottom: 30px;
+}
+
+.upload-box {
+  border: 2px dashed #199b74;
+  padding: 30px 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  background-color: #e9f9f3;
+  transition: all 0.3s ease-in-out;
+}
+
+.upload-box:hover {
+  background-color: #d2f3e6;
+}
+
+.preview-img {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+input[type="text"], input[type="email"], input[type="tel"], input[type="number"], .checkout__country {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  margin: 12px 0;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  color: #333;
+  font-size: 15px;
+  transition: border 0.3s;
+}
+
+input[type="text"]:focus {
+  border-color: #199b74;
+  outline: none;
+}
+
+.consult_button {
+  background-color: #199b74;
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease-in-out;
+  margin-top: 10px;
+}
+
+.consult_button:hover {
+  background-color: #157d5f;
+}
+
+.result-box {
+  margin-top: 30px;
+  padding: 20px;
+  border: 1px solid #d2f3e6;
+  border-radius: 10px;
+  text-align: left;
+  background-color: #f3fdf9;
+}
+
+.consult-select {
+  height: 50px; /* Increase height */
+  font-size: 1rem; /* Make text larger */
+  color: #199b74; /* Text color */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 100%;
+  margin-bottom: 15px;
+  background-color: #fff;
+}
+
+.consult_option {
+  color: #000;
+  background-color: #fff;
+  height: 100%;
+}
+
+.result {
+  margin-top: 20px;
+  background: #f6f6f6;
+  padding: 16px;
+  border-radius: 8px;
+  line-height: 1.6;
+  font-size: 14px;
+}
+
+.result ul {
+  padding-left: 20px;
 }

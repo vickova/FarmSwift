@@ -9,9 +9,11 @@ import { useDispatch } from 'react-redux';
 import { GoogleLogin, useGoogleLogin } from '@react-oauth/google';
 import { useGoogleOneTapLogin } from '@react-oauth/google';
 import { BASE_URL } from '../utils/config';
-import { usePost } from '../hooks/useFetch';
+// import { usePost } from '../hooks/useFetch';
+import { usePostBody } from '../hooks/useApi';
 import GoogleIcon from '../assets/icons/google-logo.svg'
 import Loader from '../components/Loader/Loader';
+import { ToastContainer, toast } from 'react-toastify';
 
 
 
@@ -47,37 +49,37 @@ const Register = () => {
   });
 
 
-  const { data: registrationResponse, loading, error, postData } = usePost(`${BASE_URL}/auth/register`);
+  // const { data: registrationResponse, loading, error, postData } = usePost(`${BASE_URL}/auth/register`);
   console.log("API URL:", `${BASE_URL}/auth/register`);
+  const userRegistrationResponse = usePostBody(`auth/register`);
 
-console.log(loading)
-console.log(error)
-console.log(registrationResponse)
-const login = useGoogleLogin({
-  onSuccess: async (response) => {
-    try {
-      console.log("Google Login Response:", response);
+console.log(userRegistrationResponse.isPending)
+console.log(userRegistrationResponse.error)
+// const login = useGoogleLogin({
+//   onSuccess: async (response) => {
+//     try {
+//       console.log("Google Login Response:", response);
 
-      const userInfo = await fetch("https://www.googleapis.com/oauth2/v3/userinfo", {
-        headers: { Authorization: `Bearer ${response.access_token}` },
-      }).then((res) => res.json());
+//       const userInfo = await fetch("https://www.googleapis.com/oauth2/v3/userinfo", {
+//         headers: { Authorization: `Bearer ${response.access_token}` },
+//       }).then((res) => res.json());
 
-      console.log("Decoded User Info:", userInfo);
+//       console.log("Decoded User Info:", userInfo);
 
-      // Call postData function instead of directly using usePost inside a callback
-      postData({
-        firstname: userInfo?.family_name,
-        lastname: userInfo?.given_name,
-        email: userInfo?.email,
-        profilePicture: userInfo?.picture
-      });
+//       // Call postData function instead of directly using usePost inside a callback
+//       userRegistrationResponse.mutate({
+//         firstname: userInfo?.family_name,
+//         lastname: userInfo?.given_name,
+//         email: userInfo?.email,
+//         profilePicture: userInfo?.picture
+//       });
 
-    } catch (error) {
-      console.error("Error fetching Google user info:", error);
-    }
-  },
-  onError: (error) => console.error("Google Sign-in Error:", error),
-});
+//     } catch (error) {
+//       console.error("Error fetching Google user info:", error);
+//     }
+//   },
+//   onError: (error) => console.error("Google Sign-in Error:", error),
+// });
   
   const [previewImage, setPreviewImage] = useState(null); // For previewing the selected image
 
@@ -138,7 +140,7 @@ const login = useGoogleLogin({
       username:"Aderonke Olaleye",
       email:"olumideronke@gmail.com",
   });
-  postData({
+  userRegistrationResponse.mutate({
     username:formData.firstname + " " + formData.lastname,
     email:formData.email,
     password:formData.password,
@@ -146,8 +148,7 @@ const login = useGoogleLogin({
     role:role,
     user_role:'',
     description:formData.description
-}, RegisterUser, '/login')
-  dispatch(SignUser(formData))
+})
   };
   
 
@@ -168,7 +169,7 @@ const login = useGoogleLogin({
                 <p>Already have an account?</p>
                 <Button onClick={() => navigate('/login')}>login</Button>
               </div>
-              <button className='google-sign' onClick={login}><span>Sign in with Google</span><img width={20} height={20} src={GoogleIcon} alt="google icon" /></button>
+              {/* <button className='google-sign' onClick={login}><span>Sign in with Google</span><img width={20} height={20} src={GoogleIcon} alt="google icon" /></button> */}
               <div>
                 <h2>{selectedRole} Sign up</h2>
                 <Form onSubmit={(e) => handleRegisterSubmit(e)}>
@@ -310,7 +311,7 @@ const login = useGoogleLogin({
                     />
                     <p>I have read and agree to FarmSwift’s Privacy Policy and Terms of Use</p>
                   </div>
-                  <Button className='auth__btn btn secondary__btn' type='submit'>{!loading ? 'Create Account' : <Loader/>}</Button>
+                  <Button className='auth__btn btn secondary__btn' type='submit'>{!userRegistrationResponse.isPending ? 'Create Account' : <Loader/>}</Button>
                 </Form>
               </div>
             </div>

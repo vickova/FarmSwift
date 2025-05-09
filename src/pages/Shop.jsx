@@ -3,8 +3,12 @@ import { Container, Col, Button, Row } from 'reactstrap';
 import Shoping from '../assets/images/gallery4.jpeg';
 import PopularProducts from '../components/Slider/PopularProducts';
 import { HomeStyle } from '../styles/PagesStyles';
+import { useGetP } from '../hooks/useApi';
 
 const Shop = () => {
+  const { data: popularProducts, isLoading: getProductsLoading } = useGetP(`/products`, ['products']);
+  console.log({popularProducts})
+  const popular_products = popularProducts?.data;
   return (
     <HomeStyle className='container'>
         <Container>
@@ -26,7 +30,7 @@ const Shop = () => {
             </Row>
             <Row className='popular__jingos'>
               <h2>products</h2>
-              <PopularProducts/>
+              <PopularProducts popular_products={popular_products} getProductsLoading={getProductsLoading}/>
             </Row>
         </Container>
     </HomeStyle>

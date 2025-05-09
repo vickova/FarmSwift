@@ -7,10 +7,12 @@ import { Column } from 'primereact/column';
 import { vendors } from '../utils/Dataset';
 import { useGet } from '../hooks/useFetch';
 import { BASE_URL } from '../utils/config';
+import { useGetP } from '../hooks/useApi';
 
 
 const Vendors = () => {
-  const { data: AllUsers, loading: LoadingUsers, error: UsersError } = useGet(`${BASE_URL}/users`);
+  const { data: AllUsers, loading: LoadingUsers, error: UsersError } = useGetP(`/users`, ['users']);
+
     const AllSellers = AllUsers?.data.filter((user)=>user.role === 'seller')
     console.log(AllSellers)
     console.log(vendors)

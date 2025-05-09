@@ -7,66 +7,44 @@ import { UserPieChart } from '../Visuals/Piechart';
 import { OrderStatusChart } from '../Visuals/StackedBarChart';
 import './Dashboard.css'
 import { SalesLineChart } from '../Visuals/LineChart';
-import { sellerData } from '../Visuals/dummyData';
+import { customerData } from '../Visuals/dummyData';
 import { ActivityAreaChart } from '../Visuals/AreaChart';
 import { useSelector } from 'react-redux';
 import { useGetP } from '../../hooks/useApi';
+import { CustomerBarChart } from '../Visuals/CustomerBarChart';
 
 
-
-const Dashboard = () => {
-  console.log(sellerData)
-  const userData = useSelector((state)=> state.AuthReducer?.user?.data);
-  const userId = userData?._id;
-console.log({userId})
-  const { data: popularProducts, isLoading: getProductsLoading } = useGetP(`/products`, ['products']);
-  console.log({popularProducts})
-  const popular_products = popularProducts?.data;
-
-  const totalProducts = popular_products?.filter((item)=> item.createdBy === userData?._id);
-  const totalProductsLength = totalProducts?.length;
-  console.log({totalProducts})
-
-  const { data: AllSellerOrder, loading: LoadingOrderItems, error: CartItemsError } = useGetP((`/order/seller/${userId}`), ['order', userId]);
-  const sellerOrders = AllSellerOrder?.data;
-  console.log({sellerOrders})
-  const sellerOrdersLength = sellerOrders?.length;
-
-
-  // id: 1,
-  // name: "Ayo Farmer",
-  // totalProducts: 5,
-  // totalOrders: 12,
-  // recentOrders: [
-  //   { product: "Tomatoes", quantity: 10, buyer: "Grace Harvest", status: "Fulfilled", amount: 5000 },
-  //   { product: "Pepper", quantity: 5, buyer: "Musa Buyer", status: "Pending", amount: 2500 },
-  // ],
-  // revenueByMonth: [
-  //   { month: "Jan", revenue: 8000 },
-  //   { month: "Feb", revenue: 11000 },
-  //   { month: "Mar", revenue: 13000 },
-  // ],
-  // productSales: [
-  //   { name: "Tomatoes", count: 6 },
-  //   { name: "Pepper", count: 4 },
-  //   { name: "Yam", count: 2 },
-  // ],
-  // inventory: [
-  //   { name: "Tomatoes", stock: 25 },
-  //   { name: "Pepper", stock: 6 },
-  //   { name: "Yam", stock: 15 },
-  // ],
-  const DashboardData = {
-    id: userData?._id,
-    name: userData?.name,
-    totalProducts: totalProductsLength,
-    totalOrders: sellerOrdersLength,
-    recentOrders:sellerOrders,
-    productSales: totalProducts
-  }
-  console.log({DashboardData})
+const CustomerDashboard = () => {
   const date = new Date();
   const day = date.toLocaleString('default', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
+
+    const userData = useSelector((state)=> state.AuthReducer?.user?.data);
+    const userId = userData?._id;
+  console.log({userId})
+
+  const { data: AllSellerOrder, loading: LoadingOrderItems, error: CartItemsError } = useGetP((`/order/${userId}`), ['order', userId]);
+    const sellerOrders = AllSellerOrder?.orders;
+    console.log({sellerOrders})
+    const sellerOrdersLength = sellerOrders?.length;
+
+    const { data: popularProducts, isLoading: getProductsLoading } = useGetP(`/products`, ['products']);
+    console.log({popularProducts})
+    const popular_products = popularProducts?.data;
+    
+    const totalProducts = Array.isArray(AllSellerOrder?.orders)
+    ? AllSellerOrder?.orders.reduce((sum, product) => sum + Number(product.totalAmount || 0), 0)
+    : 0;
+  
+
+    const DashboardData = {
+      id: userData?._id,
+      name: userData?.name,
+      totalProducts: totalProducts,
+      totalOrders: sellerOrdersLength,
+      recentOrders:sellerOrders,
+      productSales: totalProducts
+    }
+    console.log({DashboardData})
   return (
     <div>
         <h2>Dashboard</h2>
@@ -92,7 +70,7 @@ console.log({userId})
                 </div>
                 <p className='mt-4'>Products Listed</p>
                 <div className='d-flex gap-3 justify-content-between align-items-between'>
-                  <h4 className='m-0'>{DashboardData?.totalProducts}</h4>
+                  <h4 className='m-0'>#{DashboardData?.totalProducts}</h4>
                   <p className='m-0'>Users vs last month</p>
                 </div>
               </div>
@@ -128,7 +106,7 @@ console.log({userId})
                 </select>
               </div>
               <div className='doughnut'>
-                <ProductsBarChart data={DashboardData?.productSales}/>
+                <CustomerBarChart data={sellerOrders}/>
               </div>
             </div>
           </Col>
@@ -137,4 +115,4 @@ console.log({userId})
   )
 }
 
-export default Dashboard
+export default CustomerDashboard

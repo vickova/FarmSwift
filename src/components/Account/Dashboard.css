@@ -71,12 +71,14 @@
     background-color: #fff;
     box-shadow:1px 1px 5px rgb(226, 225, 225);
     padding: 1rem;
+    min-height: 30%;
     border-radius: 10px;
-    min-height: 50%;
-    padding: 1rem;
     margin: .5rem 0;
     box-sizing: border-box;
     color: var(--nav-text-color);
+}
+.chart__left{
+  min-height: 40%;
 }
 .customer__chart select{
     height: fit-content;

@@ -9,7 +9,9 @@ import ConsultationButton from '../ConsultationButton/ConsultationButton';
 
 const Footer = () => {
   const {pathname} = useLocation();
-  const accountexists = pathname.includes('account')
+  const accountexists = pathname.includes('account');
+  const date = new Date();
+  const year = date.getFullYear();
   return (
     <div className='footer' style={{display:`${pathname==='/get-started'||pathname==='/checkout'||accountexists||pathname==='/get-started/register'||pathname==='/login'?'none':'block'}`}}>
       <Container className='footer__container'>
@@ -53,7 +55,7 @@ const Footer = () => {
             <p>Terms of use</p>
           </div>
           <p>
-            copyright 2024 FarmSwift
+            copyright {year} FarmSwift
           </p>
         </div>
       </Row>

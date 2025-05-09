@@ -7,13 +7,20 @@ import SubCategory from '../components/Slider/SubCategory';
 import PopularProducts from '../components/Slider/PopularProducts';
 import { HomeStyle } from '../styles/PagesStyles';
 import { useSelector } from 'react-redux';
+import { useGetP } from '../hooks/useApi';
 
 const Home = () => {
   const userData = useSelector((state)=> state.AuthReducer?.user?.data);
   useEffect(()=>{
     localStorage.setItem('selectedRole', userData?.role);
-
+    // localStorage.setItem('user', userData);
 }, [userData])
+
+const { data: popularProducts, isLoading: getProductsLoading } = useGetP(`/products`, ['products']);
+console.log({popularProducts})
+const popular_products = popularProducts?.data?.slice(0, 6);
+
+  console.log({reactQueryProducts: popular_products})
   return (
     <HomeStyle>
         <Container>
@@ -55,7 +62,7 @@ const Home = () => {
             </Row>
             <Row className='categories__wrapper'>
               <div className='categories__subtitle'>
-                <h2>Features Categories</h2>
+                <h2>Featured Categories</h2>
               </div>
               <div>
                 <CategoriesSlide/>
@@ -67,7 +74,7 @@ const Home = () => {
             
             <Row className='popular__jingos'>
               <h2>Popular Products</h2>
-              <PopularProducts/>
+              <PopularProducts popular_products={popular_products} getProductsLoading={getProductsLoading}/>
             </Row>
         </Container>
     </HomeStyle>

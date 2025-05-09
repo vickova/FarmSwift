@@ -1,11 +1,50 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
+import { RegisterUser, SignUser } from '../redux/actions';
+import { useDispatch } from 'react-redux';
+import { usePost } from '../hooks/useFetch';
+import { BASE_URL } from '../utils/config';
 import { Container, Row, Col, Form, FormGroup, Button } from 'reactstrap';
 import { ContactStyle } from '../styles/PagesStyles';
 
 const Contact = () => {
   const position = [6.5244, 3.3792];
+  const dispatch = useDispatch();
+  const [formData, setFormData] = useState({
+      name: '',
+      email: '',
+      subject: '',
+      message: ''
+    });
+  const { data: contactResponse, loading, error, postData } = usePost(`${BASE_URL}/contact`);
+  
+
+    const handleChange = (event) => {
+      const { name, value } = event.target;
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+    };
+  
+    const handleContactSubmit = (event) => {
+      event.preventDefault();
+      console.log('in te submit functionnnnnnnnn')
+    postData({
+      name:formData.name,
+      email:formData.email,
+      subject:formData.subject,
+      message:formData.message,
+  }, SignUser, '/contact')
+    dispatch(SignUser(formData))
+    setFormData({
+      name: '',
+      email: '',
+      subject: '',
+      message: ''
+    })
+    };
   return (
     <ContactStyle className='contact-container'>
         <Container>
@@ -35,18 +74,20 @@ const Contact = () => {
               </div>
             </Col>
             <Col lg='6'>
-            <Form className='contact-form'>
+            <Form className='contact-form' onSubmit={handleContactSubmit}>
               <h2>Send a Message</h2>
               <FormGroup>
-                <input type="text" placeholder='Name' required id='name'/>
+                <input type="text" placeholder='Name' value={formData.name} onChange={handleChange} required id='name'name='name'/>
               </FormGroup>
               <FormGroup>
-                <input type="email" placeholder='Email' required id='email'/>
+                <input type="email" placeholder='Email' value={formData.email} onChange={handleChange} required id='email' name='email'/>
               </FormGroup>
-              <textarea name="message" id="message" placeholder='Enter your message'>
+              <FormGroup>
+                <input type="text" placeholder='Subject' value={formData.subject} onChange={handleChange} required id='subject' name='subject'/>
+              </FormGroup>
+              <textarea name="message" id="message" value={formData.message} onChange={handleChange} placeholder='Enter your message'>
 
               </textarea>
-              <p>In submitting this, you understand and agree to the terms and conditions outlined in the accompanying agreement.</p>
               <Button>Submit</Button>
             </Form>
             </Col>

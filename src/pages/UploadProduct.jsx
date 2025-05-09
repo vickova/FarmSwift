@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { UploadProductStyle } from '../styles/PagesStyles';
 import { BASE_URL } from '../utils/config';
-import { usePost, useGet, usePut } from '../hooks/useFetch';
+import { useGet, usePut } from '../hooks/useFetch';
 import { LoginSuccess } from '../redux/actions';
 import { SignUser } from '../redux/actions';
 import { Button } from 'reactstrap';
 import Loader from '../components/Loader/Loader';
 import { useSelector } from 'react-redux';
+import { useGetP, usePost, usePostBody } from '../hooks/useApi';
 
 const UploadProduct = () => {
   const [product, setProduct] = useState({
@@ -24,12 +25,16 @@ const UploadProduct = () => {
   const [previewImage, setPreviewImage] = useState(null); // For previewing the selected image
   const [updateproduct, setUpdateProduct] = useState(false);
   
-  const { data: uploadProductResponse, loading, error, postData } = usePost(`${BASE_URL}/products`);
-  const { data: getProductsResponse, loading: getProductsLoading, error: getProductsError } = useGet(`${BASE_URL}/products`);
+  // const { data: uploadProductResponse, loading, error, postData } = usePost(`${BASE_URL}/products`);
+
+  const addtoCartData = usePostBody(`/products`, ['products']);
+  const { data: getProductsResponse, loading: getProductsLoading, error: getProductsError } = useGetP(`/products`, ['products']);
+  console.log({getProductsResponse})
+
   const { data: updateResponse, loading: updateLoading, error: updateError, postData: updateData } = usePut(`${BASE_URL}/products/${product?._id}`);
 
   const userProducts = getProductsResponse?.data.filter((item) => item.createdBy === userDataId);
-
+console.log({userProducts})
   useEffect(() => {
     if (product.photo) {
       setPreviewImage(product.photo);
@@ -85,13 +90,14 @@ const UploadProduct = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    postData({
+    console.log(product)
+    addtoCartData.mutate({
       name: product.name,
       category: product.category.toLowerCase(),
       price: product.price,
       photo: product.photo,
       description: product.description,
-    }, SignUser, '/account/upload');
+    });
     setSuccessMessage('Product uploaded successfully!');
     setErrorMessage('');
     setProduct({ name: '', price: '', description: '', category: '', photo: null });
@@ -162,7 +168,7 @@ const UploadProduct = () => {
             <select name="category" value={product.category} onChange={handleChange} required style={{color:'#000'}}>
               <option value="" disabled style={{color:'#000'}}>Select a category</option>
               {categories.map((category, index) => (
-                <option key={index} value={category} style={{color:'#000'}}>{category?.title}</option>
+                <option key={index} style={{color:'#000'}}>{category?.title}</option>
               ))}
             </select>
           </div>
@@ -173,7 +179,7 @@ const UploadProduct = () => {
           </div>
           {updateproduct?
           <div className='d-flex justify-content-center gap-4'>
-            <button className='submit-btn btn secondary__btn d-flex justify-content-center' type='submit' onClick={handleUpdate}>{!loading ? 'Update Product' : <Loader/>}</button>
+            <button className='submit-btn btn secondary__btn d-flex justify-content-center' type='submit' onClick={handleUpdate}>{!addtoCartData?.isPending ? 'Update Product' : <Loader/>}</button>
             <button className='cancel-btn btn secondary__btn d-flex justify-content-center' type='submit' onClick={cancelUpdate}>Cancel</button>
           </div>:
           <button className='submit-btn btn secondary__btn d-flex justify-content-center' type='submit' onClick={handleSubmit}>{!updateLoading ? 'Upload Product': <Loader/>}</button>
@@ -189,8 +195,8 @@ const UploadProduct = () => {
             <p>No products uploaded yet.</p>
           ) : (
             <ul className="product-list">
-              {userProducts?.map((product) => (
-                <li key={product.id} className="product-item">
+              {userProducts?.map((product, index) => (
+                <li key={index} className="product-item">
                   <div className="d-flex align-items-center justify-content-between">
                     <h4>{product.name}</h4>
                     <i className="ri-delete-bin-4-line" style={{ cursor: 'pointer' }} onClick={() => deleteProduct(product)}></i>

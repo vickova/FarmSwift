@@ -1,25 +1,21 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 import Layout from './components/Layout/Layout';
-import { useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-
 function App() {
-  const location = useLocation();
-  const userRegister = useSelector((state)=> state.AuthReducer.user);
+  const navigate = useNavigate();
+  const userData = useSelector((state) => state.AuthReducer?.user?.data);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [location]);
+    if (!userData) {
+      navigate('/login');
+    }
+  }, [userData, navigate]);
 
-useEffect(()=>{
-      localStorage.setItem('user', JSON.stringify(userRegister))
-  }, [userRegister])
- 
-  return (
-    <Layout/>
-  );
+
+  return <Layout />;
 }
 
 export default App;

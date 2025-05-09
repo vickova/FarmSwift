@@ -26,10 +26,10 @@ const AccountDetails = () => {
   const usernames = userData?.username.split(' ')
 
   const [formData, setFormData] = useState({
-    firstname: usernames[0],
-    lastname: usernames[1],
+    firstname: usernames,
+    lastname: usernames,
     profilePicture: null, // Holds the uploaded file
-    description:userData.description
+    description:userData?.description
   });
 console.log(userData)
 console.log(`${BASE_URL}/users/:${userData?._id}`)

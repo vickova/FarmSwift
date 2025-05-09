@@ -69,7 +69,6 @@ export const usePost = (url) => {
         console.error("Registration failed:", responseData.message);
         setError(responseData.error || "Failed to fetch");
         console.log(responseData)
-        alert("Failed to fetch");
       }
     } catch (error) {
       console.error("Error:", error);
@@ -112,7 +111,6 @@ export const usePut = (url)=>{
           console.error("Registration failed:", responseData.message);
           setError(responseData.error || "Failed to fetch");
           console.log(responseData)
-          alert("Failed to fetch");
         }
       } catch (error) {
         console.error("Error:", error);
@@ -141,7 +139,6 @@ export const UserDetails = ({ userId }) => {
                 } else {
                     setError(data.message);
                     setError('failed to fetch');
-                    alert('failed to fetch')
                 }
             } catch (error) {
                 setError("An error occurred while fetching data.");
@@ -158,14 +155,81 @@ export const useGet = (url) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  console.log('helloo')
   console.log(url)
   useEffect(() => {
       const fetchUser = async () => {
           try {
-            console.log('heyyyyyyyyyy')
               const response = await fetch(url, {
                 method: "GET",
+                credentials: "include", // Send cookies
+                headers: {
+                  "Content-Type": "application/json",
+                },
+              });
+              const data = await response.json();
+              console.log(data)
+              if (response.ok) {
+                  setData(data);
+              } else {
+                  setError(data.message);
+                  setError('failed to fetch');
+              }
+          } catch (error) {
+              setError(error);
+          } finally {
+              setLoading(false);
+          }
+      };
+
+      fetchUser();
+  }, [url]); // Runs when userId changes
+  return { data, error, loading };
+}
+
+export const useDelete = (url) => {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  console.log('helloo')
+  console.log(url)
+      const fetchData = async (id) => {
+          try {
+            console.log('heyyyyyyyyyy')
+              const response = await fetch(url+id, {
+                method: "DELETE",
+                credentials: "include", // Send cookies
+                headers: {
+                  "Content-Type": "application/json",
+                },
+              });
+              const data = await response.json();
+              console.log(data)
+              if (response.ok) {
+                  setData(data);
+              } else {
+                  setError(data.message);
+                  setError('failed to fetch');
+              }
+          } catch (error) {
+              setError(error);
+          } finally {
+              setLoading(false);
+          }
+      };
+
+  return { data, error, loading, fetchData };
+}
+export const useWish = (url) => {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  console.log('helloo')
+  console.log(url)
+      const fetchData = async (id) => {
+          try {
+            console.log('heyyyyyyyyyy')
+              const response = await fetch(url+id, {
+                method: "POST",
                 credentials: "include", // Send cookies
                 headers: {
                   "Content-Type": "application/json",
@@ -187,7 +251,5 @@ export const useGet = (url) => {
           }
       };
 
-      fetchUser();
-  }, []); // Runs when userId changes
-  return { data, error, loading };
+  return { data, error, loading, fetchData };
 }
