@@ -9,7 +9,7 @@ import './AccountDetails.css';
 import Loader from '../Loader/Loader';
 
 const AccountDetails = () => {
-    const userData = useSelector((state)=> state.AuthReducer?.user?.data);
+    const userData = JSON.parse(localStorage.getItem('user'));
       const [userToken, setUserToken] = useState(null)
   
      const [eye, setEye] = useState(false);

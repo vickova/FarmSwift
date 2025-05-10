@@ -9,7 +9,7 @@ import ToggleAccount from '../Toggle/ToggleAccount';
 import './Header.css'
 import ToggleCategories from '../Toggle/ToggleCategories';
 // import { useDelete, useGet, usePost } from '../../hooks/useFetch';
-import { useGetP, useDelete, usePost } from '../../hooks/useApi';
+import { useGetP, useDelete, usePost, usePatch } from '../../hooks/useApi';
 import { BASE_URL } from '../../utils/config';
 import Loader from '../Loader/Loader';
 
@@ -20,7 +20,7 @@ const Header = () => {
     const [wishItem, setWishItem] = useState(null);
     const [cartItem, setCartItem] = useState(null);
     const [productId, setProductId] = useState('');
-    const userData = useSelector((state)=> state.AuthReducer?.user?.data);
+    const userData = JSON.parse(localStorage.getItem('user'));
     console.log({"HeaderDataaaaaaaaaa":userData})
     // if(!userData){
     //     navigate('login')
@@ -28,6 +28,8 @@ const Header = () => {
     const deleteCartData = useDelete(`/carts/${cartItem}`, ['carts', 'wish', cartItem]);
     const deleteWishData = useDelete(`/wishes/${wishItem}`, ['wishes', wishItem]);
     const addtoCartData = usePost(`/carts/${wishItem}`, ['carts', productId]);
+    const reducefromCartData = usePatch(`/carts/reduce/${wishItem}`, ['carts', productId]);
+
 
   const { data: AddtoCartResponse, postData } = usePost(`/carts/${productId}`, ['carts', productId]);
 
@@ -65,9 +67,21 @@ const Header = () => {
         deleteCartData.mutate(productId,{})
       };
       const handleAddToCart = (productId) => {
+        console.log('clicked')
         if (userData?.isVerified) {
             setWishItem(productId); // Store the ID in state
           addtoCartData.mutate(productId,{})
+    
+        } else {
+          console.log('Please login');
+          return navigate('/login');
+        }
+      };
+    const handleReduceFromCart = (productId) => {
+        console.log('clicked')
+        if (userData?.isVerified) {
+            setWishItem(productId); // Store the ID in state
+          reducefromCartData.mutate(productId,{})
     
         } else {
           console.log('Please login');
@@ -202,7 +216,7 @@ const handleLogout = ()=>{
                     {userData?.role === 'seller' && 
                         <button className='cart__wish' onClick={()=>navigate('/account/upload')} style={{backgroundColor:'transparent'}}>
                         <i className="ri-upload-2-line"></i>
-                        <span className='toggle-title'>Upload Product</span>
+                        <span className='toggle-title' style={{color:'#252525'}}>Upload Product</span>
                         </button>}
                     <Toggle title={'Wishlist'} icon={'ri-heart-line'} superscript={wishList?.length}>
                         <ul>
@@ -274,6 +288,7 @@ const handleLogout = ()=>{
                                 <div className='cartrow__cover'>
                                     {
                                         AllCartItems?.data.map((item, index)=>{
+                                            console.log({item})
                                             let totalPrice =item?.price * item?.quantity;
                                             const SellerData = AllUsers?.data.find((user) => user._id === item.product?.createdBy);
                                             console.log(totalPrice)
@@ -290,7 +305,7 @@ const handleLogout = ()=>{
                                                     </div>
                                                 </Col>
                                                 <Col lg='2' className='cart__data'>{item.price}</Col>
-                                                <Col lg='3' className='cart__data d-flex justify-content-center gap-3 align-items-center'><button onClick={()=>dispatch(ReduceCart(item))}>-</button><span>{item.quantity}</span><button value={item} onClick={()=>setProductId(item?.product._id)}>+</button></Col>
+                                                <Col lg='3' className='cart__data d-flex justify-content-center gap-3 align-items-center'><button onClick={()=>handleReduceFromCart(item?.product._id)}>-</button><span>{item.quantity}</span><button onClick={()=>handleAddToCart(item?.product._id)}>+</button></Col>
                                                 <Col lg='2' className='cart__data'>#{totalPrice}</Col>
                                                 <Col lg='1' className='cart__data'>{!deleteCartData.isPending ? <i className="ri-close-fill" onClick={()=>deleteCart(item?.product._id)}></i> : <Loader/>}</Col>
                                             </Row>

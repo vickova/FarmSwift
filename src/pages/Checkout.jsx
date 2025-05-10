@@ -15,7 +15,7 @@ import axios from 'axios';
 import Loader from '../components/Loader/Loader';
 
 const Checkout = () => {
-    const userData = useSelector((state)=> state.AuthReducer?.user?.data);
+    const userData = JSON.parse(localStorage.getItem('user'));
     const userId = userData?._id;
     console.log({"userDataaaaaaaaCheckout":userData});
     const [countries, setCountries] = useState([]);

@@ -22,7 +22,7 @@ import { useDispatch } from 'react-redux';
 
 const SellerDashboard = () => {
     const [menuTog, setMenuTog] = useState(false)
-    const userData = useSelector((state)=> state.AuthReducer?.user?.data);
+    const userData = JSON.parse(localStorage.getItem('user'));
     console.log(userData)
     
     const role = localStorage.getItem('selectedRole');

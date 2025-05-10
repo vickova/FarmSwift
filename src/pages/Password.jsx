@@ -10,7 +10,7 @@ import Loader from '../components/Loader/Loader';
 import { PasswordStyle } from '../styles/PagesStyles';
 
 const Password = () => {
-    const userData = useSelector((state)=> state.AuthReducer?.user?.data);
+    const userData = JSON.parse(localStorage.getItem('user'));
       const [userToken, setUserToken] = useState(null)
   
      const [eye, setEye] = useState(false);

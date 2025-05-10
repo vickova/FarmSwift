@@ -10,7 +10,7 @@ import { useSelector } from 'react-redux';
 import { useGetP } from '../hooks/useApi';
 
 const Home = () => {
-  const userData = useSelector((state)=> state.AuthReducer?.user?.data);
+  const userData = JSON.parse(localStorage.getItem('user'));
   useEffect(()=>{
     localStorage.setItem('selectedRole', userData?.role);
     // localStorage.setItem('user', userData);

@@ -15,7 +15,7 @@ const ProductCard = ({ item, AllUsers }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const userData = useSelector((state) => state.AuthReducer?.user?.data);
+  const userData = JSON.parse(localStorage.getItem('user'));
   // console.log({"userDataaaaaaaa": userData})
   const current_vendor = vendors?.find((vendor) => vendor?.id === Number(item?.createdBy));
   const productId = item._id;

@@ -17,8 +17,8 @@ const UploadProduct = () => {
     category: '',
     photo: null,
   });
-
-  const userDataId = useSelector((state) => state.AuthReducer?.user?.data?._id);
+  const userData = JSON.parse(localStorage.getItem('user'));
+  const userDataId = userData?._id;
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [uploadedProducts, setUploadedProducts] = useState([]);

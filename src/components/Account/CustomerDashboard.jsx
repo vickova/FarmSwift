@@ -18,7 +18,7 @@ const CustomerDashboard = () => {
   const date = new Date();
   const day = date.toLocaleString('default', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
 
-    const userData = useSelector((state)=> state.AuthReducer?.user?.data);
+    const userData = JSON.parse(localStorage.getItem('user'));
     const userId = userData?._id;
   console.log({userId})
 

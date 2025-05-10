@@ -12,7 +12,7 @@ import { useSelector } from 'react-redux';
 
 const VendorDetails = () => {
 const [open, setOpen] = useState(false);
-const userData = useSelector((state)=> state.AuthReducer?.user?.data);
+const userData = JSON.parse(localStorage.getItem('user'));
 console.log(userData)
 console.log(open)
 const {id} = useParams();

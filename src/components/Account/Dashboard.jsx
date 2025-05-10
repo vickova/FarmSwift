@@ -16,7 +16,7 @@ import { useGetP } from '../../hooks/useApi';
 
 const Dashboard = () => {
   console.log(sellerData)
-  const userData = useSelector((state)=> state.AuthReducer?.user?.data);
+  const userData = JSON.parse(localStorage.getItem('user'));
   const userId = userData?._id;
 console.log({userId})
   const { data: popularProducts, isLoading: getProductsLoading } = useGetP(`/products`, ['products']);

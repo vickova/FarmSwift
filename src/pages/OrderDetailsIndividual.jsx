@@ -15,7 +15,7 @@ const OrderDetailsIndividual = () => {
 
    
 
-    const userData = useSelector((state)=> state.AuthReducer?.user?.data);
+    const userData = JSON.parse(localStorage.getItem('user'));
       const userId = userData?._id;
       const { data: AllOrder, loading: LoadingOrderItems, error: CartItemsError } = useGetP(userId ? `/order/${userId}` : null, ['order', userId]);
       console.log('AllOrder', AllOrder);

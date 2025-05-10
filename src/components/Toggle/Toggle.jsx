@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import './Toggle.css'
 
 const Toggle = ({children, title, icon, superscript}) => {
-      const userData = useSelector((state)=> state.AuthReducer?.user?.data);
+      const userData = JSON.parse(localStorage.getItem('user'));
   
   const toggleRef = useRef();
     const [toggle, setToggle] = useState(false);

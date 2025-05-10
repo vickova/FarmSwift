@@ -19,7 +19,11 @@ const fetchData = async (url) => {
     const response = await axiosInstance.post(url, data);
     return response.data;
   };
-  
+   const patchData = async (url, data) => {
+    console.log({postDataaaFirst:data})
+    const response = await axiosInstance.patch(url, data);
+    return response.data;
+  };
   // Function for PUT requests
   const putData = async (url, data) => {
     const response = await axiosInstance.put(url, data);
@@ -59,6 +63,28 @@ const fetchData = async (url) => {
     const queryClient = useQueryClient()
     const postMutation = useMutation({
         mutationFn:()=>postData(url),
+        onSuccess:(data)=>{
+            queryClient.invalidateQueries(invalidateKey)
+            console.log(data)
+            toast.success(data?.message || "Successful", {
+            position: "top-right",
+            autoClose: 2000,
+          }); 
+        },
+        onError:(error)=>{
+          console.log(error.response.data.message)
+          console.log('errorrrr ooooooooooooooooooo')
+          toast.error(error?.response?.data?.message || "Something went wrong", {
+            position: "top-right",
+            autoClose: 2000,
+          });        }
+    })
+    return postMutation
+  };
+  export const usePatch = (url, invalidateKey) => {
+    const queryClient = useQueryClient()
+    const postMutation = useMutation({
+        mutationFn:()=>patchData(url),
         onSuccess:(data)=>{
             queryClient.invalidateQueries(invalidateKey)
             console.log(data)

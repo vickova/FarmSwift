@@ -8,7 +8,7 @@ import { useGetP } from '../hooks/useApi';
 import { useSelector } from 'react-redux';
 
 const OrderDetails = () => {
-  const userData = useSelector((state)=> state.AuthReducer?.user?.data);
+  const userData = JSON.parse(localStorage.getItem('user'));
   const userId = userData?._id;
   console.log({userData})
   const { data: AllOrder, loading: LoadingOrderItems, error: CartItemsError } = useGetP(
