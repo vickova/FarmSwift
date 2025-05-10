@@ -28,6 +28,12 @@ const SellerDashboard = () => {
     const role = localStorage.getItem('selectedRole');
     const dispatch = useDispatch()
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if (!userData) {
+        navigate('/login');
+        }
+    }, [userData, navigate]);
     useEffect(() => {
         if (!userData) {
         navigate('/login');
