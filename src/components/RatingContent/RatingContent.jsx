@@ -29,7 +29,7 @@ const RatingContent = ({open, setOpen}) => {
     console.log(AllUsers)
     const current_vendor = AllUsers?.data.filter((user)=>user._id === id)[0]
     const userData = useSelector((state)=> state.AuthReducer?.user?.data);
-    const addReview = usePostBody(`/reviews/${userData._id}`);
+    const addReview = usePostBody(`/reviews/${userData?._id}`);
     console.log({addReview:addReview})
     // const current_vendor = vendors?.filter((item)=>item?.id===Number(id))[0];
     console.log(current_vendor)

@@ -8,9 +8,12 @@ import { useGet } from '../hooks/useFetch';
 import { BASE_URL } from '../utils/config';
 import calculateAvgRating from '../components/RatingContent/AvgRating';
 import { useGetP } from '../hooks/useApi';
+import { useSelector } from 'react-redux';
 
 const VendorDetails = () => {
 const [open, setOpen] = useState(false);
+const userData = useSelector((state)=> state.AuthReducer?.user?.data);
+console.log(userData)
 console.log(open)
 const {id} = useParams();
 //  const { data: AllUsers, loading: LoadingUsers, error: UsersError } = useGet(`${BASE_URL}/users`);
@@ -35,7 +38,9 @@ if (!vendordetail){
                         <h2>{vendordetail.username}</h2>
                         <div className='gap-4 d-flex align-items-center my-3'>
                             <p className='vendor-major'>{vendordetail.email}</p>
+                            {userData?.role === 'customer' &&
                             <button onClick={()=>setOpen(true)} style={{backgroundColor:'#fff', borderRadius:'5px', padding:'0 .5rem', color:'#199b74', border:'1px solid #199b74'}}>Rate me</button>
+                        }
                         </div>
                         <div className='rating gap-2 d-flex align-items-center'>
                             <span className='stars d-flex gap-1'>
