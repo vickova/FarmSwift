@@ -27,7 +27,7 @@ const UploadProduct = () => {
   
   // const { data: uploadProductResponse, loading, error, postData } = usePost(`${BASE_URL}/products`);
 
-  const addtoCartData = usePostBody(`/products`, ['products']);
+  const addtoProductData = usePostBody(`/products`, ['products']);
   const { data: getProductsResponse, loading: getProductsLoading, error: getProductsError } = useGetP(`/products`, ['products']);
   console.log({getProductsResponse})
 
@@ -91,7 +91,7 @@ console.log({userProducts})
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(product)
-    addtoCartData.mutate({
+    addtoProductData.mutate({
       name: product.name,
       category: product.category.toLowerCase(),
       price: product.price,
@@ -156,7 +156,7 @@ console.log({userProducts})
             <input type="text" name="name" value={product.name} onChange={handleChange} placeholder="Enter product name" required />
           </div>
           <div className="form-group">
-            <label>Price ($)</label>
+            <label>Price (₦)</label>
             <input type="number" name="price" value={product.price} onChange={handleChange} placeholder="Enter product price" required />
           </div>
           <div className="form-group">
@@ -179,7 +179,7 @@ console.log({userProducts})
           </div>
           {updateproduct?
           <div className='d-flex justify-content-center gap-4'>
-            <button className='submit-btn btn secondary__btn d-flex justify-content-center' type='submit' onClick={handleUpdate}>{!addtoCartData?.isPending ? 'Update Product' : <Loader/>}</button>
+            <button className='submit-btn btn secondary__btn d-flex justify-content-center' type='submit' onClick={handleUpdate}>{!addtoProductData?.isPending ? 'Update Product' : <Loader/>}</button>
             <button className='cancel-btn btn secondary__btn d-flex justify-content-center' type='submit' onClick={cancelUpdate}>Cancel</button>
           </div>:
           <button className='submit-btn btn secondary__btn d-flex justify-content-center' type='submit' onClick={handleSubmit}>{!updateLoading ? 'Upload Product': <Loader/>}</button>
@@ -203,7 +203,7 @@ console.log({userProducts})
                   </div>
                   <div className='d-flex align-items-end gap-5'>
                     <div>
-                      <p>Price: ${product.price}</p>
+                      <p>Price: ₦{product.price}</p>
                       <p>Category: {product.category}</p>
                       <p>Description: {product.description}</p>
                       {product.photo && <img src={product?.photo} alt={product.name} className="product-image" />}

@@ -45,7 +45,7 @@ console.log(token)
   return (
     <div style={{ textAlign: "center", marginTop: "50px" }}>
       {status === "loading" && <p>Verifying your account...</p>}
-      {status === "success" && <p style={{ color: "green" }}> <span>{message}</span><span>Proceed to <a href="/login">Login</a></span></p>}
+      {status === "success" && <p style={{ color: "green" }}> <span>{message}</span><span> Proceed to <a href="/login">Login</a></span></p>}
       {status === "error" && <p style={{ color: "red" }}>{message}</p>}
     </div>
   );

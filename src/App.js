@@ -8,7 +8,7 @@ function App() {
   const navigate = useNavigate();
   const userData = useSelector((state) => state.AuthReducer?.user?.data);
   const {pathname} = useLocation();
-  const isLoginPage = pathname === '/login' || pathname === '/get-started' || pathname === '/get-started/register' || pathname === '/verify';
+  const isLoginPage = pathname === '/login' || pathname === '/home'|| pathname === '/' || pathname === '/get-started' || pathname === '/get-started/register' || pathname === '/verify';
   useEffect(() => {
     if (!userData && !isLoginPage) {
       navigate('/login');
