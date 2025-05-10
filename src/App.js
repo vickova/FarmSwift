@@ -8,11 +8,11 @@ function App() {
   const navigate = useNavigate();
   const userData = useSelector((state) => state.AuthReducer?.user?.data);
 
-  // useEffect(() => {
-  //   if (!userData) {
-  //     navigate('/login');
-  //   }
-  // }, [userData, navigate]);
+  useEffect(() => {
+    if (!userData) {
+      navigate('/login');
+    }
+  }, [userData, navigate]);
 
 
   return <Layout />;
