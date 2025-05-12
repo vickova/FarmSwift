@@ -20,13 +20,13 @@ const App = () => {
     pathname === '/get-started/register' ||
     pathname === '/verify';
 
-  useEffect(() => {
-    const storedUser = localStorage.getItem('user');
-    if (storedUser) {
-      dispatch({ type: 'LOGIN_SUCCESS', payload: JSON.parse(storedUser) });
-    }
-    setInitialized(true);
-  }, [dispatch]);
+  // useEffect(() => {
+  //   const storedUser = localStorage.getItem('user');
+  //   if (storedUser) {
+  //     dispatch({ type: 'LOGIN_SUCCESS', payload: JSON.parse(storedUser) });
+  //   }
+  //   setInitialized(true);
+  // }, [dispatch]);
 
   useEffect(() => {
     if (initialized && !userData && !isLoginPage) {

@@ -34,9 +34,9 @@ const Header = () => {
   const { data: AddtoCartResponse, postData } = usePost(`/carts/${productId}`, ['carts', productId]);
 
     const userId = userData?._id;
-    const { data: AllCartItems, loading: LoadingCartItems, error: CartItemsError } = useGetP(userId ? `/carts/${userId}` : null, ['carts'], !!userId);
+    const { data: AllCartItems, loading: LoadingCartItems, error: CartItemsError } = useGetP(userId ? `/carts/${userId}` : null, ['carts', userId], !!userId);
 
-    const { data: AllWishesItems, loading: LoadingWishesItems, error: WishesItemsError } = useGetP(userId ? `/wishes/${userId}` : null, ['wishes'], !!userId);
+    const { data: AllWishesItems, loading: LoadingWishesItems, error: WishesItemsError } = useGetP(userId ? `/wishes/${userId}` : null, ['wishes', userId], !!userId);
 
 
     const wishList = AllWishesItems?.data
@@ -172,6 +172,7 @@ const MenuTog= ()=>{
 const handleLogout = ()=>{
         dispatch(Logout())
         localStorage.removeItem('user');
+        navigate('/login')
     }
   return (
     <div ref={headerRef} style={{display:`${pathname==='/get-started'||pathname==='/checkout'||pathname==='/get-started/register'||accountexists||pathname==='/login'?'none':'block'}`}}>
