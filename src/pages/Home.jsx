@@ -18,7 +18,7 @@ const Home = () => {
 
 const { data: popularProducts, isLoading: getProductsLoading } = useGetP(`/products`, ['products']);
 console.log({popularProducts})
-const popular_products = popularProducts?.data?.slice(0, 6);
+const popular_products = popularProducts?.data?.slice(0, 8);
 
   console.log({reactQueryProducts: popular_products})
   return (

@@ -24,6 +24,7 @@
     display: flex;
     justify-content: space-between;
     gap: .5rem;
+    width: 100%;
     overflow-x: auto !important;
 }
 .category-wrapper::-webkit-scrollbar {
@@ -67,6 +68,7 @@
     }
     .categories-card{
         height: 150px;
+        min-width: 200px;
     }
     .categories-card img{
         height: 80px;
